@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/home.dart';
+import 'package:hgt/review.dart';
 
 class MyCoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.yellow,
         title: Text('HGT'),
         centerTitle: true,
       ),
@@ -16,7 +18,7 @@ class MyCoursePage extends StatelessWidget {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.indigo,
+                color: Colors.yellow,
               ),
               child: Container(
                 alignment: Alignment.bottomLeft,
@@ -36,9 +38,30 @@ class MyCoursePage extends StatelessWidget {
             ),
             ListTile(
                 title: Text("Home"),
-                leading: Icon(Icons.home, color: Colors.indigo),
+                leading: Icon(Icons.home, color: Colors.black),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage()));
+                }
+            ),
+            ListTile(
+                title: Text("Search Course"),
+                leading: Icon(Icons.search),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => MyCoursePage()));
+                }
+            ),
+            ListTile(
+                title: Text("Review"),
+                leading: Image.asset('asset/review.png',
+                  width: 25, height: 25),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => ReviewPage()));
                 }
             ),
           ],
