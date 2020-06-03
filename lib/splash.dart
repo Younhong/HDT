@@ -9,12 +9,13 @@ class SplashPage extends StatefulWidget {
 class SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
+    var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Builder(builder: (BuildContext context) {
         return ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            SizedBox(height: 180.0),
+            SizedBox(height: phoneSize.height*.4),
             Column(
               children: <Widget>[
                 RichText(
@@ -42,11 +43,10 @@ class SplashPageState extends State<SplashPage> {
                 ),
               ],
             ),
-            SizedBox(height: 75.0),
+            SizedBox(height: phoneSize.height * .3),
             Column(
               children: <Widget>[
                 Container(
-                  width: 360,
                   child: FlatButton(
                       child: Text("Handong Time"),
                       onPressed: () async {
