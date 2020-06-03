@@ -36,36 +36,80 @@ class HomePage extends StatelessWidget {
                             decorationColor: Colors.white))
                   ]),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: phoneSize.height * .1),
             InkWell(
-              child: Text("개설 시간표 조회",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),),
+              child: Container(
+                width: phoneSize.width * .7,
+                height: phoneSize.height * .1,
+                alignment: Alignment.center,
+                child: Text("개설 시간표 조회",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(40.0),
+                    topRight: const Radius.circular(40.0),
+                    bottomLeft: const Radius.circular(40.0),
+                    bottomRight: const Radius.circular(40.0),
+                  ),
+                  border: Border.all(color: Colors.red),
+                ),
+              ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) => OpenCoursePage())),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: phoneSize.height * .05),
             InkWell(
-              child: Text("내 시간표 조회",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),),
+              child: Container(
+                width: phoneSize.width * .7,
+                height: phoneSize.height * .1,
+                alignment: Alignment.center,
+                child: Text("내 시간표 조회",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(40.0),
+                    topRight: const Radius.circular(40.0),
+                    bottomLeft: const Radius.circular(40.0),
+                    bottomRight: const Radius.circular(40.0),
+                  ),
+                  border: Border.all(color: Colors.yellow),
+                ),
+              ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) => MyCoursePage())),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: phoneSize.height * .05),
             InkWell(
-              child: Text("수업 리뷰 조회",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),),
+              child: Container(
+                width: phoneSize.width * .7,
+                height: phoneSize.height * .1,
+                alignment: Alignment.center,
+                child: Text("수업 리뷰 조회",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(40.0),
+                    topRight: const Radius.circular(40.0),
+                    bottomLeft: const Radius.circular(40.0),
+                    bottomRight: const Radius.circular(40.0),
+                  ),
+                  border: Border.all(color: Colors.green),
+                ),
+              ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) => ReviewPage())),
             ),
+            SizedBox(height: phoneSize.height * .12),
+            Text('Handong Time')
           ],
         ),
       ),
