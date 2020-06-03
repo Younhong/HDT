@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/schedule.dart';
+import 'package:hgt/my_course.dart';
+import 'package:hgt/open_course.dart';
+import 'package:hgt/review.dart';
 
 class HomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 50),
+        padding: EdgeInsets.only(top: phoneSize.height * 0.15),
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
@@ -42,7 +44,7 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold),),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => SchedulePage())),
+                      builder: (context) => OpenCoursePage())),
             ),
             SizedBox(height: 50),
             InkWell(
@@ -52,7 +54,7 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold),),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => SchedulePage())),
+                      builder: (context) => MyCoursePage())),
             ),
             SizedBox(height: 50),
             InkWell(
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold),),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => SchedulePage())),
+                      builder: (context) => ReviewPage())),
             ),
           ],
         ),
