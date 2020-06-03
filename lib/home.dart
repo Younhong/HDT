@@ -3,6 +3,8 @@ import 'package:hgt/my_course.dart';
 import 'package:hgt/open_course.dart';
 import 'package:hgt/review.dart';
 
+import 'dart:math' as math;
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,47 +40,67 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: phoneSize.height * .1),
             InkWell(
-              child: Container(
-                width: phoneSize.width * .7,
-                height: phoneSize.height * .1,
-                alignment: Alignment.center,
-                child: Text("개설 시간표 조회",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                    topRight: const Radius.circular(40.0),
-                    bottomLeft: const Radius.circular(40.0),
-                    bottomRight: const Radius.circular(40.0),
-                  ),
-                  border: Border.all(color: Colors.red),
-                ),
-              ),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: phoneSize.width * .7,
+                    height: phoneSize.height * .1,
+                    alignment: Alignment.center,
+                    child: Text("개설 시간표 조회",
+                    style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(40.0),
+                        topRight: const Radius.circular(40.0),
+                        bottomLeft: const Radius.circular(40.0),
+                        bottomRight: const Radius.circular(40.0),
+                      ),
+                      border: Border.all(color: Colors.red, width: 4),
+                    ),),
+                  Positioned(
+                    top: 13,
+                    left: -5,
+                    child: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(math.pi),
+                        child: Icon(Icons.search, size: 60,)
+                    ),
+                  )
+                ],),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) => OpenCoursePage())),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
-              child: Container(
-                width: phoneSize.width * .7,
-                height: phoneSize.height * .1,
-                alignment: Alignment.center,
-                child: Text("내 시간표 조회",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                    topRight: const Radius.circular(40.0),
-                    bottomLeft: const Radius.circular(40.0),
-                    bottomRight: const Radius.circular(40.0),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: phoneSize.width * .7,
+                    height: phoneSize.height * .1,
+                    alignment: Alignment.center,
+                    child: Text("내 시간표",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(40.0),
+                        topRight: const Radius.circular(40.0),
+                        bottomLeft: const Radius.circular(40.0),
+                        bottomRight: const Radius.circular(40.0),
+                      ),
+                      border: Border.all(color: Colors.yellow, width: 4),
+                    ),
                   ),
-                  border: Border.all(color: Colors.yellow),
-                ),
+                  Positioned(
+                      top: 13,
+                      right: 25,
+                      child: Image.asset('asset/calendar.jpg', width: 50, height: 50)
+                  )
+                ],
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
@@ -86,23 +108,32 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
-              child: Container(
-                width: phoneSize.width * .7,
-                height: phoneSize.height * .1,
-                alignment: Alignment.center,
-                child: Text("수업 리뷰 조회",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                    topRight: const Radius.circular(40.0),
-                    bottomLeft: const Radius.circular(40.0),
-                    bottomRight: const Radius.circular(40.0),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: phoneSize.width * .7,
+                    height: phoneSize.height * .1,
+                    alignment: Alignment.center,
+                    child: Text("수업 리뷰",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(40.0),
+                        topRight: const Radius.circular(40.0),
+                        bottomLeft: const Radius.circular(40.0),
+                        bottomRight: const Radius.circular(40.0),
+                      ),
+                      border: Border.all(color: Colors.green, width: 4),
+                    ),
                   ),
-                  border: Border.all(color: Colors.green),
-                ),
+                  Positioned(
+                    top: 9,
+                    right: 27,
+                    child: Image.asset('asset/review.png', width: 50, height: 50)
+                  )
+                ],
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
