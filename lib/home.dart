@@ -36,15 +36,34 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 50),
             InkWell(
-              child: Text("개설 시간표 조회"),
+              child: Text("개설 시간표 조회",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) => SchedulePage())),
             ),
             SizedBox(height: 50),
-            Text("내 시간표"),
+            InkWell(
+              child: Text("내 시간표 조회",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => SchedulePage())),
+            ),
             SizedBox(height: 50),
-            Text("수업 리뷰"),
+            InkWell(
+              child: Text("수업 리뷰 조회",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => SchedulePage())),
+            ),
           ],
         ),
       ),
