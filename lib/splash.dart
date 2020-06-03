@@ -43,13 +43,13 @@ class SplashPageState extends State<SplashPage> {
                 ),
               ],
             ),
-            SizedBox(height: phoneSize.height * .3),
+            SizedBox(height: phoneSize.height * .35),
             Column(
               children: <Widget>[
                 Container(
-                  child: FlatButton(
+                  child: InkWell(
                       child: Text("Handong Time"),
-                      onPressed: () async {
+                      onTap: () async {
                         Navigator.push(context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
