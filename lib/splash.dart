@@ -48,7 +48,7 @@ class SplashPageState extends State<SplashPage> {
                 Container(
                   width: 360,
                   child: FlatButton(
-                      child: Text("Home"),
+                      child: Text("Handong Time"),
                       onPressed: () async {
                         Navigator.push(context,
                             MaterialPageRoute(
