@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/my_course.dart';
-import 'package:hgt/open_course.dart';
-import 'package:hgt/review.dart';
+import 'package:hgt/schedule/my_course.dart';
+import 'package:hgt/open_course/open_course.dart';
+import 'package:hgt/review/review.dart';
 
 import 'dart:math' as math;
 

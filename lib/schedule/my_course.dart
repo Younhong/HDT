@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/home.dart';
-import 'package:hgt/review.dart';
+import 'package:hgt/review/review.dart';
+import 'package:hgt/schedule/schedule.dart';
 
 class MyCoursePage extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class MyCoursePage extends StatelessWidget {
         title: Text('HGT'),
         centerTitle: true,
       ),
-      body: Text("My Course Schedule"),
+      body: SchedulePage(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -25,11 +26,11 @@ class MyCoursePage extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      child: CircleAvatar(backgroundImage: NetworkImage(""),),
+                      child: CircleAvatar(backgroundImage: AssetImage('asset/profile.jpg'),),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 15),
-                      child: Text('email',
+                      child: Text('Younhong',
                           style: TextStyle(color: Colors.white, fontSize: 19)),
                     ),
                   ],
