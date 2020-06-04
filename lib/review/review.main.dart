@@ -1,43 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/review/review.option.dart';
+import 'package:hgt/home.dart';
+import 'package:hgt/review/review.body.dart';
+import 'package:hgt/schedule/my_course.dart';
+import 'package:hgt/open_course/open.course.main.dart';
 
-class ReviewMainPage extends StatefulWidget{
-   _ReviewMainPageState createState() => _ReviewMainPageState();
-}
-
-class _ReviewMainPageState extends State<ReviewMainPage> {
-  _ReviewMainPageState();
-
-  List<String> _category = ['Option', 'DESC'];
-
-  String _selected = "Option";
-
+class ReviewMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Container(
-          alignment: Alignment.topCenter,
-          padding: EdgeInsets.only(top: 50),
-          child: DropdownButton(
-            hint: Text('Option'),
-            value: _selected,
-            icon: Icon(Icons.arrow_drop_down),
-//            iconSize: 24,
-//            elevation: 1,
-            onChanged: (String newValue) {
-              setState(() { _selected = newValue;});
-            },
-            items: _category
-                .map((String category) {
-              return DropdownMenuItem<String>(
-                value: category, child: Text(category),
-              );
-            }).toList(),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('HGT'),
+        centerTitle: true,
+      ),
+      body: ReviewBodyPage(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.green,
+              ),
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: CircleAvatar(backgroundImage: AssetImage('asset/profile.jpg'),),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 15),
+                      child: Text('Younhong',
+                          style: TextStyle(color: Colors.white, fontSize: 19)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+                title: Text("Home"),
+                leading: Icon(Icons.home, color: Colors.black),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage()));
+                }
+            ),
+            ListTile(
+                title: Text("Search Course"),
+                leading: Icon(Icons.search),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => OpenCourseMainPage()));
+                }
+            ),
+            ListTile(
+                title: Text("My Schedule"),
+                leading: Image.asset('asset/review.png',
+                    width: 25, height: 25),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => MyCoursePage()));
+                }
+            ),
+          ],
         ),
-        ReviewOptionPage(_selected),
-      ],
+      ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

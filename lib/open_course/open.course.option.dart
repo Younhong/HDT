@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
 
 class OpenCourseOptionPage extends StatefulWidget{
-  _OpenCourseOptionPageState createState() => _OpenCourseOptionPageState();
+  final String option;
+  OpenCourseOptionPage(this.option);
+
+  _OpenCourseOptionState createState() => _OpenCourseOptionState();
 }
 
-class _OpenCourseOptionPageState extends State<OpenCourseOptionPage> {
-  _OpenCourseOptionPageState();
+class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
+  _OpenCourseOptionState();
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Container(
-          alignment: Alignment.center,
-          child: FlatButton(
-            child: Text("Option"),
-            /// TODO::: Implement button action
-            /// TODO::: DropDownMenu
-            onPressed: null,
-          )
-        )
-      ],
-    );
+    return Text(widget.option);
   }
 }

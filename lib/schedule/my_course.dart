@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/home.dart';
-import 'package:hgt/review/review.dart';
+import 'package:hgt/review/review.main.dart';
 import 'package:hgt/schedule/schedule.dart';
 
 class MyCoursePage extends StatelessWidget {
@@ -62,7 +62,7 @@ class MyCoursePage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => ReviewPage()));
+                          builder: (context) => ReviewMainPage()));
                 }
             ),
           ],

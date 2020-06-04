@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/schedule/my_course.dart';
-import 'package:hgt/open_course/open_course.dart';
-import 'package:hgt/review/review.dart';
+import 'package:hgt/open_course/open.course.main.dart';
+import 'package:hgt/review/review.main.dart';
 
 import 'dart:math' as math;
 
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                 ],),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => OpenCoursePage())),
+                      builder: (context) => OpenCourseMainPage())),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -137,7 +137,7 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => ReviewPage())),
+                      builder: (context) => ReviewMainPage())),
             ),
             SizedBox(height: phoneSize.height * .12),
             Text('Handong Time')
