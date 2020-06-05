@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/open_course/course.info.dart';
+import 'package:hgt/open_course/course.prof.info.dart';
 import 'package:hgt/open_course/dept.course.dart';
 
 class OpenCourseOptionPage extends StatefulWidget{
@@ -58,7 +60,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
               ),
             ],
           ),
-          Text(_courseName),
+          CourseInfo(_courseName),
         ],
       );
     }
@@ -92,7 +94,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
               ),
             ],
           ),
-          Text(_profName),
+          CourseProfInfo(_profName)
         ],
       );
     }
