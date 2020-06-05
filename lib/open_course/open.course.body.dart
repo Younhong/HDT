@@ -7,7 +7,7 @@ class OpenCourseBodyPage extends StatefulWidget{
 
 class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
   _OpenCourseBodyState();
-  List<String> _category = ['Option', 'Course Name', 'Prof Name'];
+  List<String> _category = ['Option', 'Course Name', 'Prof Name', 'Dept Name'];
 
   String _selected = "Option";
 
