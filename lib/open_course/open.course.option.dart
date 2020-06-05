@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/open_course/course.code.info.dart';
 import 'package:hgt/open_course/course.info.dart';
 import 'package:hgt/open_course/course.injung.dart';
 import 'package:hgt/open_course/course.prof.info.dart';
@@ -20,9 +21,11 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
   String _selectedDept = "GLS";
   String _selectedInjung = "신앙1";
   final TextEditingController _profController = new TextEditingController();
-  final TextEditingController _courseController = new TextEditingController();
+  final TextEditingController _courseNameController = new TextEditingController();
+  final TextEditingController _courseCodeController = new TextEditingController();
   String _profName = "";
   String _courseName = "";
+  String _courseCode = "";
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
         ],
       );
     }
-    else if (widget.option == "Injung") {
+    else if (widget.option == "교양실무영역") {
       return Column(
         children: <Widget>[
           Text("교양실무영역 검색"),
@@ -56,7 +59,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
         ],
       );
     }
-    else if (widget.option == "Course Name") {
+    else if (widget.option == "과목명") {
       return Column(
         children: <Widget>[
           Text("강의명 검색"),
@@ -65,7 +68,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
               Flexible(
                 child: TextField(
                   autocorrect: false,
-                  controller: _courseController,
+                  controller: _courseNameController,
                   maxLines: 1,
                   style: TextStyle(color: Colors.black, fontSize: 16.0),
                   cursorColor: Colors.grey,
@@ -80,8 +83,8 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
               ),
               IconButton(
                 icon: Icon(Icons.search),
-                onPressed: _courseController.text != null
-                    ? () => _handleSubmitted(_courseController.text, 1)
+                onPressed: _courseNameController.text != null
+                    ? () => _handleSubmitted(_courseNameController.text, 1)
                     : null,
               ),
             ],
@@ -90,7 +93,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
         ],
       );
     }
-    else if (widget.option == "Prof Name") {
+    else if (widget.option == "교수명") {
       return Column(
         children: <Widget>[
           Text("교수명 검색"),
@@ -124,7 +127,7 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
         ],
       );
     }
-    else if (widget.option == "Dept Name") {
+    else if (widget.option == "학부") {
       return Column(
         children: <Widget>[
           Text("학부별 검색"),
@@ -146,13 +149,47 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
         ],
       );
     }
+    else if (widget.option == "과목코드") {
+      return Column(
+        children: <Widget>[
+          Text("과목코드 검색"),
+          Row(
+            children: <Widget>[
+              Flexible(
+                child: TextField(
+                  autocorrect: false,
+                  controller: _courseCodeController,
+                  maxLines: 1,
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  cursorColor: Colors.grey,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      fillColor: Colors.red,
+                      hintText: "과목코드를 입력해주세요",
+                      hintStyle: TextStyle(
+                          color: Colors.grey, fontSize: 16.0),
+                      contentPadding: EdgeInsets.only(left: 100)),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: _courseCodeController.text != null
+                    ? () => _handleSubmitted(_courseCodeController.text, 3)
+                    : null,
+              ),
+            ],
+          ),
+          CourseCodeInfo(_courseCode)
+        ],
+      );
+    }
     else
       return Text(widget.option);
   }
 
   Widget _handleSubmitted(String text, int index) {
     if (index == 1) {
-      _courseController.clear();
+      _courseNameController.clear();
       setState(() {
         _courseName = text;
       });
@@ -161,6 +198,12 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
       _profController.clear();
       setState(() {
         _profName = text;
+      });
+    }
+    else if (index == 3) {
+      _courseCodeController.clear();
+      setState(() {
+        _courseCode = text;
       });
     }
 

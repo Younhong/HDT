@@ -6,7 +6,8 @@ class CourseInfo extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      child: courseInfo != "" ? Text(courseInfo + " 정보 쭉 나열") : null,
+      child: courseInfo != ""
+          ? Text(courseInfo + " 정보 쭉 나열") : null,
     );
   }
 }
