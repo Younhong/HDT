@@ -32,7 +32,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(left: 20, top: 30),
-              width: phoneSize.width * .8,
+              width: phoneSize.width * .65,
               child: Column(
                 children: <Widget>[
                   Row(
@@ -215,11 +215,13 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
           alignment: Alignment.center,
           child: Text(_selectedInjung),
         ),
+        SizedBox(height: 10,),
+        Text("이 과목의 수강정보를 띄워주세요")
       ],
     );
   }
 
-  Widget _handleSubmitted(String courseName, String courseCode, String prof, String sec) {
+  void _handleSubmitted(String courseName, String courseCode, String prof, String sec) {
     _courseNameController.clear();
     _courseCodeController.clear();
     _profController.clear();
@@ -230,7 +232,5 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
       _profName = prof;
       _section = sec;
     });
-
-    return null;
   }
 }
