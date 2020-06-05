@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DeptCourse extends StatelessWidget {
-  String selected;
+  final String selected;
   DeptCourse(this.selected);
 
   Widget build(BuildContext context) {

@@ -13,6 +13,10 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
 
   List<String> _deptCategory = ['GLS', 'CSEE', 'Law', 'Life Science'];
   String _selectedDept = "GLS";
+  final TextEditingController _profController = new TextEditingController();
+  final TextEditingController _courseController = new TextEditingController();
+  String _profName = "";
+  String _courseName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +31,68 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
     else if (widget.option == "Course Name") {
       return Column(
         children: <Widget>[
-          Text("강의명 검색")
+          Text("강의명 검색"),
+          Row(
+            children: <Widget>[
+              Flexible(
+                child: TextField(
+                  autocorrect: false,
+                  controller: _courseController,
+                  maxLines: 1,
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  cursorColor: Colors.grey,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      fillColor: Colors.red,
+                      hintText: "수업명을 입력해주세요",
+                      hintStyle: TextStyle(
+                          color: Colors.grey, fontSize: 16.0),
+                      contentPadding: EdgeInsets.only(left: 100)),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: _courseController.text != null
+                    ? () => _handleSubmitted(_courseController.text, 1)
+                    : null,
+              ),
+            ],
+          ),
+          Text(_courseName),
         ],
       );
     }
     else if (widget.option == "Prof Name") {
       return Column(
         children: <Widget>[
-          Text("교수명 검색")
+          Text("교수명 검색"),
+          Row(
+            children: <Widget>[
+              Flexible(
+                child: TextField(
+                  autocorrect: false,
+                  controller: _profController,
+                  maxLines: 1,
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  cursorColor: Colors.grey,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      fillColor: Colors.red,
+                      hintText: "교수명을 입력해주세요",
+                      hintStyle: TextStyle(
+                          color: Colors.grey, fontSize: 16.0),
+                      contentPadding: EdgeInsets.only(left: 100)),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: _profController.text != null
+                    ? () => _handleSubmitted(_profController.text, 2)
+                    : null,
+              ),
+            ],
+          ),
+          Text(_profName),
         ],
       );
     }
@@ -62,5 +120,22 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
     }
     else
       return Text(widget.option);
+  }
+
+  Widget _handleSubmitted(String text, int index) {
+    if (index == 1) {
+      _courseController.clear();
+      setState(() {
+        _courseName = text;
+      });
+    }
+    else if (index == 2) {
+      _profController.clear();
+      setState(() {
+        _profName = text;
+      });
+    }
+
+    return null;
   }
 }
