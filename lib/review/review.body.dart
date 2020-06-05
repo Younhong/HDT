@@ -8,7 +8,7 @@ class ReviewBodyPage extends StatefulWidget{
 class _ReviewBodyState extends State<ReviewBodyPage> {
   _ReviewBodyState();
 
-  List<String> _category = ['Option', 'DESC'];
+  List<String> _category = ['Option', 'Course Name', 'Prof Name'];
 
   String _selected = "Option";
 
