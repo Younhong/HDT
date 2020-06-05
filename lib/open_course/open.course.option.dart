@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/open_course/course.info.dart';
+import 'package:hgt/open_course/course.injung.dart';
 import 'package:hgt/open_course/course.prof.info.dart';
 import 'package:hgt/open_course/dept.course.dart';
 
@@ -13,8 +14,11 @@ class OpenCourseOptionPage extends StatefulWidget{
 class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
   _OpenCourseOptionState();
 
+  /// TODO:: 학부 더 추가
   List<String> _deptCategory = ['GLS', 'CSEE', 'Law', 'Life Science'];
+  List<String> _injungCategory = ['신앙1', '신앙2', '인성1', '인성2', '세계관1', '세계관2'];
   String _selectedDept = "GLS";
+  String _selectedInjung = "신앙1";
   final TextEditingController _profController = new TextEditingController();
   final TextEditingController _courseController = new TextEditingController();
   String _profName = "";
@@ -27,6 +31,28 @@ class _OpenCourseOptionState extends State<OpenCourseOptionPage> {
         children: <Widget>[
           Text("전체 강좌 조회"),
           Text("옵션 없이 전체 강좌 찾아서 쭉 나열")
+        ],
+      );
+    }
+    else if (widget.option == "Injung") {
+      return Column(
+        children: <Widget>[
+          Text("교양실무영역 검색"),
+          DropdownButton(
+            hint: Text('Option'),
+            value: _selectedInjung,
+            icon: Icon(Icons.arrow_drop_down),
+            onChanged: (String newValue) {
+              setState(() { _selectedInjung = newValue;});
+            },
+            items: _injungCategory
+                .map((String category) {
+              return DropdownMenuItem<String>(
+                value: category, child: Text(category),
+              );
+            }).toList(),
+          ),
+          CourseInjung(_selectedInjung),
         ],
       );
     }
