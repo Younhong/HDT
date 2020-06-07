@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/home.dart';
+import 'package:hgt/login.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -7,6 +7,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends State<SplashPage> {
+  String name = "a";
+
   @override
   Widget build(BuildContext context) {
     var phoneSize = MediaQuery.of(context).size;
@@ -43,18 +45,23 @@ class SplashPageState extends State<SplashPage> {
                 ),
               ],
             ),
-            SizedBox(height: phoneSize.height * .35),
+            SizedBox(height: phoneSize.height * .15),
+            Container(
+              alignment: Alignment.center,
+              child: FlatButton(
+                child: Text("Login",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),),
+                onPressed: () =>
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage(name))),
+              ),
+            ),
+            SizedBox(height: phoneSize.height * .15),
             Column(
               children: <Widget>[
-                Container(
-                  child: InkWell(
-                      child: Text("Handong Time"),
-                      onTap: () async {
-                        Navigator.push(context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
-                      }),
-                ),
+                Text("Handong Time")
               ],
             )
           ],

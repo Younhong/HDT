@@ -173,7 +173,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => PreRegisterMainPage())),
             ),
-            SizedBox(height: phoneSize.height * .12),
+            SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')
           ],
         ),
