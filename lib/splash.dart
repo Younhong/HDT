@@ -7,8 +7,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends State<SplashPage> {
-  String name = "a";
-
   @override
   Widget build(BuildContext context) {
     var phoneSize = MediaQuery.of(context).size;
@@ -56,7 +54,7 @@ class SplashPageState extends State<SplashPage> {
                 onPressed: () =>
                     Navigator.push(context,
                         MaterialPageRoute(
-                            builder: (context) => LoginPage(name))),
+                            builder: (context) => LoginPage())),
               ),
             ),
             SizedBox(height: phoneSize.height * .15),
