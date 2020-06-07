@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/open_course/course.detail.dart';
+import 'package:hgt/pre_register/pre.course.detail.dart';
 
-class CourseSearchResultPage extends StatefulWidget {
+class PreSearchResultPage extends StatefulWidget {
   final List data;
-  CourseSearchResultPage(this.data);
+  PreSearchResultPage(this.data);
 
   @override
-  CourseSearchResultState createState() => CourseSearchResultState();
+  PreSearchResultState createState() => PreSearchResultState();
 }
 
-class CourseSearchResultState extends State<CourseSearchResultPage> {
+class PreSearchResultState extends State<PreSearchResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('개설 시간표 조회'),
+        title: Text('예비수강 조회'),
         centerTitle: true,
       ),
       body: ListView.builder(
@@ -38,8 +38,8 @@ class CourseSearchResultState extends State<CourseSearchResultPage> {
                 )
             ),
             onTap: () => Navigator.push(context,
-              MaterialPageRoute(
-                  builder: (context) => CourseDetailPage(widget.data[index]))),
+                MaterialPageRoute(
+                    builder: (context) => PreDetailPage(widget.data[index]))),
           );},
       ),
     );

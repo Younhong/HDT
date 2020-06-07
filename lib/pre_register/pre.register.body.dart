@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/open_course/course.search.result.dart';
+import 'package:hgt/pre_register/pre.course.search.result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -169,7 +169,7 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                           _selectedDept, _courseName, _selectedInjung, _selectedYear+_selectedSemester, _profName);
                       await Navigator.push(context,
                           MaterialPageRoute(
-                              builder: (context) => CourseSearchResultPage(data)));
+                              builder: (context) => PreSearchResultPage(data)));
                     },
                   ),
                 ],
