@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/pre_register/pre.register.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 import 'package:hgt/review/review.main.dart';
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
     var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: phoneSize.height * 0.15),
+        padding: EdgeInsets.only(top: phoneSize.height * 0.10),
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                             decorationColor: Colors.white))
                   ]),
             ),
-            SizedBox(height: phoneSize.height * .1),
+            SizedBox(height: phoneSize.height * .05),
             InkWell(
               child: Stack(
                 children: <Widget>[
@@ -138,6 +139,39 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) => ReviewMainPage())),
+            ),
+            SizedBox(height: phoneSize.height * .05),
+            InkWell(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: phoneSize.width * .7,
+                    height: phoneSize.height * .1,
+                    alignment: Alignment.center,
+                    child: Text("예비수강신청",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(40.0),
+                        topRight: const Radius.circular(40.0),
+                        bottomLeft: const Radius.circular(40.0),
+                        bottomRight: const Radius.circular(40.0),
+                      ),
+                      border: Border.all(color: Colors.green, width: 4),
+                    ),
+                  ),
+                  Positioned(
+                      top: 9,
+                      right: 27,
+                      child: Image.asset('asset/review.png', width: 50, height: 50)
+                  )
+                ],
+              ),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => PreRegisterMainPage())),
             ),
             SizedBox(height: phoneSize.height * .12),
             Text('Handong Time')
