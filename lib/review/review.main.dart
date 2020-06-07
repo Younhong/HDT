@@ -10,7 +10,7 @@ class ReviewMainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('HGT'),
+        title: Text('리뷰 조회'),
         centerTitle: true,
       ),
       body: ReviewBodyPage(),

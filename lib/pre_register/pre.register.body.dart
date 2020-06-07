@@ -15,7 +15,6 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
       this.courseJSON('http://52.14.37.173:5000/majorList');
       this.injungJSON('http://52.14.37.173:5000/injungList');
     });
-
   }
 
   _PreRegisterBodyState();

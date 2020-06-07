@@ -9,7 +9,7 @@ class MyCoursePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: Text('HGT'),
+        title: Text('내 시간표 조회'),
         centerTitle: true,
       ),
       body: SchedulePage(),

@@ -10,7 +10,7 @@ class OpenCourseMainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('HGT'),
+        title: Text('개설 시간표 조회'),
         centerTitle: true,
       ),
       body: OpenCourseBodyPage(),
