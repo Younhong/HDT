@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hgt/home.dart';
 import 'package:hgt/pre_register/pre.register.body.dart';
 import 'package:hgt/schedule/my_course.dart';
-import 'package:hgt/open_course/open.course.body.dart';
 import 'package:hgt/review/review.main.dart';
 
 class PreRegisterMainPage extends StatelessWidget {
@@ -11,7 +10,7 @@ class PreRegisterMainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('HGT'),
+        title: Text('예비수강 조회'),
         centerTitle: true,
       ),
       body: PreRegisterBodyPage(),
