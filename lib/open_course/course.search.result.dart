@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/open_course/course.detail.dart';
 
 class CourseSearchResultPage extends StatefulWidget {
   final List data;
@@ -12,18 +13,33 @@ class CourseSearchResultState extends State<CourseSearchResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new ListView.builder(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        title: Text('HGT'),
+        centerTitle: true,
+      ),
+      body: ListView.builder(
         itemCount: widget.data == null
             ? 0 : widget.data.length,
         itemBuilder: (BuildContext context, int index) {
-          return new Card(
-            child: Row(
-              children: <Widget>[
-                Text(widget.data[index]["title"]),
-                Text(widget.data[index]['prof_name']),
-                Text(widget.data[index]['sec_id'].toString()),
-              ],
-            )
+          return InkWell(
+            child: Card(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      child: Text(widget.data[index]["title"]),
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 10),
+                    ),
+                    SizedBox(height: 5),
+                    Text(widget.data[index]['prof_name']),
+                    Text(widget.data[index]['section'].toString()),
+                  ],
+                )
+            ),
+            onTap: () => Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => CourseDetailPage(widget.data[index]))),
           );},
       ),
     );

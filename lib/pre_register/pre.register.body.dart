@@ -3,12 +3,11 @@ import 'package:hgt/open_course/course.search.result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class OpenCourseBodyPage extends StatefulWidget{
-  _OpenCourseBodyState createState() => _OpenCourseBodyState();
+class PreRegisterBodyPage extends StatefulWidget{
+  _PreRegisterBodyState createState() => _PreRegisterBodyState();
 }
 
-class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
-
+class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
   @override
   void initState() {
     super.initState();
@@ -19,7 +18,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
 
   }
 
-  _OpenCourseBodyState();
+  _PreRegisterBodyState();
   List _deptCategory = List();
   List _injungCategory = List();
   List<String> _yearCategory = ['2019', '2020'];
