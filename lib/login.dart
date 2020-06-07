@@ -11,10 +11,17 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage> {
+  _LoginPageState();
+
   List _deptCategory = List();
   String _selectedDept = "1" ;
+  String _name = "";
+  String _studentID = "";
+  String _semester = "";
 
-  _LoginPageState();
+  final TextEditingController _nameController = new TextEditingController();
+  final TextEditingController _semesterController = new TextEditingController();
+  final TextEditingController _studentIDController= new TextEditingController();
 
   @override
   void initState() {
@@ -32,41 +39,109 @@ class _LoginPageState extends State<LoginPage> {
           title: Text('로그인 페이지'),
           centerTitle: true,
         ),
-        body: Column(
-          children: <Widget>[
-            Text("이름 입력"),
-            Text("학번 읿력"),
-            Text("학기 수 입력"),
-            Text("전공 입력 (DropDown 으로 수정)"),
-            Row(
-              children: <Widget>[
-                DropdownButton(
-                  icon: Icon(Icons.arrow_drop_down),
-                  items: _deptCategory.map((major) {
-                    return DropdownMenuItem<String>(
-                      value: major['major_code'].toString(), child: Text(major['major_name'].toString(),),
-                    );
-                  }).toList(),
-                  onChanged: (String newValue) {
-                    setState(() {
-                      _selectedDept = newValue;
-                    });
-                    print(newValue);
-                  },
-                  value: _selectedDept,
-                ),
-              ],
-            ),
-            FlatButton(
-                child: Text("확인"),
-                onPressed: () async {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) => HomePage()));
-                }
-            )
-          ],
-        )
+        body: Container(
+          padding: EdgeInsets.only(left: 10),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    child: Container(
+                        width: 100,
+                        child: TextField(
+                          autocorrect: false,
+                          controller: _nameController,
+                          maxLines: 1,
+                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          cursorColor: Colors.grey,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            fillColor: Colors.red,
+                            hintText: "이름",
+                            hintStyle: TextStyle(
+                                color: Colors.grey, fontSize: 16.0),),
+                        )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    child: Container(
+                        width: 100,
+                        child: TextField(
+                          autocorrect: false,
+                          controller: _studentIDController,
+                          maxLines: 1,
+                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          cursorColor: Colors.grey,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            fillColor: Colors.red,
+                            hintText: "학번",
+                            hintStyle: TextStyle(
+                                color: Colors.grey, fontSize: 16.0),),
+                        )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    child: Container(
+                        width: 100,
+                        child: TextField(
+                          autocorrect: false,
+                          controller: _semesterController,
+                          maxLines: 1,
+                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          cursorColor: Colors.grey,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            fillColor: Colors.red,
+                            hintText: "학기",
+                            hintStyle: TextStyle(
+                                color: Colors.grey, fontSize: 16.0),),
+                        )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  DropdownButton(
+                    icon: Icon(Icons.arrow_drop_down),
+                    items: _deptCategory.map((major) {
+                      return DropdownMenuItem<String>(
+                        value: major['major_code'].toString(), child: Text(major['major_name'].toString(),),
+                      );
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        _selectedDept = newValue;
+                      });
+                      print(newValue);
+                    },
+                    value: _selectedDept,
+                  ),
+                ],
+              ),
+              InkWell(
+                  child: Text("확인"),
+                  onTap: () {
+                    _handleSubmitted(_nameController.text, _semesterController.text, _studentIDController.text);
+                    (_name != "" && _semester != "" && _studentID != "") ?
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage())) : Container();
+                  }
+              )
+            ],
+          ),
+        ),
+        resizeToAvoidBottomInset: false,
     );
   }
 
@@ -83,5 +158,17 @@ class _LoginPageState extends State<LoginPage> {
     print(res);
 
     return 'Success';
+  }
+
+  void _handleSubmitted(String name, String semester, String studentID) {
+    _nameController.clear();
+    _semesterController.clear();
+    _studentIDController.clear();
+
+    setState(() {
+      _name = name;
+      _semester = semester;
+      _studentID = studentID;
+    });
   }
 }

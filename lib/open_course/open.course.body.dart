@@ -210,7 +210,6 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
       _courseName = courseName;
       _profName = prof;
     });
-
   }
 
   Future<String> courseJSON(String url) async {
