@@ -28,7 +28,6 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
   String _selectedSemester = '1';
   final TextEditingController _profController = new TextEditingController();
   final TextEditingController _courseNameController = new TextEditingController();
-  final TextEditingController _courseCodeController = new TextEditingController();
   String _profName = "";
   String _courseName = "";
   String _courseCode = "";
@@ -243,15 +242,15 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
     return 'Success';
   }
 
-  Future<String> searchCourse(String major_code, String course_name, String inj_code, String year_semester, String prof_name) async {
-    String url = 'http://52.14.37.173:5000/search?major_code=' +  major_code + '&open_time=' + year_semester;
+  Future<String> searchCourse(String majorCode, String courseName, String injCode, String yearSemester, String profName) async {
+    String url = 'http://52.14.37.173:5000/search?major_code=' +  majorCode + '&open_time=' + yearSemester;
 
-    if (inj_code != '000')
-      url = url + '&injung_code=' + inj_code;
-    if (prof_name != "")
-      url = url + '&prof_name=' + prof_name;
-    if (course_name != "")
-      url = url + '&course_name=' + course_name;
+    if (injCode != '000')
+      url = url + '&injung_code=' + injCode;
+    if (profName != "")
+      url = url + '&prof_name=' + profName;
+    if (courseName != "")
+      url = url + '&course_name=' + courseName;
 
     print(url);
     final response =
