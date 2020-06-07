@@ -21,7 +21,8 @@ class CourseDetailState extends State<CourseDetailPage> {
       body: Column(
         children: <Widget>[
           Text(widget.data['prof_name']),
-          Text(widget.data['building'])
+          Text(widget.data['building']),
+          Text(widget.data['time'])
         ],
       )
     );
