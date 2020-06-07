@@ -21,7 +21,8 @@ class PreDetailState extends State<PreDetailPage> {
         body: Column(
           children: <Widget>[
             Text(widget.data['prof_name']),
-            Text(widget.data['building'])
+            Text(widget.data['building']),
+            Text(widget.data['total_stu'].toString())
           ],
         )
     );
