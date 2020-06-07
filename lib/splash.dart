@@ -55,7 +55,8 @@ class SplashPageState extends State<SplashPage> {
                       fontSize: 25),),
                 onPressed: () =>
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage(name))),
+                        MaterialPageRoute(
+                            builder: (context) => LoginPage(name))),
               ),
             ),
             SizedBox(height: phoneSize.height * .15),

@@ -4,6 +4,8 @@ import 'package:hgt/review/review.main.dart';
 import 'package:hgt/schedule/schedule.dart';
 
 class MyCoursePage extends StatelessWidget {
+  final String name, semester, studentID, major;
+  MyCoursePage(this.name, this.semester, this.studentID, this.major);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,11 +28,12 @@ class MyCoursePage extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      child: CircleAvatar(backgroundImage: AssetImage('asset/profile.jpg'),),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('asset/profile.jpg'),),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 15),
-                      child: Text('Younhong',
+                      child: Text(name,
                           style: TextStyle(color: Colors.white, fontSize: 19)),
                     ),
                   ],
@@ -43,7 +46,11 @@ class MyCoursePage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                     MaterialPageRoute(
-                        builder: (context) => HomePage()));
+                        builder: (context) =>
+                            HomePage(
+                                name: name, semester: semester,
+                                studentID: studentID, major: major
+                            )));
                 }
             ),
             ListTile(
@@ -52,7 +59,8 @@ class MyCoursePage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => MyCoursePage()));
+                          builder: (context) =>
+                              MyCoursePage(name, semester, studentID, major)));
                 }
             ),
             ListTile(
@@ -62,39 +70,14 @@ class MyCoursePage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => ReviewMainPage()));
+                          builder: (context) =>
+                              ReviewMainPage(name, semester, studentID, major)));
                 }
             ),
           ],
         ),
       ),
       resizeToAvoidBottomInset: false,
-//      bottomNavigationBar: BottomNavigationBar(
-//        type: BottomNavigationBarType.fixed,
-//        backgroundColor: Colors.indigo,
-//        unselectedItemColor: Colors.black,
-//        items: const <BottomNavigationBarItem>[
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.home),
-//            title: Text('Home'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.alarm),
-//            title: Text('Alarm'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.assignment),
-//            title: Text('Diary'),
-//          ),
-//          BottomNavigationBarItem(
-//            icon: Icon(Icons.map),
-//            title: Text('Result'),
-//          ),
-//        ],
-//        currentIndex: _selectedIndex,
-//        selectedItemColor: Colors.white,
-//        onTap: _onItemTapped,
-//      ),
     );
   }
 }

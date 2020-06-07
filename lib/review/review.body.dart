@@ -185,10 +185,13 @@ class _ReviewBodyState extends State<ReviewBodyPage> {
                 children: <Widget>[
                   IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: (_courseNameController.text.isNotEmpty) && (_courseCodeController.text.isNotEmpty)
-                        && (_profController.text.isNotEmpty) && (_sectionController.text.isNotEmpty)
+                    onPressed: (_courseNameController.text.isNotEmpty)
+                        && (_courseCodeController.text.isNotEmpty)
+                        && (_profController.text.isNotEmpty)
+                        && (_sectionController.text.isNotEmpty)
                         ? () => _handleSubmitted(
-                        _courseNameController.text, _courseCodeController.text, _profController.text, _sectionController.text)
+                        _courseNameController.text, _courseCodeController.text,
+                        _profController.text, _sectionController.text)
                         : null,
                   ),
                 ],

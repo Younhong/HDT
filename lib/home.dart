@@ -7,6 +7,9 @@ import 'package:hgt/review/review.main.dart';
 import 'dart:math' as math;
 
 class HomePage extends StatelessWidget {
+  String name, semester, studentID, major;
+  HomePage({this.name, this.semester, this.studentID, this.major});
+
   @override
   Widget build(BuildContext context) {
     var phoneSize = MediaQuery.of(context).size;
@@ -72,7 +75,8 @@ class HomePage extends StatelessWidget {
                 ],),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => OpenCourseMainPage())),
+                      builder: (context) =>
+                          OpenCourseMainPage(name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -105,7 +109,8 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => MyCoursePage())),
+                      builder: (context) =>
+                          MyCoursePage(name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -138,7 +143,8 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => ReviewMainPage())),
+                      builder: (context) =>
+                          ReviewMainPage(name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -171,7 +177,8 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => PreRegisterMainPage())),
+                      builder: (context) =>
+                          PreRegisterMainPage(name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')
