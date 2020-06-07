@@ -5,6 +5,8 @@ import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 
 class ReviewMainPage extends StatelessWidget {
+  final String name, semester, studentID, major;
+  ReviewMainPage(this.name, this.semester, this.studentID, this.major);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +29,12 @@ class ReviewMainPage extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      child: CircleAvatar(backgroundImage: AssetImage('asset/profile.jpg'),),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('asset/profile.jpg'),),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 15),
-                      child: Text('Younhong',
+                      child: Text(name,
                           style: TextStyle(color: Colors.white, fontSize: 19)),
                     ),
                   ],
@@ -44,7 +47,10 @@ class ReviewMainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => HomePage()));
+                          builder: (context) =>
+                              HomePage(
+                                  name: name, semester: semester,
+                                  studentID: studentID, major: major)));
                 }
             ),
             ListTile(
@@ -53,7 +59,8 @@ class ReviewMainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => OpenCourseMainPage()));
+                          builder: (context) =>
+                              OpenCourseMainPage(name, semester, studentID, major)));
                 }
             ),
             ListTile(
@@ -63,7 +70,8 @@ class ReviewMainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => MyCoursePage()));
+                          builder: (context) =>
+                              MyCoursePage(name, semester, studentID, major)));
                 }
             ),
           ],

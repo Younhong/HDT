@@ -5,6 +5,9 @@ import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/review/review.main.dart';
 
 class PreRegisterMainPage extends StatelessWidget {
+  final String name, semester, studentID, major;
+  PreRegisterMainPage(this.name, this.semester, this.studentID, this.major);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +32,12 @@ class PreRegisterMainPage extends StatelessWidget {
                     /// TODO:: Login System
                     /// TODO:: (May not be implemented in this course)
                     Container(
-                      child: CircleAvatar(backgroundImage: AssetImage('asset/profile.jpg'),),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('asset/profile.jpg'),),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 15),
-                      child: Text('Younhong',
+                      child: Text(name,
                           style: TextStyle(color: Colors.white, fontSize: 19)),
                     ),
                   ],
@@ -46,7 +50,10 @@ class PreRegisterMainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => HomePage()));
+                          builder: (context) =>
+                              HomePage(
+                                  name: name, semester: semester,
+                                  studentID: studentID, major: major)));
                 }
             ),
             ListTile(
@@ -56,7 +63,8 @@ class PreRegisterMainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => MyCoursePage()));
+                          builder: (context) =>
+                              MyCoursePage(name, semester, studentID, major)));
                 }
             ),
             ListTile(
@@ -66,7 +74,8 @@ class PreRegisterMainPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (context) => ReviewMainPage()));
+                          builder: (context) =>
+                              ReviewMainPage(name, semester, studentID, major)));
                 }
             ),
           ],

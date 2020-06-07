@@ -115,7 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                     icon: Icon(Icons.arrow_drop_down),
                     items: _deptCategory.map((major) {
                       return DropdownMenuItem<String>(
-                        value: major['major_code'].toString(), child: Text(major['major_name'].toString(),),
+                        value: major['major_code'].toString(),
+                        child: Text(major['major_name'].toString(),),
                       );
                     }).toList(),
                     onChanged: (String newValue) {
@@ -131,11 +132,16 @@ class _LoginPageState extends State<LoginPage> {
               InkWell(
                   child: Text("확인"),
                   onTap: () {
-                    _handleSubmitted(_nameController.text, _semesterController.text, _studentIDController.text);
+                    _handleSubmitted(
+                        _nameController.text, _semesterController.text,
+                        _studentIDController.text);
                     (_name != "" && _semester != "" && _studentID != "") ?
                     Navigator.push(context,
                         MaterialPageRoute(
-                            builder: (context) => HomePage())) : Container();
+                            builder: (context) => HomePage(
+                                name: _name, semester: _semester,
+                                studentID: _studentID, major: _selectedDept)))
+                        : Container();
                   }
               )
             ],

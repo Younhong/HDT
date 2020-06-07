@@ -84,7 +84,8 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                         icon: Icon(Icons.arrow_drop_down),
                         items: _deptCategory.map((major) {
                           return DropdownMenuItem<String>(
-                            value: major['major_code'].toString(), child: Text(major['major_name'].toString(),),
+                            value: major['major_code'].toString(),
+                            child: Text(major['major_name'].toString(),),
                           );
                         }).toList(),
                         onChanged: (String newValue) {
@@ -164,9 +165,11 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                   IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () async {
-                      _handleSubmitted(_courseNameController.text, _profController.text);
+                      _handleSubmitted(
+                          _courseNameController.text, _profController.text);
                       await searchCourse(
-                          _selectedDept, _courseName, _selectedInjung, _selectedYear+_selectedSemester, _profName);
+                          _selectedDept, _courseName,
+                          _selectedInjung, _selectedYear+_selectedSemester, _profName);
                       await Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) => PreSearchResultPage(data)));
@@ -242,8 +245,11 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
     return 'Success';
   }
 
-  Future<String> searchCourse(String majorCode, String courseName, String injCode, String yearSemester, String profName) async {
-    String url = 'http://52.14.37.173:5000/search?major_code=' +  majorCode + '&open_time=' + yearSemester;
+  Future<String> searchCourse(
+      String majorCode, String courseName, String injCode,
+      String yearSemester, String profName) async {
+    String url = 'http://52.14.37.173:5000/search?major_code='
+        +  majorCode + '&open_time=' + yearSemester;
 
     if (injCode != '000')
       url = url + '&injung_code=' + injCode;
