@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CourseInfoPage extends StatefulWidget {
+class CourseSearchResultPage extends StatefulWidget {
   final List data;
-  CourseInfoPage(this.data);
+  CourseSearchResultPage(this.data);
 
   @override
-  CourseInfoState createState() => CourseInfoState();
+  CourseSearchResultState createState() => CourseSearchResultState();
 }
 
-class CourseInfoState extends State<CourseInfoPage> {
+class CourseSearchResultState extends State<CourseSearchResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

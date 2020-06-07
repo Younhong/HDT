@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/course.info.dart';
+import 'package:hgt/open_course/course.search.result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -201,7 +201,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                       searchCourse(_selectedDept, "");
                       Navigator.push(context,
                           MaterialPageRoute(
-                          builder: (context) => CourseInfoPage(data)));
+                          builder: (context) => CourseSearchResultPage(data)));
                     },
                   ),
                 ],
