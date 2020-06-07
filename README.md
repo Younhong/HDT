@@ -1,16 +1,10 @@
-# hgt
-
-A new Flutter application.
+# HGT
 
 ## Getting Started
+>> Clone this project and run on your environment.
 
-This project is a starting point for a Flutter application.
+## About this Project
+>> This project is developed as a team project for Database System Course.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## About How to Get Data
+>> Please refer to [Click here](https://github.com/PyoJunCode/DB2020)
