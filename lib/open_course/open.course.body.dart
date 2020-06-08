@@ -82,6 +82,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                   Row(
                     children: <Widget>[
                       DropdownButton(
+                        hint: Text('학부'),
                         icon: Icon(Icons.arrow_drop_down),
                         items: _deptCategory.map((major) {
                           return DropdownMenuItem<String>(

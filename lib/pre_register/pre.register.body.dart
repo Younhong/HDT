@@ -81,6 +81,7 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                   Row(
                     children: <Widget>[
                       DropdownButton(
+                        hint: Text('학부'),
                         icon: Icon(Icons.arrow_drop_down),
                         items: _deptCategory.map((major) {
                           return DropdownMenuItem<String>(
