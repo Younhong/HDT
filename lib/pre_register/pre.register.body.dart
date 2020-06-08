@@ -51,12 +51,14 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                         value: _selectedYear,
                         icon: Icon(Icons.arrow_drop_down),
                         onChanged: (String newValue) {
-                          setState(() { _selectedYear = newValue;});
+                          setState(() {
+                            _selectedYear = newValue;});
                         },
                         items: _yearCategory
                             .map((String category) {
                           return DropdownMenuItem<String>(
-                            value: category, child: Text(category),
+                            value: category,
+                            child: Text(category),
                           );
                         }).toList(),
                       ),
@@ -65,13 +67,14 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                         value: _selectedSemester,
                         icon: Icon(Icons.arrow_drop_down),
                         onChanged: (String newValue) {
-                          setState(() { _selectedSemester = newValue;});
-
+                          setState(() {
+                            _selectedSemester = newValue;});
                         },
                         items: _semesterCategory
                             .map((String category) {
                           return DropdownMenuItem<String>(
-                            value: category, child: Text(category),
+                            value: category,
+                            child: Text(category),
                           );
                         }).toList(),
                       ),
@@ -107,7 +110,8 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                               autocorrect: false,
                               controller: _courseNameController,
                               maxLines: 1,
-                              style: TextStyle(color: Colors.black, fontSize: 16.0),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 16.0),
                               cursorColor: Colors.grey,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -129,7 +133,8 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                               autocorrect: false,
                               controller: _profController,
                               maxLines: 1,
-                              style: TextStyle(color: Colors.black, fontSize: 16.0),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 16.0),
                               cursorColor: Colors.grey,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -149,7 +154,8 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                         },
                         items: _injungCategory.map((injung) {
                           return DropdownMenuItem<String>(
-                            value: injung['inj_code'], child: Text(injung['kor']),
+                            value: injung['inj_code'],
+                            child: Text(injung['kor']),
                           );
                         }).toList(),
                       ),
@@ -172,7 +178,8 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                           _selectedInjung, _selectedYear+_selectedSemester, _profName);
                       await Navigator.push(context,
                           MaterialPageRoute(
-                              builder: (context) => PreSearchResultPage(data)));
+                              builder: (context) =>
+                                  PreSearchResultPage(data)));
                     },
                   ),
                 ],

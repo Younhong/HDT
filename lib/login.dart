@@ -51,7 +51,8 @@ class _LoginPageState extends State<LoginPage> {
                           autocorrect: false,
                           controller: _nameController,
                           maxLines: 1,
-                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16.0),
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -73,7 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                           autocorrect: false,
                           controller: _studentIDController,
                           maxLines: 1,
-                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16.0),
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -95,7 +97,8 @@ class _LoginPageState extends State<LoginPage> {
                           autocorrect: false,
                           controller: _semesterController,
                           maxLines: 1,
-                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16.0),
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -133,14 +136,13 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text("확인"),
                   onTap: () {
                     _handleSubmitted(
-                        _nameController.text, _semesterController.text,
-                        _studentIDController.text);
+                        _nameController.text, _semesterController.text, _studentIDController.text);
                     (_name != "" && _semester != "" && _studentID != "") ?
                     Navigator.push(context,
                         MaterialPageRoute(
-                            builder: (context) => HomePage(
-                                name: _name, semester: _semester,
-                                studentID: _studentID, major: _selectedDept)))
+                            builder: (context) =>
+                                HomePage(
+                                    name: _name, semester: _semester, studentID: _studentID, major: _selectedDept)))
                         : Container();
                   }
               )
