@@ -17,11 +17,9 @@ class _ReviewBodyState extends State<ReviewBodyPage> {
   String _selectedSemester = '1';
   final TextEditingController _profController = new TextEditingController();
   final TextEditingController _courseNameController = new TextEditingController();
-  final TextEditingController _courseCodeController = new TextEditingController();
   final TextEditingController _sectionController = new TextEditingController();
   String _profName = "";
   String _courseName = "";
-  String _courseCode = "";
   String _section = "";
 
   @override
@@ -101,25 +99,6 @@ class _ReviewBodyState extends State<ReviewBodyPage> {
                             )
                         ),
                       ),
-                      Flexible(
-                        child: Container(
-                          width: 100,
-                          child: TextField(
-                            autocorrect: false,
-                            controller: _courseCodeController,
-                            maxLines: 1,
-                            style: TextStyle(color: Colors.black, fontSize: 16.0),
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                fillColor: Colors.red,
-                                hintText: "과목코드",
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 16.0),
-                                contentPadding: EdgeInsets.only(left: 10, right: 10)),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   Row(
@@ -186,11 +165,10 @@ class _ReviewBodyState extends State<ReviewBodyPage> {
                   IconButton(
                     icon: Icon(Icons.search),
                     onPressed: (_courseNameController.text.isNotEmpty)
-                        && (_courseCodeController.text.isNotEmpty)
                         && (_profController.text.isNotEmpty)
                         && (_sectionController.text.isNotEmpty)
                         ? () => _handleSubmitted(
-                        _courseNameController.text, _courseCodeController.text,
+                        _courseNameController.text,
                         _profController.text, _sectionController.text)
                         : null,
                   ),
@@ -203,14 +181,12 @@ class _ReviewBodyState extends State<ReviewBodyPage> {
     );
   }
 
-  void _handleSubmitted(String courseName, String courseCode, String prof, String sec) {
+  void _handleSubmitted(String courseName, String prof, String sec) {
     _courseNameController.clear();
-    _courseCodeController.clear();
     _profController.clear();
     _sectionController.clear();
     setState(() {
       _courseName = courseName;
-      _courseCode = courseCode;
       _profName = prof;
       _section = sec;
     });
