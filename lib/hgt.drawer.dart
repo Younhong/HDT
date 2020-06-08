@@ -50,8 +50,6 @@ class _HGTDrawerState extends State<HGTDrawer> {
                         alignment: Alignment.bottomLeft,
                         child: Row(
                           children: <Widget>[
-                            /// TODO:: Login System
-                            /// TODO:: (May not be implemented in this course)
                             Container(
                               child: CircleAvatar(
                                 backgroundImage: AssetImage(
@@ -69,7 +67,8 @@ class _HGTDrawerState extends State<HGTDrawer> {
                     ),
                     ListTile(
                         title: Text("Home"),
-                        leading: Icon(Icons.home, color: Colors.black,),
+                        leading: Icon(
+                          Icons.home, color: Colors.black,),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
@@ -98,8 +97,8 @@ class _HGTDrawerState extends State<HGTDrawer> {
                     ),
                     ListTile(
                         title: Text("내 시간표 조회"),
-                        leading: Image.asset('asset/calendar.jpg',
-                          width: 25, height: 25),
+                        leading: Icon(
+                          Icons.calendar_today, color: Colors.black,),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
@@ -109,8 +108,8 @@ class _HGTDrawerState extends State<HGTDrawer> {
                     ),
                     ListTile(
                         title: Text("리뷰 검색"),
-                        leading: Image.asset('asset/review.png',
-                            width: 25, height: 25),
+                        leading: Icon(
+                          Icons.rate_review, color: Colors.black,),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
@@ -120,8 +119,8 @@ class _HGTDrawerState extends State<HGTDrawer> {
                     ),
                     ListTile(
                         title: Text("예비 수강 조회"),
-                        leading: Image.asset('asset/review.png',
-                            width: 25, height: 25),
+                        leading: Icon(
+                          Icons.local_grocery_store, color: Colors.black,),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
@@ -131,8 +130,8 @@ class _HGTDrawerState extends State<HGTDrawer> {
                     ),
                     ListTile(
                         title: Text("강의 추천"),
-                        leading: Image.asset('asset/review.png',
-                            width: 25, height: 25),
+                        leading: Icon(
+                          Icons.check, color: Colors.black,),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
