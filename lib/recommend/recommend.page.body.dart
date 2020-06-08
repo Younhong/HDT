@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/student.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class RecommendPage extends StatefulWidget {
-  final String name, semester, studentID, major;
-  RecommendPage(this.name, this.semester, this.studentID, this.major);
+class RecommendPageBodyPage extends StatefulWidget{
+  final String major;
+  RecommendPageBodyPage(this.major);
 
-  @override
-  _RecommendPageState createState() => _RecommendPageState();
+  _RecommendPageBodyState createState() => _RecommendPageBodyState();
 }
 
-class _RecommendPageState extends State<RecommendPage> {
+class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
   List<String> _currSemesterCategory = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
+  @override
   void initState() {
     super.initState();
     setState(()  {
-//      this.recommendJSON(widget.major, widget.semester);
+
     });
   }
 
   List<Student> recommendList = List();
-  String _selectedSemester = "1";
+  _RecommendPageBodyState();
+
+  String _selectedSemester = '1';
+
+  List data;
 
   @override
   Widget build(BuildContext context) {
-    print(widget.major + widget.semester);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("강의 추천"),
-        centerTitle: true,
-      ),
-      body:  SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
-
           children: <Widget>[
             Row(
               children: <Widget>[
@@ -80,8 +78,6 @@ class _RecommendPageState extends State<RecommendPage> {
             ),
           ],
         )
-      ),
-
     );
   }
 
@@ -146,19 +142,4 @@ class _RecommendPageState extends State<RecommendPage> {
       );
     });
   }
-
-}
-
-class Student {
-  Student({
-
-    this.headerValue,
-    this.isExpanded = false,
-    this.courses,
-  });
-
-  String headerValue;
-  bool isExpanded;
-  List courses;
-
 }

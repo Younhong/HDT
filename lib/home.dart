@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/pre_register/pre.register.main.dart';
-import 'package:hgt/recommend.page.dart';
+import 'package:hgt/recommend/recommend.page.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 import 'package:hgt/review/review.main.dart';
