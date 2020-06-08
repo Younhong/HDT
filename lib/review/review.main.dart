@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/hgt.drawer.dart';
-import 'package:hgt/home.dart';
 import 'package:hgt/review/review.body.dart';
-import 'package:hgt/schedule/my_course.dart';
-import 'package:hgt/open_course/open.course.main.dart';
 
 class ReviewMainPage extends StatelessWidget {
   final String name, semester, studentID, major;
