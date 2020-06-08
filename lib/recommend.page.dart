@@ -125,8 +125,7 @@ class _RecommendPageState extends State<RecommendPage> {
   Future<String> recommendJSON(String majorCode, String semester) async {
 
     String url = 'http://52.14.37.173:5000/recommend?major_code=$majorCode&semester=$semester';
-    final response =
-    await http.get('http://52.14.37.173:5000/recommend?major_code=71&semester=5');
+    final response = await http.get(url);
 
     var res = json.decode(response.body);
 

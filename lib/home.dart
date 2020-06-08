@@ -8,7 +8,7 @@ import 'package:hgt/review/review.main.dart';
 import 'dart:math' as math;
 
 class HomePage extends StatelessWidget {
-  String name, semester, studentID, major;
+  final String name, semester, studentID, major;
   HomePage({this.name, this.semester, this.studentID, this.major});
 
   @override

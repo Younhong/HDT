@@ -216,8 +216,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
   }
 
   Future<String> courseJSON(String url) async {
-    final response =
-    await http.get(url);
+    final response = await http.get(url);
 
     var res = json.decode(response.body);
 
@@ -231,8 +230,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
   }
 
   Future<String> injungJSON(String url) async {
-    final response =
-    await http.get(url);
+    final response = await http.get(url);
 
     var res = json.decode(response.body);
 
@@ -259,8 +257,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
       url = url + '&course_name=' + courseName;
 
     print(url);
-    final response =
-    await http.get(url);
+    final response = await http.get(url);
 
     data = json.decode(response.body);
 
