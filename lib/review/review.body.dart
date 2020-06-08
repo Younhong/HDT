@@ -199,28 +199,6 @@ class _ReviewBodyState extends State<ReviewBodyPage> {
             ),
           ],
         ),
-        Container(
-          alignment: Alignment.center,
-          child: Text(_selectedYear + "년도 " +  _selectedSemester + "학기"),
-        ),
-        Container(
-            alignment: Alignment.center,
-            child: Text(_selectedDept,)
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: Text(_courseName + " " + _courseCode),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: Text(_profName + " " + _section),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: Text(_selectedInjung),
-        ),
-        SizedBox(height: 10,),
-        Text("이 과목의 리뷰 정보를 띄워주세요")
       ],
     );
   }

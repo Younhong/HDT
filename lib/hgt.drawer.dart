@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hgt/home.dart';
+import 'package:hgt/open_course/open.course.main.dart';
+import 'package:hgt/pre_register/pre.register.main.dart';
+import 'package:hgt/recommend/recommend.page.main.dart';
 import 'package:hgt/review/review.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 
@@ -76,7 +79,20 @@ class _HGTDrawerState extends State<HGTDrawer> {
                         }
                     ),
                     ListTile(
-                        title: Text("My Schedule"),
+                        title: Text("강의 검색"),
+                        leading: Icon(Icons.search, color: Colors.black,),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      OpenCourseMainPage(
+                                          widget.name, widget.semester,
+                                          widget.studentID, widget.major
+                                      )));
+                        }
+                    ),
+                    ListTile(
+                        title: Text("내 시간표 조회"),
                         leading: Image.asset('asset/calendar.jpg',
                           width: 25, height: 25),
                         onTap: () {
@@ -87,14 +103,36 @@ class _HGTDrawerState extends State<HGTDrawer> {
                         }
                     ),
                     ListTile(
-                        title: Text("Review"),
+                        title: Text("리뷰 검색"),
                         leading: Image.asset('asset/review.png',
-                          width: 25, height: 25),
+                            width: 25, height: 25),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
                                       ReviewMainPage(widget.name, widget.semester, widget.studentID, widget.major)));
+                        }
+                    ),
+                    ListTile(
+                        title: Text("예비 수강 조회"),
+                        leading: Image.asset('asset/review.png',
+                            width: 25, height: 25),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major)));
+                        }
+                    ),
+                    ListTile(
+                        title: Text("강의 추천"),
+                        leading: Image.asset('asset/review.png',
+                            width: 25, height: 25),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RecommendPage(widget.name, widget.semester, widget.studentID, widget.major)));
                         }
                     ),
                   ],
