@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/pre_register/pre.register.main.dart';
+import 'package:hgt/recommend.page.dart';
 import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 import 'package:hgt/review/review.main.dart';
@@ -7,7 +8,7 @@ import 'package:hgt/review/review.main.dart';
 import 'dart:math' as math;
 
 class HomePage extends StatelessWidget {
-  String name, semester, studentID, major;
+  final String name, semester, studentID, major;
   HomePage({this.name, this.semester, this.studentID, this.major});
 
   @override
@@ -48,7 +49,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     width: phoneSize.width * .7,
-                    height: phoneSize.height * .1,
+                    height: phoneSize.height * .07,
                     alignment: Alignment.center,
                     child: Text("개설 시간표 조회",
                     style: TextStyle(
@@ -61,7 +62,8 @@ class HomePage extends StatelessWidget {
                         bottomLeft: const Radius.circular(40.0),
                         bottomRight: const Radius.circular(40.0),
                       ),
-                      border: Border.all(color: Colors.red, width: 4),
+                      border: Border.all(
+                          color: Colors.red, width: 4),
                     ),),
                   Positioned(
                     top: 13,
@@ -69,14 +71,15 @@ class HomePage extends StatelessWidget {
                     child: Transform(
                         alignment: Alignment.center,
                         transform: Matrix4.rotationY(math.pi),
-                        child: Icon(Icons.search, size: 60,)
+                        child: Icon(Icons.search, size: 40,)
                     ),
                   )
                 ],),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          OpenCourseMainPage(name, semester, studentID, major))),
+                          OpenCourseMainPage(
+                              name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -84,7 +87,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     width: phoneSize.width * .7,
-                    height: phoneSize.height * .1,
+                    height: phoneSize.height * .07,
                     alignment: Alignment.center,
                     child: Text("내 시간표",
                       style: TextStyle(
@@ -97,13 +100,15 @@ class HomePage extends StatelessWidget {
                         bottomLeft: const Radius.circular(40.0),
                         bottomRight: const Radius.circular(40.0),
                       ),
-                      border: Border.all(color: Colors.yellow, width: 4),
+                      border: Border.all(
+                          color: Colors.yellow, width: 4),
                     ),
                   ),
                   Positioned(
                       top: 13,
                       right: 25,
-                      child: Image.asset('asset/calendar.jpg', width: 50, height: 50)
+                      child: Image.asset(
+                          'asset/calendar.jpg', width: 50, height: 30)
                   )
                 ],
               ),
@@ -118,7 +123,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     width: phoneSize.width * .7,
-                    height: phoneSize.height * .1,
+                    height: phoneSize.height * .07,
                     alignment: Alignment.center,
                     child: Text("수업 리뷰",
                       style: TextStyle(
@@ -137,7 +142,8 @@ class HomePage extends StatelessWidget {
                   Positioned(
                     top: 9,
                     right: 27,
-                    child: Image.asset('asset/review.png', width: 50, height: 50)
+                    child: Image.asset(
+                        'asset/review.png', width: 50, height: 30)
                   )
                 ],
               ),
@@ -152,9 +158,46 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     width: phoneSize.width * .7,
-                    height: phoneSize.height * .1,
+                    height: phoneSize.height * .07,
                     alignment: Alignment.center,
                     child: Text("예비수강신청",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(40.0),
+                        topRight: const Radius.circular(40.0),
+                        bottomLeft: const Radius.circular(40.0),
+                        bottomRight: const Radius.circular(40.0),
+                      ),
+                      border: Border.all(
+                          color: Colors.green, width: 4),
+                    ),
+                  ),
+                  Positioned(
+                      top: 9,
+                      right: 27,
+                      child: Image.asset(
+                          'asset/review.png', width: 50, height: 30)
+                  )
+                ],
+              ),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PreRegisterMainPage(name, semester, studentID, major))),
+            ),
+
+            SizedBox(height: phoneSize.height * .05),
+            InkWell(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: phoneSize.width * .7,
+                    height: phoneSize.height * .07,
+                    alignment: Alignment.center,
+                    child: Text("강의 추천",
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold),),
@@ -171,14 +214,14 @@ class HomePage extends StatelessWidget {
                   Positioned(
                       top: 9,
                       right: 27,
-                      child: Image.asset('asset/review.png', width: 50, height: 50)
+                      child: Image.asset('asset/review.png', width: 50, height: 30)
                   )
                 ],
               ),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          PreRegisterMainPage(name, semester, studentID, major))),
+                          RecommendPage(name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')

@@ -151,8 +151,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<String> courseJSON(String url) async {
-    final response =
-    await http.get(url);
+    final response = await http.get(url);
 
     var res = json.decode(response.body);
 
