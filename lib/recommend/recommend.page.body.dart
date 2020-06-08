@@ -47,7 +47,9 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                     items: _currSemesterCategory
                         .map((String category) {
                       return DropdownMenuItem<String>(
-                        value: category, child: Text(category, style: TextStyle(fontSize: 20),),
+                        value: category,
+                        child: Text(category,
+                          style: TextStyle(fontSize: 20),),
                       );
                     }).toList(),
                   ),
@@ -120,8 +122,8 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
   }
 
   Future<String> recommendJSON(String majorCode, String semester) async {
-
-    String url = 'http://52.14.37.173:5000/recommend?major_code=$majorCode&semester=$semester';
+    String url =
+        'http://52.14.37.173:5000/recommend?major_code=' + majorCode + '&semester=' + semester;
     final response = await http.get(url);
 
     var res = json.decode(response.body);
@@ -129,7 +131,6 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
     setState(() {
       recommendList = generateStudents(res.length, res);
     });
-
 
     return 'Success';
   }

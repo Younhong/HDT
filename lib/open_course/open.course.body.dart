@@ -52,12 +52,14 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                         value: _selectedYear,
                         icon: Icon(Icons.arrow_drop_down),
                         onChanged: (String newValue) {
-                          setState(() { _selectedYear = newValue;});
+                          setState(() {
+                            _selectedYear = newValue;});
                         },
                         items: _yearCategory
                             .map((String category) {
                           return DropdownMenuItem<String>(
-                            value: category, child: Text(category),
+                            value: category,
+                            child: Text(category),
                           );
                         }).toList(),
                       ),
@@ -66,13 +68,14 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                         value: _selectedSemester,
                         icon: Icon(Icons.arrow_drop_down),
                         onChanged: (String newValue) {
-                          setState(() { _selectedSemester = newValue;});
-
+                          setState(() {
+                            _selectedSemester = newValue;});
                         },
                         items: _semesterCategory
                             .map((String category) {
                           return DropdownMenuItem<String>(
-                            value: category, child: Text(category),
+                            value: category,
+                            child: Text(category),
                           );
                         }).toList(),
                       ),
@@ -108,7 +111,8 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                               autocorrect: false,
                               controller: _courseNameController,
                               maxLines: 1,
-                              style: TextStyle(color: Colors.black, fontSize: 16.0),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 16.0),
                               cursorColor: Colors.grey,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -130,7 +134,8 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                               autocorrect: false,
                               controller: _profController,
                               maxLines: 1,
-                              style: TextStyle(color: Colors.black, fontSize: 16.0),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 16.0),
                               cursorColor: Colors.grey,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -150,7 +155,8 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                         },
                         items: _injungCategory.map((injung) {
                           return DropdownMenuItem<String>(
-                            value: injung['inj_code'], child: Text(injung['kor']),
+                            value: injung['inj_code'],
+                            child: Text(injung['kor']),
                           );
                         }).toList(),
                       ),
@@ -170,10 +176,11 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                           _courseNameController.text, _profController.text);
                       await searchCourse(
                           _selectedDept, _courseName,
-                          _selectedInjung, _selectedYear+_selectedSemester, _profName);
+                          _selectedInjung, _selectedYear + _selectedSemester, _profName);
                       await Navigator.push(context,
                           MaterialPageRoute(
-                              builder: (context) => CourseSearchResultPage(data)));
+                              builder: (context) =>
+                                  CourseSearchResultPage(data)));
                     },
                   ),
                 ],
@@ -222,9 +229,8 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
     return 'Success';
   }
 
-  Future<String> searchCourse(
-      String majorCode, String courseName, String injCode,
-      String yearSemester, String profName) async {
+  Future<String> searchCourse(String majorCode, String courseName,
+      String injCode, String yearSemester, String profName) async {
     String url = 'http://52.14.37.173:5000/search?major_code='
         +  majorCode + '&open_time=' + yearSemester;
 

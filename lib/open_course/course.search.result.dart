@@ -39,7 +39,8 @@ class CourseSearchResultState extends State<CourseSearchResultPage> {
             ),
             onTap: () => Navigator.push(context,
               MaterialPageRoute(
-                  builder: (context) => CourseDetailPage(widget.data[index]))),
+                  builder: (context) =>
+                      CourseDetailPage(widget.data[index]))),
           );},
       ),
     );

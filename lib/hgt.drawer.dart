@@ -54,12 +54,14 @@ class _HGTDrawerState extends State<HGTDrawer> {
                             /// TODO:: (May not be implemented in this course)
                             Container(
                               child: CircleAvatar(
-                                backgroundImage: AssetImage('asset/profile.jpg'),),
+                                backgroundImage: AssetImage(
+                                    'asset/profile.jpg'),),
                             ),
                             Container(
                               padding: EdgeInsets.only(left: 15),
                               child: Text(widget.name,
-                                  style: TextStyle(color: Colors.white, fontSize: 19)),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 19)),
                             ),
                           ],
                         ),
@@ -73,14 +75,17 @@ class _HGTDrawerState extends State<HGTDrawer> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       HomePage(
-                                          name: widget.name, semester: widget.semester,
-                                          studentID: widget.studentID, major: widget.major
+                                          name: widget.name,
+                                          semester: widget.semester,
+                                          studentID: widget.studentID,
+                                          major: widget.major
                                       )));
                         }
                     ),
                     ListTile(
                         title: Text("강의 검색"),
-                        leading: Icon(Icons.search, color: Colors.black,),
+                        leading: Icon(
+                          Icons.search, color: Colors.black,),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(
