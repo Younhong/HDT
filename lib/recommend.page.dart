@@ -33,6 +33,7 @@ class _RecommendPageState extends State<RecommendPage> {
       ),
       body:  SingleChildScrollView(
         child: Column(
+
           children: <Widget>[
             Row(
               children: <Widget>[
