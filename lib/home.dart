@@ -3,7 +3,6 @@ import 'package:hgt/pre_register/pre.register.main.dart';
 import 'package:hgt/recommend/recommend.page.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/open_course/open.course.main.dart';
-import 'package:hgt/review/review.main.dart';
 
 import 'dart:math' as math;
 
@@ -116,41 +115,6 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) =>
                           MyCoursePage(name, semester, studentID, major))),
-            ),
-            SizedBox(height: phoneSize.height * .05),
-            InkWell(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    width: phoneSize.width * .7,
-                    height: phoneSize.height * .07,
-                    alignment: Alignment.center,
-                    child: Text("수업 리뷰",
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold),),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(40.0),
-                        topRight: const Radius.circular(40.0),
-                        bottomLeft: const Radius.circular(40.0),
-                        bottomRight: const Radius.circular(40.0),
-                      ),
-                      border: Border.all(color: Colors.green, width: 4),
-                    ),
-                  ),
-                  Positioned(
-                    top: 9,
-                    right: 27,
-                    child: Image.asset(
-                        'asset/review.png', width: 50, height: 30)
-                  )
-                ],
-              ),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          ReviewMainPage(name, semester, studentID, major))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
