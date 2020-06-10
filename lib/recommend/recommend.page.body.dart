@@ -11,6 +11,8 @@ class RecommendPageBodyPage extends StatefulWidget{
 }
 
 class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
+  _RecommendPageBodyState();
+
   List<String> _currSemesterCategory = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
   @override
@@ -22,11 +24,7 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
   }
 
   List<Student> recommendList = List();
-  _RecommendPageBodyState();
-
   String _selectedSemester = '1';
-
-  List data;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +74,7 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                   : EdgeInsets.only(top: 20),
               child: recommendList.isEmpty
                   ? Text("현재 재학중인 학기를 선택해주세요")
-                  :_buildPanel(),
+                  : _buildPanel(),
             ),
           ],
         )

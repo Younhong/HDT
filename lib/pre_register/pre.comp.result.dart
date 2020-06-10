@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/open_course/course.detail.dart';
 
-class CourseSearchResultPage extends StatefulWidget {
+class PreCompResultPage extends StatefulWidget {
   final List data;
-  CourseSearchResultPage(this.data);
+  PreCompResultPage(this.data);
 
   @override
-  _CourseSearchResultState createState() => _CourseSearchResultState();
+  _PreCompResultState createState() => _PreCompResultState();
 }
 
-class _CourseSearchResultState extends State<CourseSearchResultPage> {
-  _CourseSearchResultState();
+class _PreCompResultState extends State<PreCompResultPage> {
+  _PreCompResultState();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,20 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                         children: <Widget>[
                           Text("교수명: " + widget.data[index]['prof_name']),
                           SizedBox(width: 13),
-                          Text("분반: " + widget.data[index]['section'].toString()),
+                          Text("분반: " + widget.data[index]['sec_id'].toString()),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Text("총인원: " + widget.data[index]['total_stu'].toString()),
+                          SizedBox(width: 13),
+                          widget.data[index]['competition'] == null
+                              ? Text("경쟁률: 0")
+                              : Text("경쟁률: " + widget.data[index]['competition'].toString()),
                         ],
                       ),
                     )
@@ -53,9 +66,10 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                 )
             ),
             onTap: () => Navigator.push(context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      CourseDetailPage(widget.data[index]))),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        CourseDetailPage(widget.data[index]))),
+            // 과목명 교수명
           );},
       ),
     );

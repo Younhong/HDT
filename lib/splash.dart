@@ -3,10 +3,12 @@ import 'package:hgt/login.dart';
 
 class SplashPage extends StatefulWidget {
   @override
-  SplashPageState createState() => SplashPageState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> {
+  _SplashPageState();
+
   @override
   Widget build(BuildContext context) {
     var phoneSize = MediaQuery.of(context).size;
