@@ -11,6 +11,8 @@ class RecommendPage extends StatefulWidget {
 }
 
 class _RecommendPageState extends State<RecommendPage> {
+  _RecommendPageState();
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void initState() {

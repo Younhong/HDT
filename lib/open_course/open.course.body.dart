@@ -8,6 +8,8 @@ class OpenCourseBodyPage extends StatefulWidget{
 }
 
 class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
+  _OpenCourseBodyState();
+
   @override
   void initState() {
     super.initState();
@@ -17,7 +19,6 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
     });
   }
 
-  _OpenCourseBodyState();
   List _deptCategory = List();
   List _injungCategory = List();
   List<String> _yearCategory = ['2019', '2020'];

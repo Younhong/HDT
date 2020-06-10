@@ -7,6 +7,7 @@ class SchedulePage extends StatefulWidget{
 
 class _SchedulePageState extends State<SchedulePage> {
   _SchedulePageState();
+
   @override
   Widget build(BuildContext context) {
     Map<int, List<int>> initialSchedule = {

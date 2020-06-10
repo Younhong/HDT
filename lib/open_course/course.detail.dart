@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/review.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -7,11 +8,12 @@ class CourseDetailPage extends StatefulWidget {
   CourseDetailPage(this.data);
 
   @override
-  CourseDetailState createState() => CourseDetailState();
+  _CourseDetailState createState() => _CourseDetailState();
 }
 
-class CourseDetailState extends State<CourseDetailPage> {
-  List reviewList = List();
+class _CourseDetailState extends State<CourseDetailPage> {
+  List<Review> reviewList = List();
+  _CourseDetailState();
 
   @override
   Widget build(BuildContext context) {
@@ -64,25 +66,72 @@ class CourseDetailState extends State<CourseDetailPage> {
             Container(
               child: reviewList.isEmpty
                   ? Container()
-                  : Text(reviewList.length.toString() + "개의 리뷰 검색됨"),
+                  : _buildPanel()
             ),
           ],
       )
     );
   }
 
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          reviewList[index].isExpanded = !isExpanded;
+        });
+      },
+      children: reviewList.map<ExpansionPanel>((Review review) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(review.headerValue),
+            );
+          },
+          body: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: review.reviews.length,
+                    itemBuilder: (BuildContext context, int index){
+                      return Container(
+                        child: ListTile(
+                          title: Text(review.reviews[index]['title']),
+                        ),
+                      );
+                    })
+              ],
+            ),
+          ),
+          isExpanded: review.isExpanded,
+        );
+      }).toList(),
+    );
+  }
+
   Future<String> reviewJSON(String courseName, String profName) async {
     String url =
         'http://52.14.37.173:5000/review?course_name=' + courseName + '&prof_name=' + profName;
+    print(url);
     final response = await http.get(url);
 
     var res = json.decode(response.body);
 
-    print(res);
     setState(() {
-      reviewList = res;
+      reviewList = generateReviews(res.length, res);
     });
 
     return 'Success';
+  }
+
+  List<Review> generateReviews(int numberOfItems, List allReviews) {
+    return List.generate(numberOfItems, (int index) {
+      return Review(
+          headerValue: '리뷰 $index',
+          reviews: allReviews[index]
+      );
+    });
   }
 }

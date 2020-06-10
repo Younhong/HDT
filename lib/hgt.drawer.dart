@@ -15,6 +15,7 @@ class HGTDrawer extends StatefulWidget {
 }
 
 class _HGTDrawerState extends State<HGTDrawer> {
+  _HGTDrawerState();
 
   var phoneSize;
 

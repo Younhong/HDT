@@ -5,10 +5,12 @@ class PreDetailPage extends StatefulWidget {
   PreDetailPage(this.data);
 
   @override
-  PreDetailState createState() => PreDetailState();
+  _PreDetailState createState() => _PreDetailState();
 }
 
-class PreDetailState extends State<PreDetailPage> {
+class _PreDetailState extends State<PreDetailPage> {
+  _PreDetailState();
+
   @override
   Widget build(BuildContext context) {
     print(widget.data);

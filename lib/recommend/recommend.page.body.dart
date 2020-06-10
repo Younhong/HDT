@@ -11,6 +11,8 @@ class RecommendPageBodyPage extends StatefulWidget{
 }
 
 class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
+  _RecommendPageBodyState();
+
   List<String> _currSemesterCategory = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
   @override
@@ -22,8 +24,6 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
   }
 
   List<Student> recommendList = List();
-  _RecommendPageBodyState();
-
   String _selectedSemester = '1';
 
   @override
