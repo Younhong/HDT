@@ -187,6 +187,19 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
             ),
           ],
         ),
+        Row(
+          children: <Widget>[
+            FlatButton(
+              child: Text("인원별 조회"),
+              onPressed: null,
+            ),
+            SizedBox(width: 10),
+            FlatButton(
+              child: Text("경쟁률 조회"),
+              onPressed: null,
+            )
+          ],
+        )
       ],
     );
   }

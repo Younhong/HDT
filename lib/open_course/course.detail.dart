@@ -18,7 +18,7 @@ class CourseDetailState extends State<CourseDetailPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('개설 시간표 조회'),
+        title: Text(widget.data['title']),
         centerTitle: true,
       ),
       body: Column(
