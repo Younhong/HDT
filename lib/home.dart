@@ -7,8 +7,8 @@ import 'package:hgt/open_course/open.course.main.dart';
 import 'dart:math' as math;
 
 class HomePage extends StatelessWidget {
-  final String name, semester, studentID, major;
-  HomePage({this.name, this.semester, this.studentID, this.major});
+  final String name, semester, studentID, major, major2;
+  HomePage({this.name, this.semester, this.studentID, this.major, this.major2});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +51,9 @@ class HomePage extends StatelessWidget {
                     height: phoneSize.height * .07,
                     alignment: Alignment.center,
                     child: Text("개설 시간표 조회",
-                    style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),),
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(40.0),
@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) =>
                           OpenCourseMainPage(
-                              name, semester, studentID, major))),
+                              name, semester, studentID, major, major2))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -114,7 +114,7 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          MyCoursePage(name, semester, studentID, major))),
+                          MyCoursePage(name, semester, studentID, major, major2))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -150,7 +150,7 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          PreRegisterMainPage(name, semester, studentID, major))),
+                          PreRegisterMainPage(name, semester, studentID, major, major2))),
             ),
 
             SizedBox(height: phoneSize.height * .05),
@@ -185,7 +185,7 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          RecommendPage(name, semester, studentID, major))),
+                          RecommendPage(name, semester, studentID, major, major2))),
             ),
             SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')

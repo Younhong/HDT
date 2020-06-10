@@ -16,7 +16,7 @@ class _PreCompResultState extends State<PreCompResultPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('강의 검색 결과', style: TextStyle(color: Colors.black),),
+        title: Text('경쟁율별 검색 결과', style: TextStyle(color: Colors.black),),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

@@ -16,7 +16,9 @@ class _PreNumResultState extends State<PreNumResultPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('강의 검색 결과', style: TextStyle(color: Colors.black),),
+        title: Text('인원별 검색 결과',
+          style: TextStyle(
+              color: Colors.black),),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

@@ -7,8 +7,8 @@ import 'package:hgt/recommend/recommend.page.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 
 class HGTDrawer extends StatefulWidget {
-  final String name, semester, studentID, major;
-  HGTDrawer(this.name, this.semester, this.studentID, this.major);
+  final String name, semester, studentID, major, major2;
+  HGTDrawer(this.name, this.semester, this.studentID, this.major, this.major2);
 
   @override
   State<StatefulWidget> createState() => _HGTDrawerState();
@@ -91,7 +91,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                                   builder: (context) =>
                                       OpenCourseMainPage(
                                           widget.name, widget.semester,
-                                          widget.studentID, widget.major
+                                          widget.studentID, widget.major, widget.major2
                                       )));
                         }
                     ),
@@ -103,7 +103,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MyCoursePage(widget.name, widget.semester, widget.studentID, widget.major)));
+                                      MyCoursePage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
                         }
                     ),
                     ListTile(
@@ -114,7 +114,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major)));
+                                      PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
                         }
                     ),
                     ListTile(
@@ -125,7 +125,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      RecommendPage(widget.name, widget.semester, widget.studentID, widget.major)));
+                                      RecommendPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
                         }
                     ),
                   ],

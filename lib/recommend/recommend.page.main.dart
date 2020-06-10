@@ -3,8 +3,8 @@ import 'package:hgt/hgt.drawer.dart';
 import 'package:hgt/recommend/recommend.page.body.dart';
 
 class RecommendPage extends StatefulWidget {
-  final String name, semester, studentID, major;
-  RecommendPage(this.name, this.semester, this.studentID, this.major);
+  final String name, semester, studentID, major, major2;
+  RecommendPage(this.name, this.semester, this.studentID, this.major, this.major2);
 
   @override
   _RecommendPageState createState() => _RecommendPageState();
@@ -41,7 +41,7 @@ class _RecommendPageState extends State<RecommendPage> {
         centerTitle: true,
       ),
       drawer: HGTDrawer(
-          widget.name, widget.semester, widget.studentID, widget.major),
+          widget.name, widget.semester, widget.studentID, widget.major, widget.major2),
       body:  RecommendPageBodyPage(widget.major)
     );
   }
