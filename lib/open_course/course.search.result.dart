@@ -15,7 +15,7 @@ class CourseSearchResultState extends State<CourseSearchResultPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('개설 시간표 조회'),
+        title: Text('강의 검색 결과'),
         centerTitle: true,
       ),
       body: ListView.builder(
