@@ -4,7 +4,6 @@ import 'package:hgt/home.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 import 'package:hgt/pre_register/pre.register.main.dart';
 import 'package:hgt/recommend/recommend.page.main.dart';
-import 'package:hgt/review/review.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 
 class HGTDrawer extends StatefulWidget {
@@ -104,17 +103,6 @@ class _HGTDrawerState extends State<HGTDrawer> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       MyCoursePage(widget.name, widget.semester, widget.studentID, widget.major)));
-                        }
-                    ),
-                    ListTile(
-                        title: Text("리뷰 검색"),
-                        leading: Icon(
-                          Icons.rate_review, color: Colors.black,),
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ReviewMainPage(widget.name, widget.semester, widget.studentID, widget.major)));
                         }
                     ),
                     ListTile(

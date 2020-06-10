@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/hgt.drawer.dart';
 import 'package:hgt/review/review.body.dart';
 
 class ReviewMainPage extends StatelessWidget {
-  final String name, semester, studentID, major;
+//  final String name, semester, studentID, major;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  ReviewMainPage(this.name, this.semester, this.studentID, this.major);
+  ReviewMainPage();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +25,6 @@ class ReviewMainPage extends StatelessWidget {
               color: Colors.black),),
         centerTitle: true,
       ),
-      drawer: HGTDrawer(
-          name, semester, studentID, major),
       resizeToAvoidBottomInset: false,
     );
   }
