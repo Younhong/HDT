@@ -14,9 +14,14 @@ class CourseSearchResultState extends State<CourseSearchResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: Text('강의 검색 결과'),
+        backgroundColor: Colors.white,
+        title: Text('강의 검색 결과', style: TextStyle(color: Colors.black),),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: ListView.builder(
         itemCount: widget.data == null
