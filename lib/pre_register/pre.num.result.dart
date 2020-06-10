@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
-class PreCompResultPage extends StatefulWidget {
+class PreNumResultPage extends StatefulWidget {
   final List data;
-  PreCompResultPage(this.data);
+  PreNumResultPage(this.data);
 
   @override
-  _PreCompResultState createState() => _PreCompResultState();
+  _PreNumResultState createState() => _PreNumResultState();
 }
 
-class _PreCompResultState extends State<PreCompResultPage> {
-  _PreCompResultState();
+class _PreNumResultState extends State<PreNumResultPage> {
+  _PreNumResultState();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('경쟁율별 검색 결과', style: TextStyle(color: Colors.black),),
+        title: Text('인원별 검색 결과',
+          style: TextStyle(
+              color: Colors.black),),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -44,23 +46,13 @@ class _PreCompResultState extends State<PreCompResultPage> {
                         children: <Widget>[
                           Text("교수명: " + widget.data[index]['prof_name']),
                           SizedBox(width: 13),
-                          Text("분반: " + widget.data[index]['sec_id'].toString()),
+                          Text("분반: " + widget.data[index]['section'].toString()),
+                          SizedBox(width: 13),
+                          Text("총인원: " + widget.data[index]['all'].toString()),
                         ],
                       ),
                     ),
                     SizedBox(height: 5),
-                    Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Text("총인원: " + widget.data[index]['total_stu'].toString()),
-                          SizedBox(width: 13),
-                          widget.data[index]['competition'] == null
-                              ? Text("경쟁률: 0")
-                              : Text("경쟁률: " + widget.data[index]['competition'].toString()),
-                        ],
-                      ),
-                    )
                   ],
                 )
             ),

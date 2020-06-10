@@ -14,9 +14,12 @@ class _LoginPageState extends State<LoginPage> {
 
   List _deptCategory = List();
   String _selectedDept = "1" ;
+  String _selectedDept2 = "1";
   String _name = "";
   String _studentID = "";
   String _semester = "";
+
+  List data = List();
 
   final TextEditingController _nameController = new TextEditingController();
   final TextEditingController _semesterController = new TextEditingController();
@@ -33,11 +36,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.red,
-          title: Text('로그인 페이지'),
-          centerTitle: true,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('로그인',
+          style: TextStyle(
+              color: Colors.black),),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () => Navigator.pop(context),
         ),
+      ),
         body: Container(
           padding: EdgeInsets.only(left: 10),
           child: Column(
@@ -113,6 +123,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Row(
                 children: <Widget>[
+                  Text("1전공", style: TextStyle(fontSize: 15),),
+                  SizedBox(width: 15,),
                   DropdownButton(
                     hint: Text('학부'),
                     icon: Icon(Icons.arrow_drop_down),
@@ -132,17 +144,40 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
+              Row(
+                children: <Widget>[
+                  Text("2전공", style: TextStyle(fontSize: 15),),
+                  SizedBox(width: 15,),
+                  DropdownButton(
+                    hint: Text('학부'),
+                    icon: Icon(Icons.arrow_drop_down),
+                    items: _deptCategory.map((major) {
+                      return DropdownMenuItem<String>(
+                        value: major['major_code'].toString(),
+                        child: Text(major['major_name'].toString(),),
+                      );
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        _selectedDept2 = newValue;
+                      });
+                      print(newValue);
+                    },
+                    value: _selectedDept2,
+                  ),
+                ],
+              ),
               InkWell(
                   child: Text("확인"),
-                  onTap: () {
+                  onTap: () async {
                     _handleSubmitted(
                         _nameController.text, _semesterController.text, _studentIDController.text);
                     (_name != "" && _semester != "" && _studentID != "") ?
-                    Navigator.push(context,
+                    await Navigator.push(context,
                         MaterialPageRoute(
                             builder: (context) =>
                                 HomePage(
-                                    name: _name, semester: _semester, studentID: _studentID, major: _selectedDept)))
+                                    name: _name, semester: _semester, studentID: _studentID, major: _selectedDept, major2: _selectedDept2)))
                         : Container();
                   }
               )

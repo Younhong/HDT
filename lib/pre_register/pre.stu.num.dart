@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/pre_register/pre.comp.result.dart';
+import 'package:hgt/pre_register/pre.num.result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class PreCompPage extends StatefulWidget {
-  PreCompPage();
+class PreStuNumPage extends StatefulWidget {
+  PreStuNumPage();
 
   @override
-  _PreCompState createState() => _PreCompState();
+  _PreStuState createState() => _PreStuState();
 }
 
-class _PreCompState extends State<PreCompPage> {
-  _PreCompState();
+class _PreStuState extends State<PreStuNumPage> {
+  _PreStuState();
 
   @override
   void initState() {
@@ -33,8 +33,6 @@ class _PreCompState extends State<PreCompPage> {
   String _selectedSemester = '1';
   String _courseName = "";
   String _profName = "";
-  List<String> _order = ["ASC", "DESC"];
-  String _selectedOrder = "ASC";
   final TextEditingController _profController = new TextEditingController();
   final TextEditingController _courseNameController = new TextEditingController();
 
@@ -50,7 +48,7 @@ class _PreCompState extends State<PreCompPage> {
           onPressed: () =>
               Navigator.pop(context),
         ),
-        title: Text("경쟁률 검색",
+        title: Text("인원별 검색",
           style: TextStyle(
               color: Colors.black),),
         centerTitle: true,
@@ -176,20 +174,6 @@ class _PreCompState extends State<PreCompPage> {
                         );
                       }).toList(),
                     ),
-                    DropdownButton(
-                      hint: Text('Option'),
-                      value: _selectedOrder,
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String newValue) {
-                        setState(() { _selectedOrder = newValue;});
-                      },
-                      items: _order.map((index) {
-                        return DropdownMenuItem<String>(
-                          value: index,
-                          child: Text(index),
-                        );
-                      }).toList(),
-                    ),
                   ],
                 )
               ],
@@ -206,11 +190,11 @@ class _PreCompState extends State<PreCompPage> {
                         _courseNameController.text, _profController.text);
                     await searchCourse(
                         _selectedDept, _courseName,
-                        _selectedInjung, _selectedYear+_selectedSemester, _profName, _selectedOrder);
+                        _selectedInjung, _selectedYear+_selectedSemester, _profName);
                     await Navigator.push(context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                PreCompResultPage(data)));
+                                PreNumResultPage(data)));
                   },
                 ),
               ],
@@ -261,9 +245,9 @@ class _PreCompState extends State<PreCompPage> {
 
   Future<String> searchCourse(
       String majorCode, String courseName, String injCode,
-      String yearSemester, String profName, String order) async {
-    String url = 'http://52.14.37.173:5000/basket_byC?major_code='
-        +  majorCode + '&open_time=' + yearSemester + '&order=' + order;
+      String yearSemester, String profName) async {
+    String url = 'http://52.14.37.173:5000/basket?major_code='
+        +  majorCode + '&open_time=' + yearSemester;
 
     if (injCode != '000')
       url = url + '&injung_code=' + injCode;

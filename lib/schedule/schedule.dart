@@ -11,18 +11,18 @@ class _SchedulePageState extends State<SchedulePage> {
   @override
   Widget build(BuildContext context) {
     Map<int, List<int>> initialSchedule = {
-      0: [1,2],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
+      0: [],
+      1: [1,2],
+      2: [5,6],
+      3: [4,5],
+      4: [1,2],
+      5: [5,6],
       6: [],
     };
 
     return WeeklyTimeTable(
-        cellColor: Colors.white,
-        cellSelectedColor: Colors.grey,
+      cellColor: Colors.white,
+      cellSelectedColor: Colors.grey,
 //        boarderColor: Color.fromRGBO(0,30,255, 1.0),
       initialSchedule: initialSchedule,
       locale: 'ko',
