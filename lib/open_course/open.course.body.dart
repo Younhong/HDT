@@ -8,7 +8,6 @@ class OpenCourseBodyPage extends StatefulWidget{
 }
 
 class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
-
   @override
   void initState() {
     super.initState();

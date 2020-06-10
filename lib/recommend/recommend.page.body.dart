@@ -26,8 +26,6 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
 
   String _selectedSemester = '1';
 
-  List data;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -76,7 +74,7 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                   : EdgeInsets.only(top: 20),
               child: recommendList.isEmpty
                   ? Text("현재 재학중인 학기를 선택해주세요")
-                  :_buildPanel(),
+                  : _buildPanel(),
             ),
           ],
         )
