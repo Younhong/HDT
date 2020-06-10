@@ -32,8 +32,16 @@ class CourseSearchResultState extends State<CourseSearchResultPage> {
                       padding: EdgeInsets.only(left: 10),
                     ),
                     SizedBox(height: 5),
-                    Text(widget.data[index]['prof_name']),
-                    Text(widget.data[index]['section'].toString()),
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Text("교수명: " + widget.data[index]['prof_name']),
+                          SizedBox(width: 13),
+                          Text("분반: " + widget.data[index]['section'].toString()),
+                        ],
+                      ),
+                    )
                   ],
                 )
             ),

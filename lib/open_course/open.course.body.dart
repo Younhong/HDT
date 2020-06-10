@@ -24,13 +24,13 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
   List<String> _yearCategory = ['2019', '2020'];
   List<String> _semesterCategory = ['1', '2', '3', '4'];
   String _selectedDept = "1" ;
-  String _selectedInjung = '000';
+  String _selectedInjung = "000";
   String _selectedYear = '2020';
   String _selectedSemester = '1';
-  final TextEditingController _profController = new TextEditingController();
-  final TextEditingController _courseNameController = new TextEditingController();
   String _profName = "";
   String _courseName = "";
+  final TextEditingController _profController = new TextEditingController();
+  final TextEditingController _courseNameController = new TextEditingController();
 
   List data;
 
@@ -151,7 +151,8 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                         value: _selectedInjung,
                         icon: Icon(Icons.arrow_drop_down),
                         onChanged: (String newValue) {
-                          setState(() { _selectedInjung = newValue;});
+                          setState(() {
+                            _selectedInjung = newValue;});
                         },
                         items: _injungCategory.map((injung) {
                           return DropdownMenuItem<String>(
