@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hgt/home.dart';
+import 'package:hgt/loading.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 import 'package:hgt/pre_register/pre.register.main.dart';
 import 'package:hgt/recommend/recommend.page.main.dart';
-import 'package:hgt/schedule/my_course.dart';
+import 'package:hgt/schedule/my_course.dart';import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HGTDrawer extends StatefulWidget {
+  var courseData;
   final String name, semester, studentID, major, major2;
-  HGTDrawer(this.name, this.semester, this.studentID, this.major, this.major2);
+  HGTDrawer(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
 
   @override
   State<StatefulWidget> createState() => _HGTDrawerState();
@@ -67,22 +69,6 @@ class _HGTDrawerState extends State<HGTDrawer> {
                       ),
                     ),
                     ListTile(
-                        title: Text("Home"),
-                        leading: Icon(
-                          Icons.home, color: Colors.black,),
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomePage(
-                                          name: widget.name,
-                                          semester: widget.semester,
-                                          studentID: widget.studentID,
-                                          major: widget.major
-                                      )));
-                        }
-                    ),
-                    ListTile(
                         title: Text("강의 검색"),
                         leading: Icon(
                           Icons.search, color: Colors.black,),
@@ -91,6 +77,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       OpenCourseMainPage(
+                                        courseData,
                                           widget.name, widget.semester,
                                           widget.studentID, widget.major, widget.major2
                                       )));
@@ -100,11 +87,15 @@ class _HGTDrawerState extends State<HGTDrawer> {
                         title: Text("내 시간표 조회"),
                         leading: Icon(
                           Icons.calendar_today, color: Colors.black,),
-                        onTap: () {
-                          Navigator.push(context,
+                        onTap: () async => {
+                          LoadingDialog.onLoading(context),
+                          await courseJSON(widget.studentID, widget.semester),
+                          await Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MyCoursePage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
+                                      MyCoursePage(
+                                          courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                          LoadingDialog.dismiss(context, () {})
                         }
                     ),
                     ListTile(
@@ -115,7 +106,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
+                                      PreRegisterMainPage(courseData,widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
                         }
                     ),
                     ListTile(
@@ -126,7 +117,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      RecommendPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
+                                      RecommendPage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
                         }
                     ),
                   ],
@@ -137,5 +128,19 @@ class _HGTDrawerState extends State<HGTDrawer> {
         ),
       ),
     );
+  }
+
+  Future<String> courseJSON(String studentID, String semester) async {
+    String url =
+        'http://52.14.37.173:5000/my_courses?hakbun=' + studentID + '&semester=' + semester;
+    print(url);
+    final response = await http.get(url);
+
+    courseData = json.decode(response.body);
+
+    setState(() {
+    });
+
+    return 'Success';
   }
 }

@@ -91,10 +91,8 @@ class _HomeState extends State<HomePage> {
                     MaterialPageRoute(
                         builder: (context) =>
                             OpenCourseMainPage(
-                                widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
-                await Future.delayed(const Duration(milliseconds: 1000), () {
-                  LoadingDialog.dismiss(context, () {});
-                }),
+                                courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                LoadingDialog.dismiss(context, () {})
               }),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -133,7 +131,8 @@ class _HomeState extends State<HomePage> {
                 await Navigator.push(context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            MyCoursePage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                            MyCoursePage(
+                                courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
                 LoadingDialog.dismiss(context, () {})
               }
             ),
@@ -171,7 +170,8 @@ class _HomeState extends State<HomePage> {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                          PreRegisterMainPage(
+                              courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -205,7 +205,8 @@ class _HomeState extends State<HomePage> {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          RecommendPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                          RecommendPage(
+                              courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
             ),
             SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')

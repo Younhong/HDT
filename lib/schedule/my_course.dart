@@ -38,7 +38,7 @@ class MyCoursePage extends StatelessWidget {
           ]
       ),
       drawer: HGTDrawer(
-          name, semester, studentID, major, major2),
+        courseData, name, semester, studentID, major, major2),
       body: SchedulePage(courseData),
       resizeToAvoidBottomInset: false,
     );
