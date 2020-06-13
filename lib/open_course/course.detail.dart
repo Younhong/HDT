@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/open_course/review.write.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -34,6 +35,14 @@ class _CourseDetailState extends State<CourseDetailPage> {
             style: TextStyle(
                 color: Colors.black),),
           centerTitle: true,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ReviewWritePage(widget.data))),
+          child: Icon(Icons.edit, color: Colors.black,),
+          backgroundColor: Colors.white,
         ),
         body: Column(
           children: <Widget>[
