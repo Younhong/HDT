@@ -14,6 +14,8 @@ class CourseSearchResultPage extends StatefulWidget {
 
 class _CourseSearchResultState extends State<CourseSearchResultPage> {
   _CourseSearchResultState();
+  String _selectedSemester = "";
+  final TextEditingController _semesterController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,73 +31,171 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: ListView.builder(
-        itemCount: widget.data == null
-            ? 0 : widget.data.length,
-        itemBuilder: (BuildContext context, int index) {
-          return InkWell(
-            child: Card(
-                child: Row(
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          width: phoneSize.width * .4,
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(left: 10),
-                          child: Text(widget.data[index]["title"]),
-                        ),
-                        SizedBox(height: 5),
-                        Container(
-                          width: phoneSize.width * .4,
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(left: 10),
-                          child: Row(
-                            children: <Widget>[
-                              Text("교수명: " + widget.data[index]['prof_name']),
-                              SizedBox(width: 13),
-                              Text("분반: " + widget.data[index]['section'].toString()),
-                            ],
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Text("수업을 클릭하면 세부정보 페이지로 이동합니다"),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.data == null
+                  ? 0 : widget.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  child: Card(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.grey
                           ),
-                        )
-                      ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: phoneSize.width * .4),
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        icon: Icon(Icons.add),
-                        onPressed: () => {
-                          addCourse(widget.id, widget.data[index]['id'].toString(),
-                              widget.data[index]['section'].toString(), "8",
-                              widget.data[index]['open_id'].toString())
-                        },
-                      ),
-                    )
-                  ],
-                )
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        height: 100,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Container(
+                                  width: phoneSize.width * .5,
+                                  height: 30,
+                                  alignment: Alignment.topLeft,
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(widget.data[index]["title"]),
+                                ),
+                                SizedBox(height: 5),
+                                Container(
+                                  width: phoneSize.width * .5,
+                                  alignment: Alignment.topLeft,
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text("교수명: " + widget.data[index]['prof_name']),
+                                      SizedBox(width: 13),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                    width: phoneSize.width * .5,
+                                    padding: EdgeInsets.only(left: 10),
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("분반: " + widget.data[index]['section'].toString())),
+                              ],
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(left: phoneSize.width * .1),
+                                alignment: Alignment.centerRight,
+                                child: FlatButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(color: Colors.black)
+                                  ),
+                                  child: Text('수업 추가') ,
+                                  onPressed: () {
+                                    _showDialog(index);
+                                  },
+                                )
+                            )
+                          ],
+                        ),
+                      )
+                  ),
+                  onTap: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                CourseDetailPage(widget.data[index]))
+                    )},
+                );},
             ),
-            onTap: () => Navigator.push(context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      CourseDetailPage(widget.data[index]))),
-          );},
+          )
+        ],
       ),
     );
   }
 
-  void addCourse (String user_id, String course_code, String section_code, String semester, String open_id) async {
+  void _showDialog(int index) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            children: <Widget>[
+              Container(
+                child: Text("학기 선택: "),
+              ),
+              SizedBox(width: 10,),
+              Container(
+                child: Flexible(
+                  child: TextField(
+                    autocorrect: false,
+                    controller: _semesterController,
+                    maxLines: 1,
+                    style: TextStyle(
+                    color: Colors.black, fontSize: 16.0),
+                    cursorColor: Colors.grey,
+                    decoration: InputDecoration(
+                    border: InputBorder.none,
+                    fillColor: Colors.red,
+                    hintText: "학기를 입력해주세요",
+                    hintStyle: TextStyle(
+                    color: Colors.grey, fontSize: 16.0),),
+                  ),
+                ),
+              )
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+                color: Colors.black,
+                child: Text(
+                  "확인",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  _handleSubmitted(_semesterController.text);
+                  Navigator.pop(context);
+                  await addCourse(widget.id, widget.data[index]['id'].toString(),
+                      widget.data[index]['section'].toString(), _selectedSemester,
+                      widget.data[index]['open_id'].toString());
+                }),
+            RaisedButton(
+                child: Text(
+                  "취소",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () => Navigator.of(context).pop()),
+          ],
+        );
+      });
+  }
+
+  Future<String> addCourse (String userId, String courseCode, String sectionCode, String semester, String openId) async {
     String url = 'http://52.14.37.173:5000/pick?user_id='
-        + user_id + '&course_code=' + course_code + '&section_code=' +
-        section_code + '&semester=' + semester + '&open_id=' + open_id;
+        + userId + '&course_code=' + courseCode + '&section_code=' +
+        sectionCode + '&semester=' + semester + '&open_id=' + openId;
 
     print(url);
     final response = await http.get(url);
 
     var res = json.decode(response.body);
 
+    print(res);
     setState(() {
 
+    });
+
+    return "Success";
+  }
+
+  void _handleSubmitted(String text) {
+    _semesterController.clear();
+    setState(() {
+      _selectedSemester = text;
     });
   }
 }

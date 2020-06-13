@@ -17,6 +17,7 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
 
   @override
   Widget build(BuildContext context) {
+    var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -31,34 +32,54 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
           ),
         ),
         body: Container(
-          height: 200,
-          padding: EdgeInsets.only(left: 30, top: 20, right: 30),
+          width: phoneSize.width * .9,
+          padding: EdgeInsets.only(left: 30, top: 20),
           child: Column(
             children: <Widget>[
-              Flexible(
-                child: TextField(
-                  autocorrect: false,
-                  controller: _reviewContentController,
-                  maxLines: 1,
+              Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text("이 수업에 대한 리뷰를 작성해주세요",
                   style: TextStyle(
-                      color: Colors.black, fontSize: 16.0),
-                  cursorColor: Colors.grey,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.red,
-                    hintText: "리뷰를 입력해주세요",
-                    hintStyle: TextStyle(
-                        color: Colors.grey, fontSize: 16.0),),
-                ),
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold
+                  ),),
               ),
-              IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () async => {
-                  _handleSubmitted(_reviewContentController.text),
-                  await reviewWriteJSON(widget.data['id'].toString(),
-                      widget.data['open_id'].toString(), widget.data['prof_name'], review),
-                  await _getOut()
-                },
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.black, width: 1),
+                      ),
+                      child: TextField(
+                        autocorrect: false,
+                        controller: _reviewContentController,
+                        maxLines: 5,
+                        style: TextStyle(
+                            color: Colors.black, fontSize: 16.0),
+                        cursorColor: Colors.grey,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.red,
+                          hintText: "리뷰를 입력해주세요",
+                          hintStyle: TextStyle(
+                              color: Colors.grey, fontSize: 16.0),),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    padding: EdgeInsets.only(top: 100),
+                    icon: Icon(Icons.edit),
+                    onPressed: () async => {
+                      _handleSubmitted(_reviewContentController.text),
+                      Navigator.pop(context),
+                      await reviewWriteJSON(widget.data['id'].toString(),
+                          widget.data['open_id'].toString(), widget.data['prof_name'], review),
+                    },
+                  )
+                ],
               )
             ],
           ),
@@ -88,12 +109,5 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
     setState(() {
       review = text;
     });
-  }
-
-  Future<void> _getOut() {
-    Navigator.of(context).pop();
-    Navigator.of(context).pop();
-
-    return null;
   }
 }

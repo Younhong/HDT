@@ -16,10 +16,16 @@ class _CourseDetailState extends State<CourseDetailPage> {
 
   List reviewList;
 
+  void initState() {
+    super.initState();
+    setState(() {
+      this.reviewJSON(widget.data['id'].toString(), widget.data['prof_name']);
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    print(widget.data);
-
     var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -46,33 +52,47 @@ class _CourseDetailState extends State<CourseDetailPage> {
         ),
         body: Column(
           children: <Widget>[
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(left: 10, top: 10),
-              child: Text(widget.data['prof_name']),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(left: 10, top: 10),
-              child: Text(widget.data['building']),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(left: 10, top: 10),
-              child: Text(widget.data['time']),
-            ),
-            FlatButton(
+            Padding(
+              padding: EdgeInsets.all(10),
               child: Container(
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.only(left: 10, top: 30),
-                child: Text("수업 리뷰 보기",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),),
+                padding: EdgeInsets.all(10),
+                decoration:  BoxDecoration(
+                    border: Border.all(
+                        width: 1,
+                        color: Colors.grey
+                    ),//new Color.fromRGBO(255, 0, 0, 0.0),
+                    borderRadius:  BorderRadius.circular(5)
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Text(widget.data['title'],style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Text('교수명: ' + widget.data['prof_name']),
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Text('강의실: '+ widget.data['building']),
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Text('시간: '+widget.data['time']),
+                    ),
+                  ],
+                ),
               ),
-              onPressed: () =>
-                  this.reviewJSON(widget.data['id'].toString(), widget.data['prof_name'])
             ),
+            Text("수업 리뷰",
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),),
             Divider(thickness: 1),
             reviewList == null
                 ? Container()
@@ -85,22 +105,22 @@ class _CourseDetailState extends State<CourseDetailPage> {
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: Column(
-                                children: <Widget> [
-                                  Container(
-                                    padding: EdgeInsets.only(left: 10, top:3, bottom: 3),
-                                    alignment: Alignment.topLeft,
-                                    child: Text("리뷰 " + (index+1).toString()),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(left:10, right:10, bottom: 3, top: 3),
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      reviewList[index]['description'],),
-                                  ),
-                                  Divider(thickness: 1),
-                                ]
-                            )
+                              child: Column(
+                                  children: <Widget> [
+                                    Container(
+                                      padding: EdgeInsets.only(left: 10, top:3, bottom: 3),
+                                      alignment: Alignment.topLeft,
+                                      child: Text("리뷰 " + (index+1).toString()),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(left:10, right:10, bottom: 3, top: 3),
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        reviewList[index]['description'],),
+                                    ),
+                                    Divider(thickness: 1),
+                                  ]
+                              )
                           ),
                         ],
                       ),
@@ -108,7 +128,7 @@ class _CourseDetailState extends State<CourseDetailPage> {
                   }),
             ),
           ],
-      )
+        )
     );
   }
 

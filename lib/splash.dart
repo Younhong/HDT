@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/join.dart';
 import 'package:hgt/login.dart';
 
 class SplashPage extends StatefulWidget {
@@ -46,6 +47,19 @@ class _SplashPageState extends State<SplashPage> {
               ],
             ),
             SizedBox(height: phoneSize.height * .15),
+            Container(
+              alignment: Alignment.center,
+              child: FlatButton(
+                child: Text("Join",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),),
+                onPressed: () =>
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) => JoinPage())),
+              ),
+            ),
             Container(
               alignment: Alignment.center,
               child: FlatButton(

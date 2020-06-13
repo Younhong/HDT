@@ -18,6 +18,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
   _HGTDrawerState();
 
   var phoneSize;
+  var courseData;
 
 // CONSTRUCTOR
 
@@ -103,7 +104,7 @@ class _HGTDrawerState extends State<HGTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MyCoursePage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
+                                      MyCoursePage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
                         }
                     ),
                     ListTile(
