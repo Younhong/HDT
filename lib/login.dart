@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/home.dart';
+import 'package:hgt/loading.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -76,15 +77,16 @@ class _LoginPageState extends State<LoginPage> {
             InkWell(
                 child: Text("확인"),
                 onTap: () async {
+                  LoadingDialog.onLoading(context);
                   _handleSubmitted( _studentIDController.text);
                   await _infoJSON(_studentID);
                   (_studentID != "") ?
                   await Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) =>
+                      MaterialPageRoute(builder: (context) =>
                               HomePage(
                                   name: _name, semester: _semester, studentID: _studentID, major: _selectedDept, major2: _selectedDept2)))
                       : Container();
+                  LoadingDialog.dismiss(context, (){});
                 }
             )
 
