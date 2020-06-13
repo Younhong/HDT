@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/cell.dart';
-import 'package:hgt/header.dart';
-import 'package:hgt/indicator.dart';
-import 'package:hgt/weekly.time.dart';
+import 'package:hgt/calender/cell.dart';
+import 'package:hgt/calender/header.dart';
+import 'package:hgt/calender/indicator.dart';
+import 'package:hgt/calender/weekly.time.dart';
 
 class WeeklyTimeTable extends StatefulWidget {
   final ValueChanged<Map<int, List<int>>> onValueChanged;

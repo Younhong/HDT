@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/hgt.drawer.dart';
+import 'package:hgt/schedule/graduate.standard.dart';
 import 'package:hgt/schedule/schedule.dart';
 
 class MyCoursePage extends StatelessWidget {
@@ -25,6 +26,15 @@ class MyCoursePage extends StatelessWidget {
           style: TextStyle(
               color: Colors.black),),
         centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search, color: Colors.black),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GraduateStandardPage())),
+            ),
+          ]
       ),
       drawer: HGTDrawer(
           name, semester, studentID, major, major2),
