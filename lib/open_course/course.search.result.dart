@@ -14,6 +14,8 @@ class CourseSearchResultPage extends StatefulWidget {
 
 class _CourseSearchResultState extends State<CourseSearchResultPage> {
   _CourseSearchResultState();
+  String _selectedSemester = "";
+  final TextEditingController _semesterController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,36 +68,109 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                       child: IconButton(
                         icon: Icon(Icons.add),
                         onPressed: () => {
-                          addCourse(widget.id, widget.data[index]['id'].toString(),
-                              widget.data[index]['section'].toString(), "8",
-                              widget.data[index]['open_id'].toString())
+                          _showDialog(index),
                         },
                       ),
                     )
                   ],
                 )
             ),
-            onTap: () => Navigator.push(context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      CourseDetailPage(widget.data[index]))),
+            onTap: () => {
+              Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        CourseDetailPage(widget.data[index]))
+            )},
           );},
       ),
     );
   }
 
-  void addCourse (String user_id, String course_code, String section_code, String semester, String open_id) async {
+  void _showDialog(int index) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            children: <Widget>[
+              Container(
+                child: Text("학기 선택: "),
+              ),
+              SizedBox(width: 10,),
+              Container(
+                child: Flexible(
+                  child: TextField(
+                    autocorrect: false,
+                    controller: _semesterController,
+                    maxLines: 1,
+                    style: TextStyle(
+                    color: Colors.black, fontSize: 16.0),
+                    cursorColor: Colors.grey,
+                    decoration: InputDecoration(
+                    border: InputBorder.none,
+                    fillColor: Colors.red,
+                    hintText: "학기를 입력해주세요",
+                    hintStyle: TextStyle(
+                    color: Colors.grey, fontSize: 16.0),),
+                  ),
+                ),
+              )
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+                color: Colors.black,
+                child: Text(
+                  "확인",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  _handleSubmitted(_semesterController.text);
+                  Navigator.pop(context);
+                  await addCourse(widget.id, widget.data[index]['id'].toString(),
+                      widget.data[index]['section'].toString(), _selectedSemester,
+                      widget.data[index]['open_id'].toString());
+                }),
+            RaisedButton(
+                child: Text(
+                  "취소",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () => Navigator.of(context).pop()),
+          ],
+        );
+      });
+  }
+
+  Future<String> addCourse (String userId, String courseCode, String sectionCode, String semester, String openId) async {
     String url = 'http://52.14.37.173:5000/pick?user_id='
-        + user_id + '&course_code=' + course_code + '&section_code=' +
-        section_code + '&semester=' + semester + '&open_id=' + open_id;
+        + userId + '&course_code=' + courseCode + '&section_code=' +
+        sectionCode + '&semester=' + semester + '&open_id=' + openId;
 
     print(url);
     final response = await http.get(url);
 
     var res = json.decode(response.body);
 
+    print(res);
     setState(() {
 
     });
+
+    return "Success";
+  }
+
+  void _handleSubmitted(String text) {
+    _semesterController.clear();
+    setState(() {
+      _selectedSemester = text;
+    });
+  }
+
+  Future<void> _getOut() {
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+
+    return null;
   }
 }

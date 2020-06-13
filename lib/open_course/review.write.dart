@@ -55,9 +55,10 @@ class _ReviewWritePageState extends State<ReviewWritePage> {
                 icon: Icon(Icons.edit),
                 onPressed: () async => {
                   _handleSubmitted(_reviewContentController.text),
+                  Navigator.pop(context),
                   await reviewWriteJSON(widget.data['id'].toString(),
                       widget.data['open_id'].toString(), widget.data['prof_name'], review),
-                  await _getOut()
+
                 },
               )
             ],
