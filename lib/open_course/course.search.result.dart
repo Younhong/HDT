@@ -14,6 +14,7 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -31,23 +32,35 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             child: Card(
-                child: Column(
+                child: Row(
                   children: <Widget>[
-                    Container(
-                      child: Text(widget.data[index]["title"]),
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 10),
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          width: phoneSize.width * .4,
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(widget.data[index]["title"]),
+                        ),
+                        SizedBox(height: 5),
+                        Container(
+                          width: phoneSize.width * .4,
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10),
+                          child: Row(
+                            children: <Widget>[
+                              Text("교수명: " + widget.data[index]['prof_name']),
+                              SizedBox(width: 13),
+                              Text("분반: " + widget.data[index]['section'].toString()),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                    SizedBox(height: 5),
                     Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Text("교수명: " + widget.data[index]['prof_name']),
-                          SizedBox(width: 13),
-                          Text("분반: " + widget.data[index]['section'].toString()),
-                        ],
-                      ),
+                      padding: EdgeInsets.only(left: phoneSize.width * .5),
+                      alignment: Alignment.topRight,
+                      child: Icon(Icons.add),
                     )
                   ],
                 )
