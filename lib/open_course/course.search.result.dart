@@ -166,11 +166,4 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
       _selectedSemester = text;
     });
   }
-
-  Future<void> _getOut() {
-    Navigator.of(context).pop();
-    Navigator.of(context).pop();
-
-    return null;
-  }
 }

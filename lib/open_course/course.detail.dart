@@ -61,18 +61,24 @@ class _CourseDetailState extends State<CourseDetailPage> {
               padding: EdgeInsets.only(left: 10, top: 10),
               child: Text(widget.data['time']),
             ),
-            FlatButton(
-              child: Container(
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.only(left: 10, top: 30),
-                child: Text("수업 리뷰 보기",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),),
-              ),
-              onPressed: () =>
-                  this.reviewJSON(widget.data['id'].toString(), widget.data['prof_name'])
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text("수업 리뷰 보기",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),),
+                ),
+                IconButton(
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 35,
+                    onPressed: () =>
+                        this.reviewJSON(widget.data['id'].toString(), widget.data['prof_name'])
+                ),
+              ],
             ),
+
             Divider(thickness: 1),
             reviewList == null
                 ? Container()
