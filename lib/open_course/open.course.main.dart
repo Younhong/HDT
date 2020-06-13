@@ -28,7 +28,7 @@ class OpenCourseMainPage extends StatelessWidget {
       ),
       drawer: HGTDrawer(
           name, semester, studentID, major, major2),
-      body: OpenCourseBodyPage(),
+      body: OpenCourseBodyPage(studentID),
       resizeToAvoidBottomInset: false,
     );
   }

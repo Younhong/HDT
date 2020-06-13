@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hgt/open_course/course.detail.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CourseSearchResultPage extends StatefulWidget {
   final List data;
-  CourseSearchResultPage(this.data);
+  final String id;
+  CourseSearchResultPage(this.data, this.id);
 
   @override
   _CourseSearchResultState createState() => _CourseSearchResultState();
@@ -58,9 +61,16 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: phoneSize.width * .5),
+                      padding: EdgeInsets.only(left: phoneSize.width * .4),
                       alignment: Alignment.topRight,
-                      child: Icon(Icons.add),
+                      child: IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () => {
+                          addCourse(widget.id, widget.data[index]['id'].toString(),
+                              widget.data[index]['section'].toString(), "8",
+                              widget.data[index]['open_id'].toString())
+                        },
+                      ),
                     )
                   ],
                 )
@@ -72,5 +82,20 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
           );},
       ),
     );
+  }
+
+  void addCourse (String user_id, String course_code, String section_code, String semester, String open_id) async {
+    String url = 'http://52.14.37.173:5000/pick?user_id='
+        + user_id + '&course_code=' + course_code + '&section_code=' +
+        section_code + '&semester=' + semester + '&open_id=' + open_id;
+
+    print(url);
+    final response = await http.get(url);
+
+    var res = json.decode(response.body);
+
+    setState(() {
+
+    });
   }
 }

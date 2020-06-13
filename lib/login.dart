@@ -172,6 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () async {
                     _handleSubmitted(
                         _nameController.text, _semesterController.text, _studentIDController.text);
+                    loginJSON(_name, _semester, _studentID, _selectedDept, _selectedDept2);
                     (_name != "" && _semester != "" && _studentID != "") ?
                     await Navigator.push(context,
                         MaterialPageRoute(
@@ -195,6 +196,21 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() {
       _deptCategory = res;
+    });
+
+    print(res);
+
+    return 'Success';
+  }
+
+  Future<String> loginJSON(String _name, String _semester, String _studentID, String _selectedDept, String _selectedDept2) async {
+    String url = 'http://52.14.37.173:5000/account?user_name=' + _name + "&user_id="+_studentID + "&semester="
+        + _semester + "&major1="+_selectedDept + "&major2="+_selectedDept2;
+    final response = await http.get(url);
+
+    var res = json.decode(response.body);
+
+    setState(() {
     });
 
     print(res);

@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class OpenCourseBodyPage extends StatefulWidget{
+  String id;
+  OpenCourseBodyPage(this.id);
+
   _OpenCourseBodyState createState() => _OpenCourseBodyState();
 }
 
@@ -102,6 +105,24 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                       ),
                     ],
                   ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: DropdownButton(
+                      hint: Text('Option'),
+                      value: _selectedInjung,
+                      icon: Icon(Icons.arrow_drop_down),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          _selectedInjung = newValue;});
+                      },
+                      items: _injungCategory.map((injung) {
+                        return DropdownMenuItem<String>(
+                          value: injung['inj_code'],
+                          child: Text(injung['kor']),
+                        );
+                      }).toList(),
+                    ) ,
+                  ),
                   Row(
                     children: <Widget>[
                       Flexible(
@@ -123,10 +144,6 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                             )
                         ),
                       ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
                       Flexible(
                         child: Container(
                             width: 70,
@@ -146,23 +163,8 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                             )
                         ),
                       ),
-                      DropdownButton(
-                        hint: Text('Option'),
-                        value: _selectedInjung,
-                        icon: Icon(Icons.arrow_drop_down),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            _selectedInjung = newValue;});
-                        },
-                        items: _injungCategory.map((injung) {
-                          return DropdownMenuItem<String>(
-                            value: injung['inj_code'],
-                            child: Text(injung['kor']),
-                          );
-                        }).toList(),
-                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -181,7 +183,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                       await Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  CourseSearchResultPage(data)));
+                                  CourseSearchResultPage(data, widget.id)));
                     },
                   ),
                 ],
