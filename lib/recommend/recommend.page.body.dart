@@ -123,6 +123,7 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
     String url =
         'http://52.14.37.173:5000/recommend?major_code=' + majorCode + '&semester=' + semester;
     final response = await http.get(url);
+    print(url);
 
     var res = json.decode(response.body);
 
