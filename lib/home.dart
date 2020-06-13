@@ -4,11 +4,21 @@ import 'package:hgt/recommend/recommend.page.main.dart';
 import 'package:hgt/schedule/my_course.dart';
 import 'package:hgt/open_course/open.course.main.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'dart:math' as math;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String name, semester, studentID, major, major2;
   HomePage({this.name, this.semester, this.studentID, this.major, this.major2});
+
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<HomePage> {
+  List courseData;
+
+  _HomeState();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +88,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) =>
                           OpenCourseMainPage(
-                              name, semester, studentID, major, major2))),
+                              widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -111,10 +121,12 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               ),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          MyCoursePage(name, semester, studentID, major, major2))),
+              onTap: () => {
+                courseJSON(widget.studentID, widget.semester),
+                Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MyCoursePage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),}
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -150,7 +162,7 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          PreRegisterMainPage(name, semester, studentID, major, major2))),
+                          PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
             ),
 
             SizedBox(height: phoneSize.height * .05),
@@ -185,7 +197,7 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          RecommendPage(name, semester, studentID, major, major2))),
+                          RecommendPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
             ),
             SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')
@@ -194,5 +206,19 @@ class HomePage extends StatelessWidget {
       ),
       resizeToAvoidBottomInset: false,
     );
+  }
+
+  Future<String> courseJSON(String studentID, String semester) async {
+    String url =
+        'http://52.14.37.173:5000/my_courses?hakbun=' + studentID + '&semester=' + semester;
+    print(url);
+    final response = await http.get(url);
+
+    courseData = json.decode(response.body);
+
+    setState(() {
+    });
+
+    return 'Success';
   }
 }

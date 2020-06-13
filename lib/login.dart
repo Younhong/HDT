@@ -11,8 +11,8 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPageState extends State<LoginPage> {
   _LoginPageState();
+  var userData;
 
-  List _deptCategory = List();
   String _selectedDept = "1" ;
   String _selectedDept2 = "1";
   String _name = "";
@@ -21,8 +21,6 @@ class _LoginPageState extends State<LoginPage> {
 
   List data = List();
 
-  final TextEditingController _nameController = new TextEditingController();
-  final TextEditingController _semesterController = new TextEditingController();
   final TextEditingController _studentIDController= new TextEditingController();
 
   @override
@@ -48,185 +46,92 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-        body: Container(
-          padding: EdgeInsets.only(left: 10),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Flexible(
-                    child: Container(
-                        width: 100,
-                        child: TextField(
-                          autocorrect: false,
-                          controller: _nameController,
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16.0),
-                          cursorColor: Colors.grey,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            fillColor: Colors.red,
-                            hintText: "이름",
-                            hintStyle: TextStyle(
-                                color: Colors.grey, fontSize: 16.0),),
-                        )
-                    ),
+      body: Container(
+        padding: EdgeInsets.only(left: 10),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                      width: 100,
+                      child: TextField(
+                        autocorrect: false,
+                        controller: _studentIDController,
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Colors.black, fontSize: 16.0),
+                        cursorColor: Colors.grey,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.red,
+                          hintText: "학번",
+                          hintStyle: TextStyle(
+                              color: Colors.grey, fontSize: 16.0),),
+                      )
                   ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Flexible(
-                    child: Container(
-                        width: 100,
-                        child: TextField(
-                          autocorrect: false,
-                          controller: _studentIDController,
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16.0),
-                          cursorColor: Colors.grey,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            fillColor: Colors.red,
-                            hintText: "학번",
-                            hintStyle: TextStyle(
-                                color: Colors.grey, fontSize: 16.0),),
-                        )
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Flexible(
-                    child: Container(
-                        width: 100,
-                        child: TextField(
-                          autocorrect: false,
-                          controller: _semesterController,
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16.0),
-                          cursorColor: Colors.grey,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            fillColor: Colors.red,
-                            hintText: "학기",
-                            hintStyle: TextStyle(
-                                color: Colors.grey, fontSize: 16.0),),
-                        )
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text("1전공", style: TextStyle(fontSize: 15),),
-                  SizedBox(width: 15,),
-                  DropdownButton(
-                    hint: Text('학부'),
-                    icon: Icon(Icons.arrow_drop_down),
-                    items: _deptCategory.map((major) {
-                      return DropdownMenuItem<String>(
-                        value: major['major_code'].toString(),
-                        child: Text(major['major_name'].toString(),),
-                      );
-                    }).toList(),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        _selectedDept = newValue;
-                      });
-                      print(newValue);
-                    },
-                    value: _selectedDept,
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text("2전공", style: TextStyle(fontSize: 15),),
-                  SizedBox(width: 15,),
-                  DropdownButton(
-                    hint: Text('학부'),
-                    icon: Icon(Icons.arrow_drop_down),
-                    items: _deptCategory.map((major) {
-                      return DropdownMenuItem<String>(
-                        value: major['major_code'].toString(),
-                        child: Text(major['major_name'].toString(),),
-                      );
-                    }).toList(),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        _selectedDept2 = newValue;
-                      });
-                      print(newValue);
-                    },
-                    value: _selectedDept2,
-                  ),
-                ],
-              ),
-              InkWell(
-                  child: Text("확인"),
-                  onTap: () async {
-                    _handleSubmitted(
-                        _nameController.text, _semesterController.text, _studentIDController.text);
-                    loginJSON(_name, _semester, _studentID, _selectedDept, _selectedDept2);
-                    (_name != "" && _semester != "" && _studentID != "") ?
-                    await Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                HomePage(
-                                    name: _name, semester: _semester, studentID: _studentID, major: _selectedDept, major2: _selectedDept2)))
-                        : Container();
-                  }
-              )
-            ],
-          ),
+                ),
+              ],
+            ),
+            InkWell(
+                child: Text("확인"),
+                onTap: () async {
+                  _handleSubmitted( _studentIDController.text);
+                  await _infoJSON(_studentID);
+                  (_studentID != "") ?
+                  await Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              HomePage(
+                                  name: _name, semester: _semester, studentID: _studentID, major: _selectedDept, major2: _selectedDept2)))
+                      : Container();
+                }
+            )
+
+          ],
         ),
-        resizeToAvoidBottomInset: false,
+      ),
+      resizeToAvoidBottomInset: false,
     );
   }
 
   Future<String> courseJSON(String url) async {
     final response = await http.get(url);
 
-    var res = json.decode(response.body);
+    userData = json.decode(response.body);
 
     setState(() {
-      _deptCategory = res;
+
     });
 
-    print(res);
+    print(userData);
 
     return 'Success';
   }
 
-  Future<String> loginJSON(String _name, String _semester, String _studentID, String _selectedDept, String _selectedDept2) async {
-    String url = 'http://52.14.37.173:5000/account?user_name=' + _name + "&user_id="+_studentID + "&semester="
-        + _semester + "&major1="+_selectedDept + "&major2="+_selectedDept2;
-    final response = await http.get(url);
-
-    var res = json.decode(response.body);
-
-    setState(() {
-    });
-
-    print(res);
-
-    return 'Success';
-  }
-
-  void _handleSubmitted(String name, String semester, String studentID) {
-    _nameController.clear();
-    _semesterController.clear();
+  void _handleSubmitted(String studentID) {
     _studentIDController.clear();
-
     setState(() {
-      _name = name;
-      _semester = semester;
       _studentID = studentID;
     });
+  }
+
+  Future<String> _infoJSON(String userID) async {
+    String url =
+        'http://52.14.37.173:5000/login?user_id=' + userID;
+    print(url);
+    final response = await http.get(url);
+
+    userData = json.decode(response.body);
+    setState(() {
+    });
+    print(userData);
+
+    _studentID = userData[0]['id'].toString();
+    _selectedDept = userData[0]['major1'].toString();
+    _selectedDept2 = userData[0]['major2'].toString();
+    _name =userData[0]['name'];
+    _semester = userData[0]['semester'].toString();
+    return 'Success';
   }
 }

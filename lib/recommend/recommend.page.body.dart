@@ -53,17 +53,42 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 22),
-                  child: Column(
-                    children: <Widget>[
-                      IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () async {
-                          this.recommendJSON(widget.major, _selectedSemester);
-                        },
+                  padding: EdgeInsets.only(top: 22,left: 10),
+                  child: Container(
+                    width: 100,
+                    height: 30,
+                    child: RaisedButton(
+                      disabledColor: Colors.white,
+                      focusColor: Colors.white,
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.black)
                       ),
-                    ],
-                  ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text('검 색',style: TextStyle(fontSize: 15),),
+                          SizedBox(width: 10,),
+                          Icon(Icons.search),
+                        ],
+                      ),
+                      onPressed: () async {
+                        this.recommendJSON(widget.major, _selectedSemester);
+                      },
+                    ),
+                  )
+//    Column(
+//                    children: <Widget>[
+//                      IconButton(
+//                        icon: Icon(Icons.search),
+//                        onPressed: () async {
+//                          this.recommendJSON(widget.major, _selectedSemester);
+//                        },
+//                      ),
+//                    ],
+//                  ),
                 )
               ],
             ),

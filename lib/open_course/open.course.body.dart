@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class OpenCourseBodyPage extends StatefulWidget{
-  String id;
+  final String id;
   OpenCourseBodyPage(this.id);
 
   _OpenCourseBodyState createState() => _OpenCourseBodyState();
@@ -36,6 +36,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
   final TextEditingController _courseNameController = new TextEditingController();
 
   List data;
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -168,28 +169,51 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(top: 130),
-              child: Column(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () async {
-                      _handleSubmitted(
-                          _courseNameController.text, _profController.text);
-                      await searchCourse(
-                          _selectedDept, _courseName,
-                          _selectedInjung, _selectedYear + _selectedSemester, _profName);
-                      await Navigator.push(context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  CourseSearchResultPage(data, widget.id)));
-                    },
-                  ),
-                ],
-              ),
-            ),
           ],
+        ),
+        Divider(thickness: 3,),
+        Container(
+          padding: EdgeInsets.only(top: 100),
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: 150,
+                height: 80,
+                child: RaisedButton(
+
+                  disabledColor: Colors.white,
+                  focusColor: Colors.white,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.black)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text('검 색',style: TextStyle(fontSize: 20),),
+                      SizedBox(width: 20,),
+                      Icon(Icons.search),
+                    ],
+                  ),
+                  onPressed: () async {
+                    loading = true;
+                    _handleSubmitted(
+                        _courseNameController.text, _profController.text);
+                    await searchCourse(
+                        _selectedDept, _courseName,
+                        _selectedInjung, _selectedYear + _selectedSemester, _profName);
+                    loading = false;
+                    await Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                CourseSearchResultPage(data, widget.id)));
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
