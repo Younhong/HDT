@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/loading.dart';
 import 'package:hgt/pre_register/pre.register.main.dart';
 import 'package:hgt/recommend/recommend.page.main.dart';
 import 'package:hgt/schedule/my_course.dart';
@@ -84,12 +85,17 @@ class _HomeState extends State<HomePage> {
                     ),
                   )
                 ],),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          OpenCourseMainPage(
-                              widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
-            ),
+              onTap: () async => {
+                LoadingDialog.onLoading(context),
+                await Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            OpenCourseMainPage(
+                                widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                await Future.delayed(const Duration(milliseconds: 1000), () {
+                  LoadingDialog.dismiss(context, () {});
+                }),
+              }),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
               child: Stack(
@@ -121,12 +127,15 @@ class _HomeState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () => {
-                courseJSON(widget.studentID, widget.semester),
-                Navigator.push(context,
+              onTap: () async => {
+                LoadingDialog.onLoading(context),
+                await courseJSON(widget.studentID, widget.semester),
+                await Navigator.push(context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            MyCoursePage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),}
+                            MyCoursePage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                LoadingDialog.dismiss(context, () {})
+              }
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -164,7 +173,6 @@ class _HomeState extends State<HomePage> {
                       builder: (context) =>
                           PreRegisterMainPage(widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
             ),
-
             SizedBox(height: phoneSize.height * .05),
             InkWell(
               child: Stack(

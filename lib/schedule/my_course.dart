@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hgt/graduate.page.dart';
 import 'package:hgt/hgt.drawer.dart';
-import 'package:hgt/schedule/graduate.standard.dart';
 import 'package:hgt/schedule/schedule.dart';
 
 class MyCoursePage extends StatelessWidget {
@@ -33,7 +33,7 @@ class MyCoursePage extends StatelessWidget {
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GraduateStandardPage())),
+                      builder: (context) => GraduatePage())),
             ),
           ]
       ),
