@@ -42,14 +42,14 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                     Column(
                       children: <Widget>[
                         Container(
-                          width: phoneSize.width * .4,
+                          width: phoneSize.width * .7,
                           alignment: Alignment.topLeft,
                           padding: EdgeInsets.only(left: 10),
                           child: Text(widget.data[index]["title"]),
                         ),
                         SizedBox(height: 5),
                         Container(
-                          width: phoneSize.width * .4,
+                          width: phoneSize.width * .7,
                           alignment: Alignment.topLeft,
                           padding: EdgeInsets.only(left: 10),
                           child: Row(
@@ -63,7 +63,7 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: phoneSize.width * .4),
+                      padding: EdgeInsets.only(left: phoneSize.width * .1),
                       alignment: Alignment.topRight,
                       child: IconButton(
                         icon: Icon(Icons.add),

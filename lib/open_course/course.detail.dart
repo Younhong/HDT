@@ -18,8 +18,6 @@ class _CourseDetailState extends State<CourseDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.data);
-
     var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
