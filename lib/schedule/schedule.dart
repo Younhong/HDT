@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weekly_timetable/weekly_timetable.dart';
+import 'package:hgt/timetable.dart';
 
 class SchedulePage extends StatefulWidget{
   _SchedulePageState createState() => _SchedulePageState();
@@ -11,13 +11,11 @@ class _SchedulePageState extends State<SchedulePage> {
   @override
   Widget build(BuildContext context) {
     Map<int, List<int>> initialSchedule = {
-      0: [],
-      1: [1,2],
-      2: [5,6],
-      3: [4,5],
-      4: [1,2],
-      5: [5,6],
-      6: [],
+      0: [1,2],
+      1: [5,6],
+      2: [4,5],
+      3: [1,2],
+      4: [5,6],
     };
 
     return WeeklyTimeTable(
