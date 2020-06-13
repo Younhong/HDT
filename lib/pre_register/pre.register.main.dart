@@ -3,10 +3,11 @@ import 'package:hgt/hgt.drawer.dart';
 import 'package:hgt/pre_register/pre.register.body.dart';
 
 class PreRegisterMainPage extends StatelessWidget {
+  var courseData;
   final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  PreRegisterMainPage(this.name, this.semester, this.studentID, this.major, this.major2);
+  PreRegisterMainPage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class PreRegisterMainPage extends StatelessWidget {
         centerTitle: true,
       ),
       drawer: HGTDrawer(
-          name, semester, studentID, major, major2),
+          courseData, name, semester, studentID, major, major2),
       resizeToAvoidBottomInset: false,
     );
   }

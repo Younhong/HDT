@@ -3,10 +3,11 @@ import 'package:hgt/hgt.drawer.dart';
 import 'package:hgt/open_course/open.course.body.dart';
 
 class OpenCourseMainPage extends StatelessWidget {
+  var courseData;
   final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  OpenCourseMainPage(this.name, this.semester, this.studentID, this.major, this.major2);
+  OpenCourseMainPage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class OpenCourseMainPage extends StatelessWidget {
         centerTitle: true,
       ),
       drawer: HGTDrawer(
-          name, semester, studentID, major, major2),
+        courseData, name, semester, studentID, major, major2),
       body: OpenCourseBodyPage(studentID),
       resizeToAvoidBottomInset: false,
     );
