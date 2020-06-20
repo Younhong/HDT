@@ -24,7 +24,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
 
   List _deptCategory = List();
   List _injungCategory = List();
-  List<String> _yearCategory = ['2019', '2020'];
+  List<String> _yearCategory = ['2018', '2019', '2020'];
   List<String> _semesterCategory = ['1', '2', '3', '4'];
   String _selectedDept = "1" ;
   String _selectedInjung = "000";

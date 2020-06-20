@@ -40,7 +40,7 @@ class _HomeState extends State<HomePage> {
                             color: Colors.red,
                             decorationColor: Colors.white)),
                     TextSpan(
-                        text: 'G',
+                        text: 'D',
                         style: TextStyle(
                             fontSize: 70,
                             color: Colors.yellow,

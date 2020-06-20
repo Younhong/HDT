@@ -24,8 +24,6 @@ class _SchedulePageState extends State<SchedulePage> {
 
     for (int i = 0; i < widget.courseData.length; i++) {
       for (var element in widget.courseData[i]['time'].split(",")) {
-        print(element[3]);
-
         if ((element[0] + element[1] + element[2]) == "Mon") {
           tempIndex = 0;
         }
@@ -41,7 +39,6 @@ class _SchedulePageState extends State<SchedulePage> {
         else if ((element[0] + element[1] + element[2]) == "Fri") {
           tempIndex = 4;
         }
-        //initialSchedule[tempIndex].add(int.parse(element[3]));
         initialSchedule[tempIndex][int.parse(element[3])-1] = widget.courseData[i]['title'];
       }
     }
