@@ -56,6 +56,7 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Header(WeeklyTimes.dates[this.locale]),
+        SizedBox(height: 20,),
         Expanded(
           child: ListView.builder(
             itemCount: WeeklyTimes.times[this.locale].length,
@@ -77,7 +78,6 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
                         cellSelectedColor: widget.cellSelectedColor,
                         boarderColor: widget.boarderColor,
                         courseName: selected[i][index],
-
                       ),
                 ),
               );

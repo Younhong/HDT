@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PreDetailPage extends StatefulWidget {
-  var data;
+  final data;
   PreDetailPage(this.data);
 
   @override

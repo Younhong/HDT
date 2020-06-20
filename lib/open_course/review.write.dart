@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ReviewWritePage extends StatefulWidget{
-  var data;
+  final data;
   ReviewWritePage(this.data);
 
   _ReviewWritePageState createState() => _ReviewWritePageState();

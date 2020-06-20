@@ -3,7 +3,7 @@ import 'package:hdt/hdt.drawer.dart';
 import 'package:hdt/pre_register/pre.register.body.dart';
 
 class PreRegisterMainPage extends StatelessWidget {
-  var courseData;
+  final courseData;
   final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 

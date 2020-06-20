@@ -51,6 +51,7 @@ class _CellState extends State<Cell> {
                 top: BorderSide(width: 1.0, color: widget.boarderColor),
                 left: BorderSide(width: 0.0, color: widget.boarderColor),
                 right: BorderSide(width: 0.0, color: widget.boarderColor),
+                bottom: BorderSide(width: 0.0, color: widget.boarderColor),
               ),
             ),
             height: 58.0,
