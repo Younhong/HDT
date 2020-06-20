@@ -3,7 +3,7 @@ import 'package:hdt/hdt.drawer.dart';
 import 'package:hdt/open_course/open.course.body.dart';
 
 class OpenCourseMainPage extends StatelessWidget {
-  var courseData;
+  final courseData;
   final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 

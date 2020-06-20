@@ -8,7 +8,7 @@ import 'package:hdt/schedule/my_course.dart';import 'package:http/http.dart' as 
 import 'dart:convert';
 
 class HDTDrawer extends StatefulWidget {
-  var courseData;
+  final courseData;
   final String name, semester, studentID, major, major2;
   HDTDrawer(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
 

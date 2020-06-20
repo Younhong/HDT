@@ -3,7 +3,7 @@ import 'package:hdt/hdt.drawer.dart';
 import 'package:hdt/recommend/recommend.page.body.dart';
 
 class RecommendPage extends StatefulWidget {
-  var courseData;
+  final courseData;
   final String name, semester, studentID, major, major2;
   RecommendPage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
 

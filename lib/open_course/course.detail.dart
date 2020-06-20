@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class CourseDetailPage extends StatefulWidget {
-  var data;
+  final data;
   CourseDetailPage(this.data);
 
   @override
