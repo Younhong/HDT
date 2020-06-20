@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class GraduatePage extends StatefulWidget {
-  final String studentID, major2;
-  GraduatePage(this.studentID, this.major2);
+  final String studentID, major;
+  GraduatePage(this.studentID, this.major);
 
   @override
   _GraduatePageState createState() => _GraduatePageState();
@@ -204,7 +204,7 @@ class _GraduatePageState extends State<GraduatePage> {
                       ),
                       child: Text('과목 조회', style: TextStyle(color: Colors.black),),
                       onPressed: () async {
-                        await loadCourseJSON('0', widget.major2);
+                        await loadCourseJSON('0', widget.major);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) =>
                                 GraduateCoursePage(courseList2, "전공")));
