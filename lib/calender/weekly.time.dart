@@ -8,7 +8,6 @@ class WeeklyTimes {
 
   static final times = {
     "ko": <String>[
-      '',
       '1교시',
       '2교시',
       '3교시',
@@ -21,7 +20,6 @@ class WeeklyTimes {
       '10교시',
     ],
     "en": <String>[
-      '',
       'AM 1',
       'AM 2',
       'AM 3',
