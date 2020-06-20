@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/graduate.page.dart';
-import 'package:hgt/hgt.drawer.dart';
-import 'package:hgt/schedule/schedule.dart';
+import 'package:hdt/graduate.page.dart';
+import 'package:hdt/hdt.drawer.dart';
+import 'package:hdt/schedule/schedule.dart';
 
 class MyCoursePage extends StatelessWidget {
   var courseData;
@@ -37,7 +37,7 @@ class MyCoursePage extends StatelessWidget {
             ),
           ]
       ),
-      drawer: HGTDrawer(
+      drawer: HDTDrawer(
         courseData, name, semester, studentID, major, major2),
       body: SchedulePage(courseData),
       resizeToAvoidBottomInset: false,

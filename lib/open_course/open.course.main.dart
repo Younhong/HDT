@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/hgt.drawer.dart';
-import 'package:hgt/open_course/open.course.body.dart';
+import 'package:hdt/hdt.drawer.dart';
+import 'package:hdt/open_course/open.course.body.dart';
 
 class OpenCourseMainPage extends StatelessWidget {
   var courseData;
@@ -27,7 +27,7 @@ class OpenCourseMainPage extends StatelessWidget {
               color: Colors.black),),
         centerTitle: true,
       ),
-      drawer: HGTDrawer(
+      drawer: HDTDrawer(
         courseData, name, semester, studentID, major, major2),
       body: OpenCourseBodyPage(studentID),
       resizeToAvoidBottomInset: false,

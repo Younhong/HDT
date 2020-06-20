@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/hgt.drawer.dart';
-import 'package:hgt/recommend/recommend.page.body.dart';
+import 'package:hdt/hdt.drawer.dart';
+import 'package:hdt/recommend/recommend.page.body.dart';
 
 class RecommendPage extends StatefulWidget {
   var courseData;
@@ -41,7 +41,7 @@ class _RecommendPageState extends State<RecommendPage> {
               color: Colors.black),),
         centerTitle: true,
       ),
-      drawer: HGTDrawer(
+      drawer: HDTDrawer(
           widget.courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2),
       body:  RecommendPageBodyPage(widget.major)
     );

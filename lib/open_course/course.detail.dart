@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/open_course/review.write.dart';
+import 'package:hdt/open_course/review.write.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hgt/loading.dart';
-import 'package:hgt/open_course/open.course.main.dart';
-import 'package:hgt/pre_register/pre.register.main.dart';
-import 'package:hgt/recommend/recommend.page.main.dart';
-import 'package:hgt/schedule/my_course.dart';import 'package:http/http.dart' as http;
+import 'package:hdt/loading.dart';
+import 'package:hdt/open_course/open.course.main.dart';
+import 'package:hdt/pre_register/pre.register.main.dart';
+import 'package:hdt/recommend/recommend.page.main.dart';
+import 'package:hdt/schedule/my_course.dart';import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class HGTDrawer extends StatefulWidget {
+class HDTDrawer extends StatefulWidget {
   var courseData;
   final String name, semester, studentID, major, major2;
-  HGTDrawer(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
+  HDTDrawer(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
 
   @override
-  State<StatefulWidget> createState() => _HGTDrawerState();
+  State<StatefulWidget> createState() => _HDTDrawerState();
 }
 
-class _HGTDrawerState extends State<HGTDrawer> {
-  _HGTDrawerState();
+class _HDTDrawerState extends State<HDTDrawer> {
+  _HDTDrawerState();
 
   var phoneSize;
   var courseData;

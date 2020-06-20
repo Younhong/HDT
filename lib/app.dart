@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/home.dart';
-import 'package:hgt/splash.dart';
+import 'package:hdt/home.dart';
+import 'package:hdt/splash.dart';
 
 class ShrineApp extends StatelessWidget {
   @override

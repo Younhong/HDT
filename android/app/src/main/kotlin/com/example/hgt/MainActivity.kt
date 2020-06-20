@@ -1,4 +1,4 @@
-package com.example.hgt
+package com.example.hdt
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

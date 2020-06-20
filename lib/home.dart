@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/loading.dart';
-import 'package:hgt/pre_register/pre.register.main.dart';
-import 'package:hgt/recommend/recommend.page.main.dart';
-import 'package:hgt/schedule/my_course.dart';
-import 'package:hgt/open_course/open.course.main.dart';
+import 'package:hdt/loading.dart';
+import 'package:hdt/pre_register/pre.register.main.dart';
+import 'package:hdt/recommend/recommend.page.main.dart';
+import 'package:hdt/schedule/my_course.dart';
+import 'package:hdt/open_course/open.course.main.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';

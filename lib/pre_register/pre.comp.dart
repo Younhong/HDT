@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/pre_register/pre.comp.result.dart';
+import 'package:hdt/pre_register/pre.comp.result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

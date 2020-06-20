@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/hgt.drawer.dart';
-import 'package:hgt/pre_register/pre.register.body.dart';
+import 'package:hdt/hdt.drawer.dart';
+import 'package:hdt/pre_register/pre.register.body.dart';
 
 class PreRegisterMainPage extends StatelessWidget {
   var courseData;
@@ -28,7 +28,7 @@ class PreRegisterMainPage extends StatelessWidget {
               color: Colors.black),),
         centerTitle: true,
       ),
-      drawer: HGTDrawer(
+      drawer: HDTDrawer(
           courseData, name, semester, studentID, major, major2),
       resizeToAvoidBottomInset: false,
     );
