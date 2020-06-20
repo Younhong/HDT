@@ -38,7 +38,7 @@ class _JoinPageState extends State<JoinPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('로그인',
+        title: Text('회원가입',
           style: TextStyle(
               color: Colors.black),),
         centerTitle: true,

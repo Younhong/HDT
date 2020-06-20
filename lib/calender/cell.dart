@@ -8,12 +8,14 @@ class Cell extends StatefulWidget {
   final Color cellColor;
   final Color cellSelectedColor;
   final Color boarderColor;
+  final String courseName;
 
   Cell({
     @required this.day,
     @required this.timeRange,
     @required this.isSelected,
     @required this.onCellTapped,
+    @required this.courseName,
     this.cellColor = Colors.white,
     this.cellSelectedColor = Colors.black,
     this.boarderColor = Colors.grey,
@@ -52,8 +54,10 @@ class _CellState extends State<Cell> {
               ),
             ),
             height: 58.0,
+            width: 58,
             duration: Duration(milliseconds: 500),
             curve: Curves.fastOutSlowIn,
+            child: widget.isSelected ? Text(widget.courseName) : Container(),
           ),
         ),
       ),

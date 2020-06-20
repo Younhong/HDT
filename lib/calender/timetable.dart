@@ -9,7 +9,7 @@ class WeeklyTimeTable extends StatefulWidget {
   final Color cellColor;
   final Color cellSelectedColor;
   final Color boarderColor;
-  final Map<int, List<int>> initialSchedule;
+  final Map<int, Map<int, String>> initialSchedule;
   final bool draggable;
   final String locale;
 
@@ -18,11 +18,11 @@ class WeeklyTimeTable extends StatefulWidget {
     this.cellSelectedColor = Colors.black,
     this.boarderColor = Colors.grey,
     this.initialSchedule = const {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
+      0: {},
+      1: {},
+      2: {},
+      3: {},
+      4: {},
     },
     this.draggable = false,
     this.locale = "en",
@@ -35,7 +35,7 @@ class WeeklyTimeTable extends StatefulWidget {
 
 class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
   String locale = 'en';
-  Map<int, List<int>> selected;
+  Map<int, Map<int, String>> selected;
 
   _WeeklyTimeTableState(this.selected);
 
@@ -71,11 +71,13 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
                       Cell(
                         day: i,
                         timeRange: index,
-                        isSelected: selected[i].contains(index),
+                        isSelected: selected[i].containsKey(index),
                         onCellTapped: onCellTapped,
                         cellColor: widget.cellColor,
                         cellSelectedColor: widget.cellSelectedColor,
                         boarderColor: widget.boarderColor,
+                        courseName: selected[i][index],
+
                       ),
                 ),
               );
@@ -89,12 +91,12 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
 
   onCellTapped(int day, int timeRange, bool nextSelectedState) {
     setState(() {
-      if (!nextSelectedState) {
-        selected[day].add(timeRange);
-      } else {
-        selected[day].remove(timeRange);
-      }
+//      if (!nextSelectedState) {
+//        selected[day].update(timeRange);
+//      } else {
+//        selected[day].remove(timeRange);
+//      }
     });
-    widget.onValueChanged(selected);
+    //widget.onValueChanged(selected);
   }
 }
