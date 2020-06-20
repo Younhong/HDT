@@ -33,7 +33,7 @@ class MyCoursePage extends StatelessWidget {
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GraduatePage(studentID, major2))),
+                      builder: (context) => GraduatePage(studentID, major))),
             ),
           ]
       ),
