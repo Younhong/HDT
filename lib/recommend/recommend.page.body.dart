@@ -88,7 +88,7 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                   ? EdgeInsets.only(left: 40, top: 20)
                   : EdgeInsets.only(top: 20),
               child: recommendList.isEmpty
-                  ? Text("현재 재학중인 학기를 선택해주세요")
+                  ? Text("재학중인 학기를 선택해주세요")
                   : _buildPanel(),
             ),
           ],
