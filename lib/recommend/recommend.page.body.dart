@@ -79,16 +79,6 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                       },
                     ),
                   )
-//    Column(
-//                    children: <Widget>[
-//                      IconButton(
-//                        icon: Icon(Icons.search),
-//                        onPressed: () async {
-//                          this.recommendJSON(widget.major, _selectedSemester);
-//                        },
-//                      ),
-//                    ],
-//                  ),
                 )
               ],
             ),

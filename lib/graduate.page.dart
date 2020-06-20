@@ -24,7 +24,7 @@ class _GraduatePageState extends State<GraduatePage> {
   double faith = 0;
   double leadership = 0;
   double english = 0;
-  double BSM = 0;
+  double bsm = 0;
   double proGen = 0;
   double freeGen = 0;
   double ict = 0;
@@ -33,7 +33,7 @@ class _GraduatePageState extends State<GraduatePage> {
   List<String> faithList = ['W04', 'W07', 'W08', 'W09', 'W15'];
   List<String> leadershipList = ['W05', 'W06', 'W30'];
   List<String> englishList = ['W19', 'W32'];
-  List<String> BSMList = ['W29'];
+  List<String> bsmList = ['W29'];
   List<String> freeGenList;
   List<String> proGenList = [];
   List<String> ictList = ['W57'];
@@ -97,7 +97,7 @@ class _GraduatePageState extends State<GraduatePage> {
                   ),
                 ),
                 Card(
-                  child: ListTile(title: Text('BSM: $BSM / ${graduateList[0]['BSM']}', style: TextStyle(color: checkSatisfy(faith, graduateList[0]['BSM'])),),
+                  child: ListTile(title: Text('BSM: $bsm / ${graduateList[0]['BSM']}', style: TextStyle(color: checkSatisfy(faith, graduateList[0]['BSM'])),),
                     trailing: FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
@@ -177,45 +177,6 @@ class _GraduatePageState extends State<GraduatePage> {
     );
   }
 
-//  Widget _buildPanel() {
-//    return ExpansionPanelList(
-//      expansionCallback: (int index, bool isExpanded) {
-//        setState(() {
-//          recommendList[index].isExpanded = !isExpanded;
-//        });
-//      },
-//      children: recommendList.map<ExpansionPanel>((Student student) {
-//        return ExpansionPanel(
-//          headerBuilder: (BuildContext context, bool isExpanded) {
-//            return ListTile(
-//              title: Text(student.headerValue),
-//            );
-//          },
-//          body: Container(
-//            child: Column(
-//              crossAxisAlignment: CrossAxisAlignment.center,
-//              mainAxisAlignment: MainAxisAlignment.center,
-//              children: <Widget>[
-//                ListView.builder(
-//
-//                    shrinkWrap: true,
-//                    itemCount: student.courses.length,
-//                    itemBuilder: (BuildContext context, int index){
-//                      return Container(
-//                        child: ListTile(
-//                          title: Text(student.courses[index]['title']),
-//                        ),
-//                      );
-//                    })
-//              ],
-//            ),
-//          ),
-//          isExpanded: student.isExpanded,
-//        );
-//      }).toList(),
-//    );
-//  }
-
   Future<String> myCoursesJSON(String hakbun) async {
 
     String url = 'http://52.14.37.173:5000/my_courses?hakbun=$hakbun';
@@ -248,9 +209,9 @@ class _GraduatePageState extends State<GraduatePage> {
           english += course['credits'];
         });
 
-      else if(BSMList.contains(course['inj_code']))
+      else if(bsmList.contains(course['inj_code']))
         setState(() {
-          BSM += course['credits'];
+          bsm += course['credits'];
         });
 
       else if(ictList.contains(course['inj_code']))
