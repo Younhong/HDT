@@ -56,11 +56,6 @@ class _PreNumResultState extends State<PreNumResultPage> {
                   ],
                 )
             ),
-//            onTap: () => Navigator.push(context,
-//                MaterialPageRoute(
-//                    builder: (context) =>
-//                        CourseDetailPage(widget.data[index]))),
-            // 과목명 교수명
           );},
       ),
     );

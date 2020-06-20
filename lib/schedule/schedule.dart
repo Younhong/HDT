@@ -48,7 +48,6 @@ class _SchedulePageState extends State<SchedulePage> {
     return WeeklyTimeTable(
       cellColor: Colors.white,
       cellSelectedColor: Colors.grey,
-//        boarderColor: Color.fromRGBO(0,30,255, 1.0),
       initialSchedule: initialSchedule,
       locale: 'ko',
       onValueChanged: (Map<int, List<int>>selected) {
