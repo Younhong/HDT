@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/calender/timetable.dart';
+import 'package:hdt/calender/timetable.dart';
 
 class SchedulePage extends StatefulWidget{
   var courseData;

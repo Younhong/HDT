@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/pre_register/pre.comp.dart';
-import 'package:hgt/pre_register/pre.stu.num.dart';
+import 'package:hdt/pre_register/pre.comp.dart';
+import 'package:hdt/pre_register/pre.stu.num.dart';
 
 class PreRegisterBodyPage extends StatefulWidget{
   _PreRegisterBodyState createState() => _PreRegisterBodyState();

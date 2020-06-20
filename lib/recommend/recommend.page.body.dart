@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/student.dart';
+import 'package:hdt/student.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/join.dart';
-import 'package:hgt/login.dart';
+import 'package:hdt/join.dart';
+import 'package:hdt/login.dart';
 
 class SplashPage extends StatefulWidget {
   @override

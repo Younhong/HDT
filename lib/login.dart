@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hgt/home.dart';
-import 'package:hgt/loading.dart';
+import 'package:hdt/home.dart';
+import 'package:hdt/loading.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
