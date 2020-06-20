@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
                                 color: Colors.red,
                                 decorationColor: Colors.white)),
                         TextSpan(
-                            text: 'G',
+                            text: 'D',
                             style: TextStyle(
                                 fontSize: 70,
                                 color: Colors.yellow,

@@ -40,7 +40,7 @@ class _HomeState extends State<HomePage> {
                             color: Colors.red,
                             decorationColor: Colors.white)),
                     TextSpan(
-                        text: 'G',
+                        text: 'D',
                         style: TextStyle(
                             fontSize: 70,
                             color: Colors.yellow,
@@ -118,10 +118,9 @@ class _HomeState extends State<HomePage> {
                     ),
                   ),
                   Positioned(
-                      top: 13,
-                      right: 25,
-                      child: Image.asset(
-                          'asset/calendar.jpg', width: 50, height: 30)
+                      top: 9,
+                      right: 27,
+                      child: Icon(Icons.calendar_today, size: 40,)
                   )
                 ],
               ),
@@ -162,8 +161,7 @@ class _HomeState extends State<HomePage> {
                   Positioned(
                       top: 9,
                       right: 27,
-                      child: Image.asset(
-                          'asset/review.png', width: 50, height: 30)
+                      child: Icon(Icons.local_grocery_store, size: 40,)
                   )
                 ],
               ),
@@ -192,13 +190,13 @@ class _HomeState extends State<HomePage> {
                         bottomLeft: const Radius.circular(40.0),
                         bottomRight: const Radius.circular(40.0),
                       ),
-                      border: Border.all(color: Colors.green, width: 4),
+                      border: Border.all(color: Colors.blue, width: 4),
                     ),
                   ),
                   Positioned(
                       top: 9,
                       right: 27,
-                      child: Image.asset('asset/review.png', width: 50, height: 30)
+                      child: Icon(Icons.check, size: 40,)
                   )
                 ],
               ),
