@@ -40,6 +40,15 @@ class _RecommendPageState extends State<RecommendPage> {
           style: TextStyle(
               color: Colors.black),),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            color: Colors.black,
+            icon: Icon(Icons.home),
+            onPressed: (){
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          )
+        ],
       ),
       drawer: HDTDrawer(
           widget.courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2),

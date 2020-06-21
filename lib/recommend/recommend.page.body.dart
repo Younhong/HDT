@@ -18,13 +18,12 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
   @override
   void initState() {
     super.initState();
-    setState(()  {
 
-    });
   }
 
   List<Student> recommendList = List();
   String _selectedSemester = '1';
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +38,12 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                     value: _selectedSemester,
                     icon: Icon(Icons.arrow_drop_down),
                     onChanged: (String newValue) {
+
                       setState(() {
                         _selectedSemester = newValue;});
+                      print(_selectedSemester);
                     },
+
                     items: _currSemesterCategory
                         .map((String category) {
                       return DropdownMenuItem<String>(
@@ -74,8 +76,16 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
                           Icon(Icons.search),
                         ],
                       ),
-                      onPressed: () async {
+                      onPressed: loading ? null :  () async {
+                        setState(() {
+                          loading = true;
+                        });
+
                         this.recommendJSON(widget.major, _selectedSemester);
+
+                        setState(() {
+                          loading = false;
+                        });
                       },
                     ),
                   )
@@ -87,8 +97,8 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
               padding: recommendList.isEmpty
                   ? EdgeInsets.only(left: 40, top: 20)
                   : EdgeInsets.only(top: 20),
-              child: recommendList.isEmpty
-                  ? Text("재학중인 학기를 선택해주세요")
+              child: recommendList.isEmpty || loading == true
+                  ? Text("원하는 추천 학기를 선택해주세요")
                   : _buildPanel(),
             ),
           ],
@@ -104,7 +114,7 @@ class _RecommendPageBodyState extends State<RecommendPageBodyPage> {
         });
       },
       children: recommendList.map<ExpansionPanel>((Student student) {
-        return ExpansionPanel(
+        return  ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
               title: Text(student.headerValue),

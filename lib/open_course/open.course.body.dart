@@ -197,7 +197,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
                       Icon(Icons.search),
                     ],
                   ),
-                  onPressed: () async {
+                  onPressed: loading? null :  () async {
                     loading = true;
                     _handleSubmitted(
                         _courseNameController.text, _profController.text);

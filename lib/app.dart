@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hdt/home.dart';
 import 'package:hdt/splash.dart';
+import 'package:hdt/login.dart';
 
 class ShrineApp extends StatelessWidget {
   @override
@@ -9,6 +10,9 @@ class ShrineApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+      routes: {
+        '/home': (BuildContext context) => LoginPage(),
+      },
     );
   }
 

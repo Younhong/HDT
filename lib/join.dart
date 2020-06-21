@@ -18,7 +18,7 @@ class _JoinPageState extends State<JoinPage> {
   String _name = "";
   String _studentID = "";
   String _semester = "";
-
+  bool loading = false;
   List data = List();
 
   final TextEditingController _nameController = new TextEditingController();
@@ -49,7 +49,7 @@ class _JoinPageState extends State<JoinPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 10),
+        padding: EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
             Row(
@@ -58,6 +58,7 @@ class _JoinPageState extends State<JoinPage> {
                   child: Container(
                       width: 100,
                       child: TextField(
+                        autofocus: true,
                         autocorrect: false,
                         controller: _nameController,
                         maxLines: 1,
@@ -75,12 +76,14 @@ class _JoinPageState extends State<JoinPage> {
                 ),
               ],
             ),
+            Divider(thickness: 1.5  ,),
             Row(
               children: <Widget>[
                 Flexible(
                   child: Container(
                       width: 100,
                       child: TextField(
+                        autofocus: true,
                         autocorrect: false,
                         controller: _studentIDController,
                         maxLines: 1,
@@ -98,12 +101,14 @@ class _JoinPageState extends State<JoinPage> {
                 ),
               ],
             ),
+            Divider(thickness: 1.5  ,),
             Row(
               children: <Widget>[
                 Flexible(
                   child: Container(
                       width: 100,
                       child: TextField(
+                        autofocus: true,
                         autocorrect: false,
                         controller: _semesterController,
                         maxLines: 1,
@@ -121,6 +126,7 @@ class _JoinPageState extends State<JoinPage> {
                 ),
               ],
             ),
+            Divider(thickness: 1.5  ,),
             Row(
               children: <Widget>[
                 Text("1전공", style: TextStyle(fontSize: 15),),
@@ -144,6 +150,7 @@ class _JoinPageState extends State<JoinPage> {
                 ),
               ],
             ),
+            Divider(thickness: 1.5  ,),
             Row(
               children: <Widget>[
                 Text("2전공", style: TextStyle(fontSize: 15),),
@@ -167,9 +174,31 @@ class _JoinPageState extends State<JoinPage> {
                 ),
               ],
             ),
-            InkWell(
-                child: Text("확인"),
-                onTap: () async {
+            Divider(thickness: 1.5  ,),
+            SizedBox(height: 50,),
+            Container(
+              width: 150,
+              height: 50,
+              child: RaisedButton(
+
+                disabledColor: Colors.white,
+                focusColor: Colors.white,
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.black)
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text('가입',style: TextStyle(fontSize: 20),),
+                    SizedBox(width: 20,),
+                    Icon(Icons.exit_to_app),
+                  ],
+                ),
+                onPressed: loading? null :  () async {
+                  loading = true;
                   _handleSubmitted(
                       _nameController.text, _semesterController.text, _studentIDController.text);
                   (_name != "" && _semester != "" && _studentID != "") ?
@@ -177,10 +206,12 @@ class _JoinPageState extends State<JoinPage> {
                       MaterialPageRoute(
                           builder: (context) =>
                               HomePage(
-                                  name: _name, semester: _semester, studentID: _studentID, major: _selectedDept, major2: _selectedDept2)))
+                                 )))
                       : Container();
-                }
-            )
+                  loading = false;
+                },
+              ),
+            ),
           ],
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hdt/open_course/review.write.dart';
+import 'package:hdt/pre_register/pre.num.result.dart';
+import 'package:hdt/pre_register/pre.comp.result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -15,6 +17,8 @@ class _CourseDetailState extends State<CourseDetailPage> {
   _CourseDetailState();
 
   List reviewList;
+  List preData;
+  bool loading = false;
 
   void initState() {
     super.initState();
@@ -41,6 +45,15 @@ class _CourseDetailState extends State<CourseDetailPage> {
             style: TextStyle(
                 color: Colors.black),),
           centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              color: Colors.black,
+              icon: Icon(Icons.home),
+              onPressed: (){
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+            )
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.push(
@@ -63,28 +76,101 @@ class _CourseDetailState extends State<CourseDetailPage> {
                     ),//new Color.fromRGBO(255, 0, 0, 0.0),
                     borderRadius:  BorderRadius.circular(5)
                 ),
-                child: Column(
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 10, top: 10),
-                      child: Text(widget.data['title'],style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: 200,
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10, top: 10),
+                          child: Text(widget.data['title'],style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10, top: 10),
+                          child: Text('교수명: ' + widget.data['prof_name']),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10, top: 10),
+                          child: Text('강의실: '+ widget.data['building']),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10, top: 10),
+                          child: Text('시간: '+widget.data['time']),
+                        ),
+                      ],
                     ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 10, top: 10),
-                      child: Text('교수명: ' + widget.data['prof_name']),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 10, top: 10),
-                      child: Text('강의실: '+ widget.data['building']),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 10, top: 10),
-                      child: Text('시간: '+widget.data['time']),
-                    ),
+                    Expanded(
+
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+
+                            child: FlatButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.black)
+                              ),
+                              child: Text('인원별 예비 수강') ,
+                              onPressed: loading ? null : () async {
+                                setState(() {
+                                  loading = true;
+                                });
+
+
+                                await searchCourse(
+                                    '0', widget.data['title'],
+                                    '000', '0', widget.data['prof_name']);
+                                setState(() {
+                                  loading = false;
+                                });
+
+                                await Navigator.push(context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            PreNumResultPage(preData)));
+
+                              },
+                            ),
+                          ),
+                          Container(
+                            child: FlatButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.black)
+                              ),
+                              child: Text('경쟁률 예비 수강') ,
+                              onPressed: loading ? null : () async {
+                                setState(() {
+                                  loading = true;
+                                });
+
+
+                                await searchComCourse(
+                                    '0', widget.data['title'],
+                                    '000', '0', widget.data['prof_name'], 'DESC');
+                                setState(() {
+                                  loading = false;
+                                });
+
+                                await Navigator.push(context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            PreCompResultPage(preData)));
+
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+
                   ],
                 ),
               ),
@@ -153,8 +239,76 @@ class _CourseDetailState extends State<CourseDetailPage> {
     setState(() {
       reviewList = res;
     });
-    print(res);
 
     return 'Success';
+  }
+
+  Future<String> searchCourse(
+      String majorCode, String courseName, String injCode,
+      String yearSemester, String profName) async {
+    String openTime;
+    if(majorCode == '0')
+      majorCode = '0';
+
+    if(yearSemester == '0')
+      openTime = '';
+    else
+      openTime = '&open_time=$yearSemester';
+
+    String url = 'http://52.14.37.173:5000/basket?major_code='
+        +  majorCode + openTime;
+
+    if (injCode != '000')
+      url = url + '&injung_code=' + injCode;
+    if (profName != "")
+      url = url + '&prof_name=' + profName;
+    if (courseName != "")
+      url = url + '&course_name=' + courseName;
+
+    print(url);
+    final response = await http.get(url);
+
+
+
+    setState(() {
+      preData = json.decode(response.body);
+    });
+
+
+    return "Success";
+  }
+
+  Future<String> searchComCourse(
+      String majorCode, String courseName, String injCode,
+      String yearSemester, String profName, String order) async {
+    String openTime;
+    if(majorCode == null)
+      majorCode = '0';
+    if(yearSemester == '0')
+      openTime = '';
+    else
+      openTime = '&open_time=$yearSemester';
+
+    String url = 'http://52.14.37.173:5000/basket_byC?major_code='
+        +  majorCode + openTime + '&order=' + order;
+
+    if (injCode != '000')
+      url = url + '&injung_code=' + injCode;
+    if (profName != "")
+      url = url + '&prof_name=' + profName;
+    if (courseName != "")
+      url = url + '&course_name=' + courseName;
+
+    print(url);
+    final response = await http.get(url);
+
+
+    setState(() {
+      preData = json.decode(response.body);
+
+    });
+
+
+    return "Success";
   }
 }

@@ -47,6 +47,23 @@ class _GraduatePageState extends State<GraduatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () =>
+              Navigator.pop(context),
+        ),
+        title: Text(
+         '졸업기준',
+          style: TextStyle(
+              color: Colors.black),),
+        centerTitle: true,
+        actions: <Widget>[
+
+        ],
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -236,7 +253,7 @@ class _GraduatePageState extends State<GraduatePage> {
     });
 
     for(var course in courseList){
-      print(course['title'] + ', inj : ${course['inj_code']}');
+
 
       if(course['major_code'] != 1){
         major += course['credits'];
@@ -293,7 +310,7 @@ class _GraduatePageState extends State<GraduatePage> {
       }
     });
 
-    print(proGenList);
+
 
     return 'Success';
   }
@@ -310,7 +327,7 @@ class _GraduatePageState extends State<GraduatePage> {
 
     });
 
-    print(courseList2);
+
 
     return 'Success';
   }
@@ -327,7 +344,7 @@ class _GraduatePageState extends State<GraduatePage> {
       graduateList = res;
     });
 
-    print(graduateList);
+
 
 
     return 'Success';

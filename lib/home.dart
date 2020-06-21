@@ -3,22 +3,27 @@ import 'package:hdt/pre_register/pre.register.main.dart';
 import 'package:hdt/recommend/recommend.page.main.dart';
 import 'package:hdt/schedule/my_course.dart';
 import 'package:hdt/open_course/open.course.main.dart';
+import 'loginInfo.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math' as math;
 
 class HomePage extends StatefulWidget {
-  final String name, semester, studentID, major, major2;
-  HomePage({this.name, this.semester, this.studentID, this.major, this.major2});
+
 
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<HomePage> {
   List courseData;
+  List userData;
+
+  int _selectedSemester;
+  final TextEditingController _semesterController = new TextEditingController();
 
   _HomeState();
+
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +94,7 @@ class _HomeState extends State<HomePage> {
                     MaterialPageRoute(
                         builder: (context) =>
                             OpenCourseMainPage(
-                                courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                                courseData, name, semester, studentID, major, major2))),
               }),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -121,13 +126,10 @@ class _HomeState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () async => {
-                await courseJSON(widget.studentID, widget.semester),
-                await Navigator.push(context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            MyCoursePage(
-                                courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+              onTap: () => {
+
+                _showDialog(),
+
               }
             ),
             SizedBox(height: phoneSize.height * .05),
@@ -164,7 +166,7 @@ class _HomeState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) =>
                           PreRegisterMainPage(
-                              courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                              courseData, name, semester, studentID, major, major2))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -195,11 +197,16 @@ class _HomeState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          RecommendPage(
-                              courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+              onTap: () {
+
+                Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            RecommendPage(
+                                courseData, name, semester,
+                                studentID, major, major2)));
+
+              }
             ),
             SizedBox(height: phoneSize.height * .08),
             Text('Handong Time')
@@ -223,4 +230,68 @@ class _HomeState extends State<HomePage> {
 
     return 'Success';
   }
+  void _showDialog() async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Row(
+              children: <Widget>[
+                Container(
+                  child: Text("학기 선택: "),
+                ),
+                SizedBox(width: 10,),
+                Container(
+                  child: Flexible(
+                    child: TextField(
+                      autofocus: true,
+                      autocorrect: false,
+                      controller: _semesterController,
+                      maxLines: 1,
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 16.0),
+                      cursorColor: Colors.grey,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        fillColor: Colors.red,
+                        hintText: "학기를 입력해주세요",
+                        hintStyle: TextStyle(
+                            color: Colors.grey, fontSize: 16.0),),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  color: Colors.black,
+                  child: Text(
+                    "확인",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    _selectedSemester = int.parse(_semesterController.text);
+
+
+                    await courseJSON(studentID, _selectedSemester.toString());
+                    await Navigator.push(context,
+                    MaterialPageRoute(
+                    builder: (context) =>
+                    MyCoursePage(
+                    courseData, name, semester, studentID, major, major2)));
+                    Navigator.pop(context);
+
+                  }),
+              RaisedButton(
+                  child: Text(
+                    "취소",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () => Navigator.of(context).pop()),
+            ],
+          );
+        });
+  }
+
+
 }
