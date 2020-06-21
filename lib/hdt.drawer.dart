@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hdt/loading.dart';
 import 'package:hdt/open_course/open.course.main.dart';
 import 'package:hdt/pre_register/pre.register.main.dart';
 import 'package:hdt/recommend/recommend.page.main.dart';
@@ -88,14 +87,12 @@ class _HDTDrawerState extends State<HDTDrawer> {
                         leading: Icon(
                           Icons.calendar_today, color: Colors.black,),
                         onTap: () async => {
-                          LoadingDialog.onLoading(context),
                           await courseJSON(widget.studentID, widget.semester),
                           await Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
                                       MyCoursePage(
                                           courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
-                          LoadingDialog.dismiss(context, () {})
                         }
                     ),
                     ListTile(
