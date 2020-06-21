@@ -98,14 +98,41 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
 
   onCellTapped(int day, int timeRange, bool nextSelectedState, String courseName,
       String semester, String userID) {
-    setState(() {
+    setState(() async {
       if (!nextSelectedState) {
         //
       } else {
-        print("hi");
-        deleteCourse(userID, courseName, semester);
+        _showDialog(courseName, semester, userID);
       }
     });
+  }
+
+  void _showDialog(String courseName, String semester, String userID) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text("확인 버튼을 누르면 강의가 삭제됩니다"),
+            actions: <Widget>[
+              FlatButton(
+                  color: Colors.black,
+                  child: Text(
+                    "확인",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    await deleteCourse(userID, courseName, semester);
+                  }),
+              RaisedButton(
+                  child: Text(
+                    "취소",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () => Navigator.of(context).pop()),
+            ],
+          );
+        });
   }
 
   Future<String> deleteCourse(String userID, String courseName, String semester) async {
