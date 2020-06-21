@@ -4,11 +4,13 @@ class Cell extends StatefulWidget {
   final int day;
   final int timeRange;
   final bool isSelected;
-  final Function(int, int, bool) onCellTapped;
+  final Function(int, int, bool, String, String, String) onCellTapped;
   final Color cellColor;
   final Color cellSelectedColor;
   final Color boarderColor;
   final String courseName;
+  final String userID;
+  final String semester;
 
   Cell({
     @required this.day,
@@ -19,6 +21,8 @@ class Cell extends StatefulWidget {
     this.cellColor = Colors.white,
     this.cellSelectedColor = Colors.black,
     this.boarderColor = Colors.grey,
+    this.userID,
+    this.semester
   });
 
   @override
@@ -42,7 +46,8 @@ class _CellState extends State<Cell> {
         child: GestureDetector(
           onTap: () {
             widget.onCellTapped(
-                widget.day, widget.timeRange, widget.isSelected);
+                widget.day, widget.timeRange, widget.isSelected, widget.courseName,
+            widget.semester, widget.userID);
           },
           child: AnimatedContainer(
             decoration: BoxDecoration(
