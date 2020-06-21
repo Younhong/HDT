@@ -86,6 +86,7 @@ class _PreCompResultState extends State<PreCompResultPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text("총인원: " + widget.data[index]['total_stu'].toString()),
+                                      SizedBox(width: 10),
                                       widget.data[index]['competition'] == null
                                           ? Text("경쟁률: 0.0")
                                           : Text("경쟁률: " + widget.data[index]['competition'].toString()),
