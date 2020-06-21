@@ -89,10 +89,21 @@ class _CourseDetailState extends State<CourseDetailPage> {
                 ),
               ),
             ),
-            Text("수업 리뷰",
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("수업 리뷰",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),),
+                IconButton(
+                  icon: Icon(Icons.refresh),
+                  onPressed: () => {
+                    reviewJSON(widget.data['id'].toString(), widget.data['prof_name']),
+                  },
+                )
+              ],
+            ),
             Divider(thickness: 1),
             reviewList == null
                 ? Container()

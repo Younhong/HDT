@@ -62,22 +62,22 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                               children: <Widget>[
                                 Container(
                                   width: phoneSize.width * .5,
-                                  height: 30,
+                                  height: 40,
                                   alignment: Alignment.topLeft,
                                   padding: EdgeInsets.only(left: 10),
-                                  child: Text(widget.data[index]["title"]),
+                                  child: Text(widget.data[index]["title"],
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,),
                                 ),
                                 SizedBox(height: 5),
                                 Container(
                                   width: phoneSize.width * .5,
+                                  height: 20,
                                   alignment: Alignment.topLeft,
                                   padding: EdgeInsets.only(left: 10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text("교수명: " + widget.data[index]['prof_name']),
-                                      SizedBox(width: 13),
-                                    ],
-                                  ),
+                                  child: Text("교수: " + widget.data[index]['prof_name'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,),
                                 ),
                                 Container(
                                     width: phoneSize.width * .5,
