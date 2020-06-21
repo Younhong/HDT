@@ -34,7 +34,7 @@ class _PreCompState extends State<PreCompPage> {
   String _courseName = "";
   String _profName = "";
   List<String> _order = ["ASC", "DESC"];
-  String _selectedOrder = "ASC";
+  String _selectedOrder = "DESC";
   final TextEditingController _profController = new TextEditingController();
   final TextEditingController _courseNameController = new TextEditingController();
 
