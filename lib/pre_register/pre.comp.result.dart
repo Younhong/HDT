@@ -27,6 +27,15 @@ class _PreCompResultState extends State<PreCompResultPage> {
           color: Colors.black,
           onPressed: () => Navigator.pop(context),
         ),
+        actions: <Widget>[
+          IconButton(
+            color: Colors.black,
+            icon: Icon(Icons.home),
+            onPressed: (){
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          )
+        ],
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -56,20 +65,22 @@ class _PreCompResultState extends State<PreCompResultPage> {
                             Column(
                               children: <Widget>[
                                 Container(
+
                                   width: phoneSize.width * .5,
                                   height: 30,
                                   alignment: Alignment.topLeft,
-                                  padding: EdgeInsets.only(left: 10),
+                                  padding: EdgeInsets.only(left: 10,top: 5),
                                   child: Text(widget.data[index]["title"]),
                                 ),
                                 SizedBox(height: 5),
                                 Container(
                                   width: phoneSize.width * .5,
+                                  height: 20,
                                   alignment: Alignment.topLeft,
                                   padding: EdgeInsets.only(left: 10),
                                   child: Row(
                                     children: <Widget>[
-                                      Text("교수명: " + widget.data[index]['prof_name']),
+                                      Text("교수: " + widget.data[index]['prof_name'], overflow: TextOverflow.ellipsis, maxLines: 1,),
                                       SizedBox(width: 13),
                                     ],
                                   ),
@@ -78,7 +89,7 @@ class _PreCompResultState extends State<PreCompResultPage> {
                                     width: phoneSize.width * .5,
                                     padding: EdgeInsets.only(left: 10),
                                     alignment: Alignment.centerLeft,
-                                    child: Text("분반: " + widget.data[index]['section'].toString())
+                                    child: Text("분반: " + widget.data[index]['sec_id'].toString())
                                 ),
                                 Container(
                                   width: phoneSize.width * .5,
@@ -94,7 +105,17 @@ class _PreCompResultState extends State<PreCompResultPage> {
                                   ),
                                 )
                               ],
-                            )
+                            ),
+                            Container(
+
+                                padding: EdgeInsets.only(left: 10),
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text("개설: " +widget.data[index]['open'].toString())
+                                  ],
+                                )),
                           ],
                         ),
                       )

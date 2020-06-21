@@ -25,7 +25,7 @@ class _PreStuState extends State<PreStuNumPage> {
   List data;
   List _deptCategory = List();
   List _injungCategory = List();
-  List<String> _yearCategory = ['2019', '2020'];
+  List<String> _yearCategory = ['전체','2018','2019', '2020'];
   List<String> _semesterCategory = ['1', '2', '3', '4'];
   String _selectedDept = "1" ;
   String _selectedInjung = '000';
@@ -33,6 +33,7 @@ class _PreStuState extends State<PreStuNumPage> {
   String _selectedSemester = '1';
   String _courseName = "";
   String _profName = "";
+  bool loading = false;
   final TextEditingController _profController = new TextEditingController();
   final TextEditingController _courseNameController = new TextEditingController();
 
@@ -52,150 +53,186 @@ class _PreStuState extends State<PreStuNumPage> {
           style: TextStyle(
               color: Colors.black),),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            color: Colors.black,
+            icon: Icon(Icons.home),
+            onPressed: (){
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          )
+        ],
       ),
-      body: Row(
+      body: Column(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(left: 20, top: 30),
-            width: phoneSize.width * .85,
-            child: Column(
-              children: <Widget>[
-                Row(
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 20, top: 30),
+                width: phoneSize.width * .85,
+                child: Column(
                   children: <Widget>[
-                    DropdownButton(
-                      value: _selectedYear,
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String newValue) {
-                        setState(() {
-                          _selectedYear = newValue;});
-                      },
-                      items: _yearCategory
-                          .map((String category) {
-                        return DropdownMenuItem<String>(
-                          value: category,
-                          child: Text(category),
-                        );
-                      }).toList(),
+                    Row(
+                      children: <Widget>[
+                        DropdownButton(
+                          value: _selectedYear,
+                          icon: Icon(Icons.arrow_drop_down),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _selectedYear = newValue;});
+                          },
+                          items: _yearCategory
+                              .map((String category) {
+                            return DropdownMenuItem<String>(
+                              value: category,
+                              child: Text(category),
+                            );
+                          }).toList(),
+                        ),
+                        SizedBox(width: 20),
+                        DropdownButton(
+                          value: _selectedSemester,
+                          icon: Icon(Icons.arrow_drop_down),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _selectedSemester = newValue;});
+                          },
+                          items: _semesterCategory
+                              .map((String category) {
+                            return DropdownMenuItem<String>(
+                              value: category,
+                              child: Text(category),
+                            );
+                          }).toList(),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 20),
-                    DropdownButton(
-                      value: _selectedSemester,
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String newValue) {
-                        setState(() {
-                          _selectedSemester = newValue;});
-                      },
-                      items: _semesterCategory
-                          .map((String category) {
-                        return DropdownMenuItem<String>(
-                          value: category,
-                          child: Text(category),
-                        );
-                      }).toList(),
+                    Row(
+                      children: <Widget>[
+                        DropdownButton(
+                          hint: Text('학부'),
+                          icon: Icon(Icons.arrow_drop_down),
+                          items: _deptCategory.map((major) {
+                            return DropdownMenuItem<String>(
+                              value: major['major_code'].toString(),
+                              child: Text(major['major_name'].toString(),),
+                            );
+                          }).toList(),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _selectedDept = newValue;
+                            });
+                            print(newValue);
+                          },
+                          value: _selectedDept,
+                        ),
+                      ],
                     ),
+                    Row(
+                      children: <Widget>[
+                        Flexible(
+                          child: Container(
+                              width: 100,
+                              child: TextField(
+                                autocorrect: false,
+                                controller: _courseNameController,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16.0),
+                                cursorColor: Colors.grey,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  fillColor: Colors.red,
+                                  hintText: "과목명",
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey, fontSize: 16.0),),
+                              )
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                              width: 70,
+                              child: TextField(
+                                autocorrect: false,
+                                controller: _profController,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16.0),
+                                cursorColor: Colors.grey,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  fillColor: Colors.red,
+                                  hintText: "교수명",
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey, fontSize: 16.0),),
+                              )
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        DropdownButton(
+                          hint: Text('Option'),
+                          value: _selectedInjung,
+                          icon: Icon(Icons.arrow_drop_down),
+                          onChanged: (String newValue) {
+                            setState(() { _selectedInjung = newValue;});
+                          },
+                          items: _injungCategory.map((injung) {
+                            return DropdownMenuItem<String>(
+                              value: injung['inj_code'],
+                              child: Text(injung['kor']),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    )
                   ],
                 ),
-                Row(
-                  children: <Widget>[
-                    DropdownButton(
-                      hint: Text('학부'),
-                      icon: Icon(Icons.arrow_drop_down),
-                      items: _deptCategory.map((major) {
-                        return DropdownMenuItem<String>(
-                          value: major['major_code'].toString(),
-                          child: Text(major['major_name'].toString(),),
-                        );
-                      }).toList(),
-                      onChanged: (String newValue) {
-                        setState(() {
-                          _selectedDept = newValue;
-                        });
-                        print(newValue);
-                      },
-                      value: _selectedDept,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: Container(
-                          width: 100,
-                          child: TextField(
-                            autocorrect: false,
-                            controller: _courseNameController,
-                            maxLines: 1,
-                            style: TextStyle(
-                                color: Colors.black, fontSize: 16.0),
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              fillColor: Colors.red,
-                              hintText: "과목명",
-                              hintStyle: TextStyle(
-                                  color: Colors.grey, fontSize: 16.0),),
-                          )
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                          width: 70,
-                          child: TextField(
-                            autocorrect: false,
-                            controller: _profController,
-                            maxLines: 1,
-                            style: TextStyle(
-                                color: Colors.black, fontSize: 16.0),
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              fillColor: Colors.red,
-                              hintText: "교수명",
-                              hintStyle: TextStyle(
-                                  color: Colors.grey, fontSize: 16.0),),
-                          )
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    DropdownButton(
-                      hint: Text('Option'),
-                      value: _selectedInjung,
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String newValue) {
-                        setState(() { _selectedInjung = newValue;});
-                      },
-                      items: _injungCategory.map((injung) {
-                        return DropdownMenuItem<String>(
-                          value: injung['inj_code'],
-                          child: Text(injung['kor']),
-                        );
-                      }).toList(),
-                    ),
-                  ],
-                )
-              ],
-            ),
+              ),
+            ],
           ),
+          Divider(thickness: 3,),
           Container(
-            padding: EdgeInsets.only(top: 170),
+            padding: EdgeInsets.only(top: 100),
             child: Column(
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () async {
-                    _handleSubmitted(
-                        _courseNameController.text, _profController.text);
-                    await searchCourse(
-                        _selectedDept, _courseName,
-                        _selectedInjung, _selectedYear+_selectedSemester, _profName);
-                    await Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                PreNumResultPage(data)));
-                  },
+                Container(
+                  width: 150,
+                  height: 80,
+                  child: RaisedButton(
+
+                    disabledColor: Colors.white,
+                    focusColor: Colors.white,
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: Colors.black)
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text('검 색',style: TextStyle(fontSize: 20),),
+                        SizedBox(width: 20,),
+                        Icon(Icons.search),
+                      ],
+                    ),
+                    onPressed: loading? null :  () async {
+                      loading = true;
+                      _handleSubmitted(
+                          _courseNameController.text, _profController.text);
+                      await searchCourse(
+                          _selectedDept, _courseName,
+                          _selectedInjung, _selectedYear+_selectedSemester, _profName);
+                      loading = false;
+                      await Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  PreNumResultPage(data)));
+                    },
+                  ),
                 ),
               ],
             ),
@@ -246,8 +283,14 @@ class _PreStuState extends State<PreStuNumPage> {
   Future<String> searchCourse(
       String majorCode, String courseName, String injCode,
       String yearSemester, String profName) async {
+    String openTime;
+    if(yearSemester.length  < 5)
+      openTime = '';
+    else
+      openTime = '&open_time=$yearSemester';
+
     String url = 'http://52.14.37.173:5000/basket?major_code='
-        +  majorCode + '&open_time=' + yearSemester;
+        +  majorCode + openTime;
 
     if (injCode != '000')
       url = url + '&injung_code=' + injCode;
@@ -265,7 +308,6 @@ class _PreStuState extends State<PreStuNumPage> {
 
     });
 
-    print(data);
 
     return "Success";
   }

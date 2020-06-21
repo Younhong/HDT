@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hdt/home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'loginInfo.dart';
 
 class LoginPage extends StatefulWidget{
   LoginPage();
@@ -12,12 +13,9 @@ class LoginPage extends StatefulWidget{
 class _LoginPageState extends State<LoginPage> {
   _LoginPageState();
   var userData;
+  String input;
 
-  String _selectedDept = "1" ;
-  String _selectedDept2 = "1";
-  String _name = "";
-  String _studentID = "";
-  String _semester = "";
+  bool loading = false;
 
   List data = List();
 
@@ -47,15 +45,17 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 10),
+        padding: EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
+            Text('학번을 이용해 로그인 해주세요.'),
             Row(
               children: <Widget>[
                 Flexible(
                   child: Container(
                       width: 100,
                       child: TextField(
+                        autofocus: true,
                         autocorrect: false,
                         controller: _studentIDController,
                         maxLines: 1,
@@ -73,19 +73,43 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            InkWell(
-                child: Text("확인"),
-                onTap: () async {
+            Divider(thickness: 1.5,),
+            SizedBox(height: 50,),
+            Container(
+              width: 150,
+              height: 50,
+              child: RaisedButton(
+
+                disabledColor: Colors.white,
+                focusColor: Colors.white,
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.black)
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text('로그인',style: TextStyle(fontSize: 20),),
+                    SizedBox(width: 20,),
+                    Icon(Icons.exit_to_app),
+                  ],
+                ),
+                onPressed: loading? null :  () async {
+                  loading = true;
                   _handleSubmitted( _studentIDController.text);
-                  await _infoJSON(_studentID);
-                  (_studentID != "") ?
+                  await _infoJSON(input);
+                  studentID != "" ?
                   await Navigator.push(context,
                       MaterialPageRoute(builder: (context) =>
-                              HomePage(
-                                  name: _name, semester: _semester, studentID: _studentID, major: _selectedDept, major2: _selectedDept2)))
+                          HomePage(
+                             )))
                       : Container();
-                }
-            )
+                  loading = false;
+                },
+              ),
+            ),
 
           ],
         ),
@@ -109,10 +133,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleSubmitted(String studentID) {
-    _studentIDController.clear();
+
     setState(() {
-      _studentID = studentID;
+      input = _studentIDController.text;
     });
+    _studentIDController.clear();
+    print(input);
   }
 
   Future<String> _infoJSON(String userID) async {
@@ -126,11 +152,11 @@ class _LoginPageState extends State<LoginPage> {
     });
     print(userData);
 
-    _studentID = userData[0]['id'].toString();
-    _selectedDept = userData[0]['major1'].toString();
-    _selectedDept2 = userData[0]['major2'].toString();
-    _name =userData[0]['name'];
-    _semester = userData[0]['semester'].toString();
+    studentID = userData[0]['id'].toString();
+    major = userData[0]['major1'].toString();
+    major2 = userData[0]['major2'].toString();
+    name =userData[0]['name'];
+    semester = userData[0]['semester'].toString();
     return 'Success';
   }
 }

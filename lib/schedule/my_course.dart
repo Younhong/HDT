@@ -28,18 +28,25 @@ class MyCoursePage extends StatelessWidget {
               color: Colors.black),),
         centerTitle: true,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search, color: Colors.black),
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => GraduatePage(studentID, major))),
+            Row(
+
+              children: <Widget>[
+                Text('졸업기준',style: TextStyle(color: Colors.black),),
+                IconButton(
+                  icon: Icon(Icons.check_circle_outline, color: Colors.black),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GraduatePage(studentID, major))),
+                ),
+              ],
             ),
           ]
       ),
       drawer: HDTDrawer(
         courseData, name, semester, studentID, major, major2),
       body: SchedulePage(courseData, studentID, semester),
+
       resizeToAvoidBottomInset: false,
     );
   }

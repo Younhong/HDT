@@ -30,6 +30,16 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
           color: Colors.black,
           onPressed: () => Navigator.pop(context),
         ),
+        actions: <Widget>[
+          IconButton(
+            color: Colors.black,
+            icon: Icon(Icons.home),
+            onPressed: (){
+              Navigator.of(context).popUntil((route) => route.isFirst);
+
+            },
+          )
+        ],
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -46,6 +56,7 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                 return InkWell(
                   child: Card(
                       child: Container(
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           border: Border.all(
                             width: 1,
@@ -53,7 +64,7 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        height: 100,
+                        height: 110,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.max,
@@ -133,6 +144,7 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
               Container(
                 child: Flexible(
                   child: TextField(
+                    autofocus: true,
                     autocorrect: false,
                     controller: _semesterController,
                     maxLines: 1,
