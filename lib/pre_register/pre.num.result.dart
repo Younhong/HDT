@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hdt/open_course/course.detail.dart';
 
 class PreNumResultPage extends StatefulWidget {
   final List data;
@@ -31,30 +32,38 @@ class _PreNumResultState extends State<PreNumResultPage> {
             ? 0 : widget.data.length,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
-            child: Card(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      child: Text(widget.data[index]["title"]),
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 10),
-                    ),
-                    SizedBox(height: 5),
-                    Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Text("교수명: " + widget.data[index]['prof_name']),
-                          SizedBox(width: 13),
-                          Text("분반: " + widget.data[index]['section'].toString()),
-                          SizedBox(width: 13),
-                          Text("총인원: " + widget.data[index]['all'].toString()),
-                        ],
+            child: InkWell(
+              child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        child: Text(widget.data[index]["title"]),
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 10),
                       ),
-                    ),
-                    SizedBox(height: 5),
-                  ],
-                )
+                      SizedBox(height: 5),
+                      Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: <Widget>[
+                            Text("교수명: " + widget.data[index]['prof_name']),
+                            SizedBox(width: 13),
+                            Text("분반: " + widget.data[index]['section'].toString()),
+                            SizedBox(width: 13),
+                            Text("총인원: " + widget.data[index]['all'].toString()),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                    ],
+                  )
+              ),
+              onTap: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CourseDetailPage(widget.data[index]))
+                )},
             ),
           );},
       ),

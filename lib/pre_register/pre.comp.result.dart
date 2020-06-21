@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hdt/open_course/course.detail.dart';
 
 class PreCompResultPage extends StatefulWidget {
   final List data;
@@ -66,6 +67,12 @@ class _PreCompResultState extends State<PreCompResultPage> {
                   ],
                 )
             ),
+            onTap: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CourseDetailPage(widget.data[index]))
+              )},
           );},
       ),
     );
