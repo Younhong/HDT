@@ -81,11 +81,11 @@ class _PreCompResultState extends State<PreCompResultPage> {
                                     child: Text("분반: " + widget.data[index]['section'].toString())
                                 ),
                                 Container(
+                                  width: phoneSize.width * .5,
                                   padding: EdgeInsets.only(left: 10),
                                   child: Row(
                                     children: <Widget>[
                                       Text("총인원: " + widget.data[index]['total_stu'].toString()),
-                                      SizedBox(width: 13),
                                       widget.data[index]['competition'] == null
                                           ? Text("경쟁률: 0.0")
                                           : Text("경쟁률: " + widget.data[index]['competition'].toString()),
