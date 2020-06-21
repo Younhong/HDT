@@ -3,6 +3,8 @@ import 'package:hdt/calender/cell.dart';
 import 'package:hdt/calender/header.dart';
 import 'package:hdt/calender/indicator.dart';
 import 'package:hdt/calender/weekly.time.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class WeeklyTimeTable extends StatefulWidget {
   final ValueChanged<Map<int, List<int>>> onValueChanged;
@@ -12,6 +14,7 @@ class WeeklyTimeTable extends StatefulWidget {
   final Map<int, Map<int, String>> initialSchedule;
   final bool draggable;
   final String locale;
+  final String userID, semester;
 
   WeeklyTimeTable({
     this.cellColor = Colors.white,
@@ -27,6 +30,8 @@ class WeeklyTimeTable extends StatefulWidget {
     this.draggable = false,
     this.locale = "en",
     this.onValueChanged,
+    this.userID,
+    this.semester
   });
 
   @override
@@ -70,6 +75,8 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
                   WeeklyTimes.dates[this.locale].length - 1,
                       (i) =>
                       Cell(
+                        userID: widget.userID,
+                        semester: widget.semester,
                         day: i,
                         timeRange: index,
                         isSelected: selected[i].containsKey(index),
@@ -89,14 +96,33 @@ class _WeeklyTimeTableState extends State<WeeklyTimeTable> {
     );
   }
 
-  onCellTapped(int day, int timeRange, bool nextSelectedState) {
+  onCellTapped(int day, int timeRange, bool nextSelectedState, String courseName,
+      String semester, String userID) {
     setState(() {
-//      if (!nextSelectedState) {
-//        selected[day].update(timeRange);
-//      } else {
-//        selected[day].remove(timeRange);
-//      }
+      if (!nextSelectedState) {
+        //
+      } else {
+        print("hi");
+        deleteCourse(userID, courseName, semester);
+      }
     });
-    //widget.onValueChanged(selected);
+  }
+
+  Future<String> deleteCourse(String userID, String courseName, String semester) async {
+    String url = 'http://52.14.37.173:5000/delete?user_id='
+        +  userID + '&course_name=' + courseName + "&semester="+semester;
+
+    print(url);
+    final response = await http.get(url);
+
+    var res = json.decode(response.body);
+
+    setState(() {
+
+    });
+
+    print(res);
+
+    return "Success";
   }
 }

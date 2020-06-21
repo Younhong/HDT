@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hdt/calender/timetable.dart';
 
 class SchedulePage extends StatefulWidget{
-  final courseData;
-  SchedulePage(this.courseData);
+  final courseData, userID, semester;
+  SchedulePage(this.courseData, this.userID, this.semester);
 
   _SchedulePageState createState() => _SchedulePageState();
 }
@@ -44,6 +44,8 @@ class _SchedulePageState extends State<SchedulePage> {
     }
 
     return WeeklyTimeTable(
+      userID: widget.userID,
+      semester: widget.semester,
       cellColor: Colors.white,
       cellSelectedColor: Colors.grey,
 //        boarderColor: Color.fromRGBO(0,30,255, 1.0),

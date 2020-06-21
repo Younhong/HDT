@@ -39,7 +39,7 @@ class MyCoursePage extends StatelessWidget {
       ),
       drawer: HDTDrawer(
         courseData, name, semester, studentID, major, major2),
-      body: SchedulePage(courseData),
+      body: SchedulePage(courseData, studentID, semester),
       resizeToAvoidBottomInset: false,
     );
   }
