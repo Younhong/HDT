@@ -83,7 +83,8 @@ class _CourseSearchResultState extends State<CourseSearchResultPage> {
                                     width: phoneSize.width * .5,
                                     padding: EdgeInsets.only(left: 10),
                                     alignment: Alignment.centerLeft,
-                                    child: Text("분반: " + widget.data[index]['section'].toString())),
+                                    child: Text("분반: " + widget.data[index]['section'].toString())
+                                ),
                               ],
                             ),
                             Container(
