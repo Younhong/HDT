@@ -304,7 +304,7 @@ class _PreCompState extends State<PreCompPage> {
     if(yearSemester.length  < 5)
       openTime = '';
     else
-      openTime = '&open_time=$yearSemester';
+      openTime = '&openTime=$yearSemester';
 
     String url = 'http://52.14.37.173:5000/basket_byC?major_code='
         +  majorCode + openTime + '&order=' + order;

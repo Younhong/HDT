@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hdt/graduate.page.dart';
 import 'package:hdt/hdt.drawer.dart';
 import 'package:hdt/schedule/schedule.dart';
+import 'package:hdt/loginInfo.dart';
 
 class MyCoursePage extends StatelessWidget {
   final courseData;
-  final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  MyCoursePage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
+  MyCoursePage(this.courseData);
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,7 @@ class MyCoursePage extends StatelessWidget {
             ),
           ]
       ),
-      drawer: HDTDrawer(
-        courseData, name, semester, studentID, major, major2),
+      drawer: HDTDrawer(courseData),
       body: SchedulePage(courseData, studentID, semester),
 
       resizeToAvoidBottomInset: false,

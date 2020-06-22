@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hdt/home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:hdt/loginInfo.dart';
+
 
 class JoinPage extends StatefulWidget{
   JoinPage();
@@ -201,12 +203,14 @@ class _JoinPageState extends State<JoinPage> {
                   loading = true;
                   _handleSubmitted(
                       _nameController.text, _semesterController.text, _studentIDController.text);
-                  (_name != "" && _semester != "" && _studentID != "") ?
+                  print('working?');
+                  await joinJSON(_name, _semester, _studentID, _selectedDept, _selectedDept2);
+                  (name != "" && semester != "" && studentID != "") ?
                   await Navigator.push(context,
                       MaterialPageRoute(
                           builder: (context) =>
                               HomePage(
-                                 )))
+                              )))
                       : Container();
                   loading = false;
                 },
@@ -233,15 +237,32 @@ class _JoinPageState extends State<JoinPage> {
     return 'Success';
   }
 
-  void _handleSubmitted(String name, String semester, String studentID) {
-    _nameController.clear();
-    _semesterController.clear();
-    _studentIDController.clear();
+  void _handleSubmitted(String iname, String isemester, String istudentID) {
 
     setState(() {
-      _name = name;
-      _semester = semester;
-      _studentID = studentID;
+      _name = iname;
+      _semester = isemester;
+      _studentID = istudentID;
     });
+
+  }
+
+  Future<String> joinJSON(String iName, String iSemester, String iStudentID, String iMajor1, String iMajor2) async {
+    String url = "http://52.14.37.173:5000/account?user_id="+iStudentID+"&user_name="+iName+"&semester="+iSemester+"&major1="+iMajor1+"&major2="+iMajor2;
+    final response = await http.get(url);
+    print(response);
+
+    setState(() {
+      name = iName;
+      studentID = iStudentID;
+      major = iMajor1;
+      major2 = iMajor2;
+      semester = iSemester;
+    });
+    print(name);
+    print(studentID);
+    print(major);
+
+    return 'Success';
   }
 }
