@@ -259,7 +259,7 @@ class _OpenCourseBodyState extends State<OpenCourseBodyPage> {
   Future<String> searchCourse(String majorCode, String courseName,
       String injCode, String yearSemester, String profName) async {
     String url = 'http://52.14.37.173:5000/search?major_code='
-        +  majorCode + '&open_time=' + yearSemester;
+        +  majorCode + '&openTime=' + yearSemester;
 
     if (injCode != '000')
       url = url + '&injung_code=' + injCode;

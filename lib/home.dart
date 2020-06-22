@@ -3,14 +3,13 @@ import 'package:hdt/pre_register/pre.register.main.dart';
 import 'package:hdt/recommend/recommend.page.main.dart';
 import 'package:hdt/schedule/my_course.dart';
 import 'package:hdt/open_course/open.course.main.dart';
-import 'loginInfo.dart';
+import 'package:hdt/loginInfo.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math' as math;
 
 class HomePage extends StatefulWidget {
-
 
   _HomeState createState() => _HomeState();
 }
@@ -93,8 +92,7 @@ class _HomeState extends State<HomePage> {
                 await Navigator.push(context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            OpenCourseMainPage(
-                                courseData, name, semester, studentID, major, major2))),
+                            OpenCourseMainPage(courseData))),
               }),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -163,8 +161,7 @@ class _HomeState extends State<HomePage> {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          PreRegisterMainPage(
-                              courseData, name, semester, studentID, major, major2))),
+                          PreRegisterMainPage(courseData))),
             ),
             SizedBox(height: phoneSize.height * .05),
             InkWell(
@@ -200,10 +197,7 @@ class _HomeState extends State<HomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            RecommendPage(
-                                courseData, name, semester,
-                                studentID, major, major2)));
-
+                            RecommendPage(courseData)));
               }
             ),
             SizedBox(height: phoneSize.height * .08),
@@ -228,6 +222,7 @@ class _HomeState extends State<HomePage> {
 
     return 'Success';
   }
+
   void _showDialog() async {
     return showDialog(
         context: context,
@@ -268,15 +263,16 @@ class _HomeState extends State<HomePage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    _handleSubmitted(_semesterController.text);
+                    _selectedSemester = int.parse(_semesterController.text);
+
 
                     await courseJSON(studentID, _selectedSemester.toString());
                     await Navigator.push(context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                MyCoursePage(
-                                    courseData, name, semester, studentID, major, major2)));
+                                MyCoursePage(courseData)));
                     Navigator.pop(context);
+
                   }),
               RaisedButton(
                   child: Text(
@@ -287,12 +283,5 @@ class _HomeState extends State<HomePage> {
             ],
           );
         });
-  }
-
-  void _handleSubmitted(String selected) {
-    setState(() {
-      _selectedSemester = int.parse(selected);
-    });
-
   }
 }

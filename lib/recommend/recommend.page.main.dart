@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hdt/hdt.drawer.dart';
 import 'package:hdt/recommend/recommend.page.body.dart';
+import 'package:hdt/loginInfo.dart';
 
 class RecommendPage extends StatefulWidget {
   final courseData;
-  final String name, semester, studentID, major, major2;
-  RecommendPage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
+  RecommendPage(this.courseData);
 
   @override
   _RecommendPageState createState() => _RecommendPageState();
@@ -50,9 +50,8 @@ class _RecommendPageState extends State<RecommendPage> {
           )
         ],
       ),
-      drawer: HDTDrawer(
-          widget.courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2),
-      body:  RecommendPageBodyPage(widget.major)
+      drawer: HDTDrawer(widget.courseData),
+      body:  RecommendPageBodyPage(major)
     );
   }
 }

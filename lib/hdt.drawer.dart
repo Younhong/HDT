@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hdt/open_course/open.course.main.dart';
-import 'package:hdt/pre_register/pre.register.main.dart';
 import 'package:hdt/recommend/recommend.page.main.dart';
 import 'package:hdt/schedule/my_course.dart';import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:hdt/loginInfo.dart';
 
 class HDTDrawer extends StatefulWidget {
   final courseData;
-  final String name, semester, studentID, major, major2;
-  HDTDrawer(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
+  HDTDrawer(this.courseData);
 
   @override
   State<StatefulWidget> createState() => _HDTDrawerState();
@@ -20,6 +19,10 @@ class _HDTDrawerState extends State<HDTDrawer> {
 
   var phoneSize;
   var courseData;
+
+  int _selectedSemester;
+  final TextEditingController _semesterController = new TextEditingController();
+
 
 // CONSTRUCTOR
 
@@ -59,7 +62,7 @@ class _HDTDrawerState extends State<HDTDrawer> {
                             ),
                             Container(
                               padding: EdgeInsets.only(left: 15),
-                              child: Text(widget.name,
+                              child: Text(name,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 19)),
                             ),
@@ -75,11 +78,7 @@ class _HDTDrawerState extends State<HDTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      OpenCourseMainPage(
-                                        courseData,
-                                          widget.name, widget.semester,
-                                          widget.studentID, widget.major, widget.major2
-                                      )));
+                                      OpenCourseMainPage(courseData,)));
                         }
                     ),
                     ListTile(
@@ -87,23 +86,15 @@ class _HDTDrawerState extends State<HDTDrawer> {
                         leading: Icon(
                           Icons.calendar_today, color: Colors.black,),
                         onTap: () async => {
-                          await courseJSON(widget.studentID, widget.semester),
-                          await Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      MyCoursePage(
-                                          courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2))),
+                          _showDialog(),
                         }
                     ),
                     ListTile(
                         title: Text("예비 수강 조회"),
                         leading: Icon(
                           Icons.local_grocery_store, color: Colors.black,),
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PreRegisterMainPage(courseData,widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
+                        onTap: () => {
+                          _showDialog(),
                         }
                     ),
                     ListTile(
@@ -114,7 +105,7 @@ class _HDTDrawerState extends State<HDTDrawer> {
                           Navigator.push(context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      RecommendPage(courseData, widget.name, widget.semester, widget.studentID, widget.major, widget.major2)));
+                                      RecommendPage(courseData)));
                         }
                     ),
                   ],
@@ -139,5 +130,66 @@ class _HDTDrawerState extends State<HDTDrawer> {
     });
 
     return 'Success';
+  }
+
+  void _showDialog() async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Row(
+              children: <Widget>[
+                Container(
+                  child: Text("학기 선택: "),
+                ),
+                SizedBox(width: 10,),
+                Container(
+                  child: Flexible(
+                    child: TextField(
+                      autofocus: true,
+                      autocorrect: false,
+                      controller: _semesterController,
+                      maxLines: 1,
+                      style: TextStyle(
+                          color: Colors.black, fontSize: 16.0),
+                      cursorColor: Colors.grey,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        fillColor: Colors.red,
+                        hintText: "학기를 입력해주세요",
+                        hintStyle: TextStyle(
+                            color: Colors.grey, fontSize: 16.0),),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  color: Colors.black,
+                  child: Text(
+                    "확인",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    _selectedSemester = int.parse(_semesterController.text);
+
+
+                    await courseJSON(studentID, _selectedSemester.toString());
+                    await Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyCoursePage(courseData)));
+                    Navigator.pop(context);
+                  }),
+              RaisedButton(
+                  child: Text(
+                    "취소",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () => Navigator.of(context).pop()),
+            ],
+          );
+        });
   }
 }

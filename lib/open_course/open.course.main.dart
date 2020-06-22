@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hdt/hdt.drawer.dart';
 import 'package:hdt/open_course/open.course.body.dart';
+import 'package:hdt/loginInfo.dart';
 
 class OpenCourseMainPage extends StatelessWidget {
   final courseData;
-  final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  OpenCourseMainPage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
+  OpenCourseMainPage(this.courseData);
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,7 @@ class OpenCourseMainPage extends StatelessWidget {
           )
         ],
       ),
-      drawer: HDTDrawer(
-        courseData, name, semester, studentID, major, major2),
+      drawer: HDTDrawer(courseData),
       body: OpenCourseBodyPage(studentID),
       resizeToAvoidBottomInset: false,
     );

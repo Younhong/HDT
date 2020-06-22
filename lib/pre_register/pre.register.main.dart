@@ -4,10 +4,9 @@ import 'package:hdt/pre_register/pre.register.body.dart';
 
 class PreRegisterMainPage extends StatelessWidget {
   final courseData;
-  final String name, semester, studentID, major, major2;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  PreRegisterMainPage(this.courseData, this.name, this.semester, this.studentID, this.major, this.major2);
+  PreRegisterMainPage(this.courseData);
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +36,7 @@ class PreRegisterMainPage extends StatelessWidget {
           )
         ],
       ),
-      drawer: HDTDrawer(
-          courseData, name, semester, studentID, major, major2),
+      drawer: HDTDrawer(courseData),
       resizeToAvoidBottomInset: false,
     );
   }

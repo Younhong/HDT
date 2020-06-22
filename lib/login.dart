@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hdt/home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'loginInfo.dart';
+import 'package:hdt/loginInfo.dart';
 
 class LoginPage extends StatefulWidget{
   LoginPage();

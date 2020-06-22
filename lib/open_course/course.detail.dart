@@ -253,7 +253,7 @@ class _CourseDetailState extends State<CourseDetailPage> {
     if(yearSemester == '0')
       openTime = '';
     else
-      openTime = '&open_time=$yearSemester';
+      openTime = '&openTime=$yearSemester';
 
     String url = 'http://52.14.37.173:5000/basket?major_code='
         +  majorCode + openTime;
@@ -287,7 +287,7 @@ class _CourseDetailState extends State<CourseDetailPage> {
     if(yearSemester == '0')
       openTime = '';
     else
-      openTime = '&open_time=$yearSemester';
+      openTime = '&openTime=$yearSemester';
 
     String url = 'http://52.14.37.173:5000/basket_byC?major_code='
         +  majorCode + openTime + '&order=' + order;
