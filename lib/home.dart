@@ -127,9 +127,7 @@ class _HomeState extends State<HomePage> {
                 ],
               ),
               onTap: () => {
-
                 _showDialog(),
-
               }
             ),
             SizedBox(height: phoneSize.height * .05),
@@ -270,17 +268,15 @@ class _HomeState extends State<HomePage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    _selectedSemester = int.parse(_semesterController.text);
-
+                    _handleSubmitted(_semesterController.text);
 
                     await courseJSON(studentID, _selectedSemester.toString());
                     await Navigator.push(context,
-                    MaterialPageRoute(
-                    builder: (context) =>
-                    MyCoursePage(
-                    courseData, name, semester, studentID, major, major2)));
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyCoursePage(
+                                    courseData, name, semester, studentID, major, major2)));
                     Navigator.pop(context);
-
                   }),
               RaisedButton(
                   child: Text(
@@ -293,5 +289,10 @@ class _HomeState extends State<HomePage> {
         });
   }
 
+  void _handleSubmitted(String selected) {
+    setState(() {
+      _selectedSemester = int.parse(selected);
+    });
 
+  }
 }
