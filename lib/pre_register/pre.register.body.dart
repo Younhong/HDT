@@ -25,7 +25,7 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
               children: <Widget>[
 
                 Container(
-                  width: 170,
+                  width: phoneSize.width * .5,
                   height: 70,
                   child: RaisedButton(
 
@@ -55,7 +55,7 @@ class _PreRegisterBodyState extends State<PreRegisterBodyPage> {
                 ),
                 SizedBox(height: 50),
                 Container(
-                  width: 170,
+                  width: phoneSize.width * .5,
                   height: 70,
                   child: RaisedButton(
 

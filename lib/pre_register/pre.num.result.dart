@@ -60,7 +60,7 @@ class _PreNumResultState extends State<PreNumResultPage> {
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        height: 120,
+                        height: 140,
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
@@ -96,12 +96,9 @@ class _PreNumResultState extends State<PreNumResultPage> {
                                     alignment: Alignment.centerLeft,
                                     child: Text("총인원: " + widget.data[index]['all'].toString()),
                                 ),
-
-
                               ],
                             ),
                             Container(
-                                
                                 padding: EdgeInsets.only(left: 10),
                                 alignment: Alignment.centerLeft,
                                 child: Column(
