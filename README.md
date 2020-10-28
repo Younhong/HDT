@@ -11,5 +11,5 @@
 
 ## To Run Application
 1. Clone this repository
-2. Move on to project directory in termianl
+2. Move on to project directory in terminal
 3. Execute flutter build apk --split-per-abi --no-shrink
